@@ -32,6 +32,8 @@ public class MovementHandler : MonoBehaviour
 
     Rigidbody rb;
 
+    Vector3 direction;
+
     enum MoveState
     {
         walking,
@@ -55,20 +57,23 @@ public class MovementHandler : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
 
-        Vector3 direction = (orientation.forward * vertical + orientation.right * horizontal).normalized;
+        direction = (orientation.forward * vertical + orientation.right * horizontal).normalized;
 
         GroundCast();
         Drag();
         LimitVelocity(direction);
-
-        if(mState != MoveState.dashing)
-            MovePlayer(direction);
 
         if(Input.GetKeyDown("space") && grounded)
             Jump();
 
         if(Input.GetKeyDown("left shift"))
             Dash(horizontal, vertical);
+    }
+
+    void FixedUpdate()
+    {
+        if(mState != MoveState.dashing)
+            MovePlayer(direction);
     }
 
     private void StateMachine()

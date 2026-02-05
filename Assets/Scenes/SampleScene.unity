@@ -936,7 +936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementHandler
   orientation: {fileID: 472848259}
-  acceleration: 10
+  acceleration: 100
   maxVelocity: 15
   groundDrag: 5
   groundLayer:
