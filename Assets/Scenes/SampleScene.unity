@@ -936,7 +936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementHandler
   orientation: {fileID: 472848259}
-  acceleration: 100
+  acceleration: 80
   maxVelocity: 15
   groundDrag: 5
   groundLayer:
@@ -945,7 +945,7 @@ MonoBehaviour:
   jumpHeight: 2.5
   airControl: 0.1
   airMaxVelocity: 25
-  dashForce: 30
+  dashForce: 40
   dashTime: 0.15
   dashCooldownTime: 1
 --- !u!1 &472848258
