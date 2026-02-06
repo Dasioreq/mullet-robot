@@ -8,14 +8,14 @@ public class MovementHandler : MonoBehaviour
 
     [Header("Speed Controls")]
     [SerializeField] private float acceleration;
-    [SerializeField] private float maxVelocity;
+    [SerializeField] public float maxVelocity;
 
     [Header("Drag controls")]
     [SerializeField] private float groundDrag;
     [SerializeField] private LayerMask groundLayer;
 
     [Header("Ground")]
-    bool grounded;
+    public bool grounded;
     RaycastHit groundData;
 
     [Header("Jump controls")]
