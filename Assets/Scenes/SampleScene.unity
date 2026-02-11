@@ -1299,7 +1299,7 @@ GameObject:
   - component: {fileID: 1198223604}
   - component: {fileID: 1198223603}
   m_Layer: 0
-  m_Name: GeneratorBehavour
+  m_Name: GeneratorBehaviour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1318,10 +1318,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GeneratorBehavour
   rooms:
-  - {fileID: 11400000, guid: cbcd811e706060847b6791dc1008a177, type: 2}
   - {fileID: 11400000, guid: bc8c61634a7561b468b327bb8258dd2b, type: 2}
   - {fileID: 11400000, guid: 3f92e7a67c1b7ed41a974ffd1c285aa5, type: 2}
+  - {fileID: 11400000, guid: cbcd811e706060847b6791dc1008a177, type: 2}
+  - {fileID: 11400000, guid: 57b1bf01fa34e654c89241c87cf64e86, type: 2}
   origin: {fileID: 11400000, guid: 3f92e7a67c1b7ed41a974ffd1c285aa5, type: 2}
+  roomMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!4 &1198223604
 Transform:
   m_ObjectHideFlags: 0
