@@ -17,6 +17,8 @@ public class GeneratorBehaviour : MonoBehaviour
         Vector3 position = Vector3.zero;
         Vector3 direction = origin.exitDirection;
 
+        var originInstance = origin.CreateInstance(position, direction);
+
         position += origin.exit;
 
         List<int> indices = new List<int>();
@@ -28,7 +30,7 @@ public class GeneratorBehaviour : MonoBehaviour
             }
         }
 
-        List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)> generatedRooms = new List<(GameObject, Vector3, Vector3, int, List<int>)>{(origin.CreateInstance(position, direction), Vector3.zero, origin.exitDirection, -1, new List<int>(indices))};
+        List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)> generatedRooms = new List<(GameObject, Vector3, Vector3, int, List<int>)>{(originInstance, Vector3.zero, origin.exitDirection, -1, new List<int>(indices))};
 
         for(int roomIndex = 1; roomIndex <= roomNumber; roomIndex++)
         {
