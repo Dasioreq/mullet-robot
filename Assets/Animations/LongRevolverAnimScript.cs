@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class RevolverAnimScript : MonoBehaviour
+public class LongRevolverAnimScript : MonoBehaviour
 {
     private Animator anim;
     private bool isOn = false;
@@ -12,7 +12,7 @@ public class RevolverAnimScript : MonoBehaviour
     [SerializeField] private float reloadOffset2;
     [SerializeField] private AudioClip shotSound;
     [SerializeField] private AudioClip reloadSound;
-    [SerializeField] private AudioClip alternatifeReloadSound;
+    [SerializeField] private AudioClip alternativeReloadSound;
     private AudioSource source;
 
     void Start()
@@ -55,7 +55,7 @@ public class RevolverAnimScript : MonoBehaviour
         int chance = Random.Range(0, 100);
         if (chance < 20)
         {
-            source.PlayOneShot(alternatifeReloadSound);
+            source.PlayOneShot(alternativeReloadSound);
         }
         else
         {
