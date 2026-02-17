@@ -1,7 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class RevolverAnimScript : MonoBehaviour
+public class BeltRevolverAnimScript : MonoBehaviour
 {
     private Animator anim;
 
@@ -17,11 +16,6 @@ public class RevolverAnimScript : MonoBehaviour
             if(Input.GetMouseButtonDown(0))
             {
                 anim.SetTrigger("TrFire");
-            }
-
-            if(Input.GetKeyDown("r"))
-            {
-                anim.SetTrigger("TrReload");
             }
         }
     }

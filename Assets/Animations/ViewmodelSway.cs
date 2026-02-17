@@ -4,9 +4,13 @@ public class ViewmodelSway : MonoBehaviour
 {
     [SerializeField] GameObject player;
 
-    [Header("Speed controls")]
+    [Header("Move Sway")]
     [SerializeField] float speed;
     [SerializeField] float magnitude;
+
+    [Header("Breathing")]
+    [SerializeField] float breathingSpeed;
+    [SerializeField] float breathingMagnitude;
 
     MovementHandler movementScript;
     Rigidbody playerRb;
@@ -29,7 +33,7 @@ public class ViewmodelSway : MonoBehaviour
         {
             float speedRatio = playerRb.linearVelocity.magnitude / movementScript.maxVelocity;
             float horizontalSway = Mathf.Sin(Time.time * speed) * magnitude * speedRatio;
-            float verticalSway = Mathf.Cos(Time.time * speed * 2) * magnitude * speedRatio;
+            float verticalSway = Mathf.Cos(Time.time * speed * 2) * magnitude * speedRatio + Mathf.Sin(Time.time * breathingSpeed) * breathingMagnitude;
 
             targetPosition = basePosition + new Vector3(horizontalSway, verticalSway, 0);
         }
