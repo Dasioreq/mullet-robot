@@ -782,6 +782,7 @@ MonoBehaviour:
   dashForce: 40
   dashTime: 0.15
   dashCooldownTime: 1
+  rb: {fileID: 0}
 --- !u!1 &472848258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1038,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 75}
+--- !u!1 &693276721 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6712540210344893078, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
+  m_PrefabInstance: {fileID: 6032092968712640004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &701416066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,6 +1302,7 @@ MonoBehaviour:
   CardPanel: {fileID: 1005373327}
   Player: {fileID: 470769254}
   Camera: {fileID: 1065840836}
+  weapon: {fileID: 693276721}
 --- !u!4 &933511616
 Transform:
   m_ObjectHideFlags: 0
@@ -1878,11 +1885,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1818197642 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6227470501188616236, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
-  m_PrefabInstance: {fileID: 6032092968712640004}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1532020623
 GameObject:
   m_ObjectHideFlags: 0
@@ -2020,6 +2022,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532020623}
   m_CullTransparentMesh: 1
+--- !u!4 &1818197642 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6227470501188616236, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
+  m_PrefabInstance: {fileID: 6032092968712640004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1903669987
 GameObject:
   m_ObjectHideFlags: 0
