@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Collections;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GeneratorBehaviour : MonoBehaviour
 {
@@ -12,16 +9,24 @@ public class GeneratorBehaviour : MonoBehaviour
     [SerializeField] private Room origin;
     [SerializeField] private LayerMask roomMask;
 
-    void generate(uint roomNumber)
-    {
-        Vector3 position = Vector3.zero;
-        Vector3 direction = origin.exitDirection;
+    Vector3 position;
+    Vector3 direction;
 
-        var originInstance = origin.CreateInstance(position, direction);
+    GameObject originInstance;
+
+    List<int> indices = new List<int>();
+
+    List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)> generatedRooms;
+
+    void Init()
+    {
+        position = Vector3.zero;
+        direction = origin.exitDirection;
+
+        originInstance = origin.CreateInstance(position, direction);
 
         position += origin.exit;
 
-        List<int> indices = new List<int>();
         for(int i = 0; i < rooms.Count; i++)
         {
             for(int j = 0; j < rooms[i].weight; j++)
@@ -30,8 +35,11 @@ public class GeneratorBehaviour : MonoBehaviour
             }
         }
 
-        List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)> generatedRooms = new List<(GameObject, Vector3, Vector3, int, List<int>)>{(originInstance, Vector3.zero, origin.exitDirection, -1, new List<int>(indices))};
+        generatedRooms = new List<(GameObject, Vector3, Vector3, int, List<int>)>{(originInstance, Vector3.zero, origin.exitDirection, -1, new List<int>(indices))};
+    }
 
+    IEnumerator Generate(uint roomNumber)
+    {
         for(int roomIndex = 1; roomIndex <= roomNumber; roomIndex++)
         {
             var lastRoom = generatedRooms[roomIndex - 1];
@@ -48,6 +56,7 @@ public class GeneratorBehaviour : MonoBehaviour
                     generatedRooms[roomIndex - 2].possibleIndices.RemoveAll(el => el == lastRoom.index);
                     generatedRooms.RemoveAt(roomIndex - 1);
                     roomIndex -= 2;
+                    yield return null;
                     continue;
                 }
             }
@@ -74,11 +83,14 @@ public class GeneratorBehaviour : MonoBehaviour
                 position += rotation * r.exit;
                 direction = rotation * r.exitDirection;
             }
+
+            yield return null;
         }
     }
 
     void Awake()
     {
-        generate(100);
+        Init();
+        StartCoroutine(Generate(50));
     }
 }
