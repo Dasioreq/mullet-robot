@@ -604,6 +604,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cd1354a46765da4f86e93387226f931, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6358156334547493981}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cd1354a46765da4f86e93387226f931, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 592775239082835755}
   m_SourcePrefab: {fileID: 100100000, guid: 8cd1354a46765da4f86e93387226f931, type: 3}
 --- !u!1 &7978313317997836012 stripped
 GameObject:
@@ -764,3 +767,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &592775239082835755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978313317997836012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934ba63736f580c4493380cdfc4828d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::gun
+  gunDamage: 20
+  cam: {fileID: 0}
+  fireCooldown: 0.2
