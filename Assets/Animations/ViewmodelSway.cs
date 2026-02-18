@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ViewmodelSway : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    [SerializeField] public GameObject player;
 
     [Header("Move Sway")]
     [SerializeField] float speed;

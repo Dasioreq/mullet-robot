@@ -3,7 +3,7 @@ using UnityEngine;
 public class gun : MonoBehaviour
 {
     [SerializeField] private float gunDamage;
-    [SerializeField] private Camera cam;
+    [SerializeField] public Camera cam;
     [SerializeField] private float fireCooldown;
 
     private float cooldown = .0f;

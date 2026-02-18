@@ -705,6 +705,7 @@ GameObject:
   - component: {fileID: 470769256}
   - component: {fileID: 470769255}
   - component: {fileID: 470769258}
+  - component: {fileID: 470769259}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -782,7 +783,26 @@ MonoBehaviour:
   dashForce: 40
   dashTime: 0.15
   dashCooldownTime: 1
-  rb: {fileID: 0}
+  rb: {fileID: 470769255}
+--- !u!114 &470769259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470769254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b381772ca3d4e046922a84a78a00144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipWeapon
+  gunPrefabs:
+  - {fileID: 6712540210344893078, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
+  - {fileID: 7978313317997836012, guid: 64328768e8557ff428f2ceb8a4f84dc4, type: 3}
+  - {fileID: 2522918428138604979, guid: 03db81eb18f76fc44a3d9e3520fdc752, type: 3}
+  gunHolder: {fileID: 1065840836}
+  cam: {fileID: 1065840840}
+  cardPanelScript: {fileID: 933511615}
 --- !u!1 &472848258
 GameObject:
   m_ObjectHideFlags: 0
