@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e0222adc3ec999c4086a804b0f2e7de8
+guid: 57c9bb96966356c4797b0f9cc1de1336
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects:
@@ -7,12 +7,14 @@ ScriptedImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Circle_045/Circle_051:000:Material_005
-    second: {fileID: -6629797300637803691, guid: 8e1e37ba7cefd374b89c9bb17ed06389, type: 3}
+    second: {fileID: -6629797300637803691, guid: 8e1e37ba7cefd374b89c9bb17ed06389,
+      type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Circle_045/Circle_051:001:Material_004
-    second: {fileID: -6922793697723135513, guid: bfcd5b757659a384f92173a52ee65678, type: 3}
+    second: {fileID: -6922793697723135513, guid: bfcd5b757659a384f92173a52ee65678,
+      type: 3}
   serializedVersion: 2
   userData: 
   assetBundleName: 

@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class Cards : MonoBehaviour
 {
