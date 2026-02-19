@@ -644,8 +644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3f87114ecb95f418b5dfd29f4fbb8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeltRevolverAnimScript
-  fireOffset: 0.2
   shotSound: {fileID: 8300000, guid: 0196be5d5bc29ca438128a6e38cd9ed9, type: 3}
+  reloadSound: {fileID: 0}
+  fireSfxDelay: 0
+  reloadSfxDelay: 0
 --- !u!82 &4943225789276788726
 AudioSource:
   m_ObjectHideFlags: 0
@@ -757,7 +759,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::gun
   gunDamage: 20
   cam: {fileID: 0}
-  fireCooldown: 0.2
+  fireCooldown: 0.3
+  reloadCooldown: 0
+  maxAmmo: 0
 --- !u!4 &2902821048339485449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bfcd5b757659a384f92173a52ee65678, type: 3}
@@ -824,7 +828,9 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8224338793983486101, guid: 7ad854e5a821c0f43a5e59f4024991de, type: 3}
+    - {fileID: 7872003377865730973, guid: 7ad854e5a821c0f43a5e59f4024991de, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -17,7 +17,7 @@ public class Cards : MonoBehaviour
         CardPanel.SetActive(true);
         weapon.GetComponent<Animator>().enabled = false;
         weapon.GetComponent<AudioSource>().enabled = false;
-        weapon.GetComponent<gun>().enabled = false;
+        weapon.GetComponent<Gun>().enabled = false;
     }
 
     public void CloseWin()
@@ -29,7 +29,7 @@ public class Cards : MonoBehaviour
         CardPanel.SetActive(false);
         weapon.GetComponent<Animator>().enabled = true;
         weapon.GetComponent<AudioSource>().enabled = true;
-        weapon.GetComponent<gun>().enabled = true;
+        weapon.GetComponent<Gun>().enabled = true;
     }
 
     void Start()

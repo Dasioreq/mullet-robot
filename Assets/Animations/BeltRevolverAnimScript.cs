@@ -3,38 +3,21 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class BeltRevolverAnimScript : MonoBehaviour
+public class BeltRevolverAnimScript : Actions
 {
-    private Animator anim;
-    private bool isOn = false;
-    [SerializeField] private float fireOffset;
-    [SerializeField] private AudioClip shotSound;
-    private AudioSource source;
-
-    void Start()
+    override public IEnumerator Fire()
     {
-        anim = GetComponent<Animator>();
-        source = GetComponent<AudioSource>();
-    }
-
-    void Update()
-    {
-        if(anim != null && !isOn)
-        {
-            if(Input.GetMouseButtonDown(0))
-            {
-                StartCoroutine(Fire());
-            }
-        }
-    }
-    IEnumerator Fire()
-    {
-        isOn = true;
-        source.PlayOneShot(shotSound);
         anim.SetTrigger("TrFire");
-
-        yield return new WaitForSeconds(fireOffset);
-
-        isOn = false;
+        foreach(var animator in GetComponentsInChildren<Animator>())
+        {
+            animator.SetTrigger("TrFire");
+        }
+        foreach(var casing in GetComponentsInChildren<AddCasing>())
+        {
+            casing.AddLink();
+        }
+        yield return new WaitForSeconds(fireSfxDelay);
+        source.PlayOneShot(shotSound);
+        yield break;
     }
 }

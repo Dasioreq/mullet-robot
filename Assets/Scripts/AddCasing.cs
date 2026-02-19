@@ -57,7 +57,7 @@ public class AddCasing : MonoBehaviour
         currentLink = gameObject.transform;
     }
 
-    void addLink()
+    public void AddLink()
     {
         if(currentLink.childCount == 0)
         {
@@ -84,14 +84,6 @@ public class AddCasing : MonoBehaviour
         {
             currentLink = currentLink.GetChild(0);
             currentLink.GetComponent<MeshRenderer>().enabled = true;
-        }
-    }
-
-    void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            addLink();
         }
     }
 }

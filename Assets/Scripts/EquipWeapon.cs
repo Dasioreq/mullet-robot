@@ -16,11 +16,11 @@ public class EquipWeapon : MonoBehaviour
 
         currentWeapon = index;
         
-        Destroy(gunHolder.GetComponentInChildren<gun>().gameObject);
+        Destroy(gunHolder.GetComponentInChildren<Gun>().gameObject);
         
         var equippedGun = Instantiate(gunPrefabs[index], gunHolder.transform);
         equippedGun.GetComponent<ViewmodelSway>().player = gameObject;
-        equippedGun.GetComponent<gun>().cam = cam;
+        equippedGun.GetComponent<Gun>().cam = cam;
 
         cardPanelScript.weapon = equippedGun;
     }

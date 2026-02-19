@@ -1593,8 +1593,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraContols
   player: {fileID: 472848259}
-  xSens: 500
-  ySens: 500
+  xSens: 450
+  ySens: 450
 --- !u!1 &1198223602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2596,30 +2596,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShortRevolver
       objectReference: {fileID: 0}
-    - target: {fileID: 8457682739628333913, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
-      propertyPath: shotSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 0196be5d5bc29ca438128a6e38cd9ed9, type: 3}
-    - target: {fileID: 8457682739628333913, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
-      propertyPath: fireOffset
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8457682739628333913, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
-      propertyPath: reloadSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 71c87c0e93d37b94cab5238dbf2f75f4, type: 3}
-    - target: {fileID: 8457682739628333913, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
-      propertyPath: reloadOffset1
-      value: 0.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 8457682739628333913, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
-      propertyPath: reloadOffset2
-      value: 0.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 8457682739628333913, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
-      propertyPath: alternativeReloadSound
-      value: 
-      objectReference: {fileID: 8300000, guid: e7fa2099f026e084b8f42dcaf74a8b11, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

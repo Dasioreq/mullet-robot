@@ -647,12 +647,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512c154e8dd4c984d89410fce04afb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LongRevolverAnimScript
-  fireOffset: 0.2
-  reloadOffset1: 0.67
-  reloadOffset2: 0.66
   shotSound: {fileID: 8300000, guid: 0196be5d5bc29ca438128a6e38cd9ed9, type: 3}
   reloadSound: {fileID: 8300000, guid: 71c87c0e93d37b94cab5238dbf2f75f4, type: 3}
-  alternativeReloadSound: {fileID: 8300000, guid: e7fa2099f026e084b8f42dcaf74a8b11, type: 3}
+  fireSfxDelay: 0
+  reloadSfxDelay: 0.67
+  altReloadSound: {fileID: 8300000, guid: e7fa2099f026e084b8f42dcaf74a8b11, type: 3}
 --- !u!114 &1076700315094598762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,4 +780,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::gun
   gunDamage: 20
   cam: {fileID: 0}
-  fireCooldown: 0.2
+  fireCooldown: 0.3
+  reloadCooldown: 1
+  maxAmmo: 6
