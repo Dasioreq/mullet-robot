@@ -1,22 +1,23 @@
+using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
-public class BeltRevolverAnimScript : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class BeltRevolverAnimScript : Actions
 {
-    private Animator anim;
-
-    void Start()
+    override public IEnumerator Fire()
     {
-        anim = GetComponent<Animator>();
-    }
-
-    void Update()
-    {
-        if(anim != null)
+        anim.SetTrigger("TrFire");
+        foreach(var animator in GetComponentsInChildren<Animator>())
         {
-            if(Input.GetMouseButtonDown(0))
-            {
-                anim.SetTrigger("TrFire");
-            }
+            animator.SetTrigger("TrFire");
         }
+        foreach(var casing in GetComponentsInChildren<AddCasing>())
+        {
+            casing.AddLink();
+        }
+        yield return new WaitForSeconds(fireSfxDelay);
+        source.PlayOneShot(shotSound);
+        yield break;
     }
 }

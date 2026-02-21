@@ -1,28 +1,33 @@
 using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
-public class LongRevolverAnimScript : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class LongRevolverAnimScript : Actions
 {
-    private Animator anim;
+    [SerializeField] AudioClip altReloadSound;
 
-    void Start()
+    override public IEnumerator Fire()
     {
-        anim = GetComponent<Animator>();
+        anim.SetTrigger("TrFire");
+        yield return new WaitForSeconds(fireSfxDelay);
+        source.PlayOneShot(shotSound);
+        yield break;
     }
 
-    void Update()
+    public override IEnumerator Reload()
     {
-        if(anim != null)
+        anim.SetTrigger("TrReload");
+        yield return new WaitForSeconds(reloadSfxDelay);
+        int chance = Random.Range(0, 100);
+        if(chance < 20)
         {
-            if(Input.GetMouseButtonDown(0))
-            {
-                anim.SetTrigger("TrFire");
-            }
-
-            if(Input.GetKeyDown("r"))
-            {
-                anim.SetTrigger("TrReload");
-            }
+            source.PlayOneShot(altReloadSound);
         }
+        else
+        {
+            source.PlayOneShot(reloadSound);
+        }
+        yield break;
     }
 }

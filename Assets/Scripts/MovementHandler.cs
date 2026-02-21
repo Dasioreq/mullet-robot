@@ -30,7 +30,7 @@ public class MovementHandler : MonoBehaviour
     private float dashTimer = 0;
     private float dashCooldownTimer = 0;
 
-    Rigidbody rb;
+    public Rigidbody rb;
 
     Vector3 direction;
 
