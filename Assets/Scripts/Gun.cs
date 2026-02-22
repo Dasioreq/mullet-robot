@@ -7,6 +7,10 @@ using UnityEngine;
     [SerializeField] public Camera cam;
     [SerializeField] private float fireCooldown;
     [SerializeField] private float reloadCooldown;
+    [SerializeField] private uint projectileCount = 1;
+    [SerializeField] private float spreadDeg;
+
+    [SerializeField] public GameObject hitPrefab;
 
     [SerializeField] uint maxAmmo;
     uint ammo;
@@ -48,11 +52,20 @@ using UnityEngine;
     {
         RaycastHit hit;
         Vector3 origin = cam.transform.position;
-        Vector3 direction = cam.transform.forward;
 
-        if (Physics.Raycast(origin, direction, out hit))
+        for(int i = 0; i < projectileCount; i++)
         {
-            Debug.Log(hit.collider.gameObject.name + origin);
+            Vector3 direction = cam.transform.forward;
+
+            Quaternion spreadYaw = Quaternion.AngleAxis(UnityEngine.Random.Range(0, spreadDeg), cam.transform.up);
+            Quaternion spreadRoll = Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), cam.transform.forward);
+
+            direction = spreadRoll * (spreadYaw * direction);
+
+            if (Physics.Raycast(origin, direction, out hit))
+            {
+                Instantiate(hitPrefab, hit.point, Quaternion.identity);
+            }
         }
 
         var gunActions = GetComponentsInChildren<Actions>();

@@ -761,6 +761,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   fireCooldown: 0.3
   reloadCooldown: 0
+  projectileCount: 1
+  spreadDeg: 0
   maxAmmo: 0
 --- !u!4 &2902821048339485449 stripped
 Transform:

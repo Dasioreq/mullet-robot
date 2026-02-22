@@ -137,8 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3f87114ecb95f418b5dfd29f4fbb8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeltRevolverAnimScript
-  fireOffset: 0.2
   shotSound: {fileID: 0}
+  reloadSound: {fileID: 0}
+  fireSfxDelay: 0
+  reloadSfxDelay: 0
 --- !u!82 &7872003377865730973
 AudioSource:
   m_ObjectHideFlags: 0
