@@ -699,10 +699,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3ed9805101a7345b7c777ceaddc321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SingleShotShotgunAnimScript
-  shotSound: {fileID: 0}
-  reloadSound: {fileID: 0}
+  shotSound: {fileID: 8300000, guid: d979752aa4325f94e82723ea14ee201a, type: 3}
+  reloadSound: {fileID: 8300000, guid: 7d957f337d7f14b44abb410aba9c04d0, type: 3}
   fireSfxDelay: 0
-  reloadSfxDelay: 0
+  reloadSfxDelay: 0.15
+  reloadSound2: {fileID: 8300000, guid: c263c5adec7ac7a4cb5a7eabf7de1929, type: 3}
+  reloadSound3: {fileID: 8300000, guid: a2b2fae66ffeb86449ba6108b0864790, type: 3}
+  altReloadSound: {fileID: 8300000, guid: f302672cce76947458514a10f8ed5488, type: 3}
+  nextReloadSfxDelay: 0.55
+  nextReloadSfxDelay2: 0.45
 --- !u!114 &4061839139822713363
 MonoBehaviour:
   m_ObjectHideFlags: 0

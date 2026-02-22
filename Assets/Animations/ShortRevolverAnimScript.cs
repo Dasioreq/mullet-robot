@@ -20,7 +20,7 @@ public class ShortRevolverAnimScript : Actions
         anim.SetTrigger("TrReload");
         yield return new WaitForSeconds(reloadSfxDelay);
         int chance = Random.Range(0, 100);
-        if(chance < 20)
+        if(chance < 30)
         {
             source.PlayOneShot(altReloadSound);
         }

@@ -521,10 +521,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36e24c0f7eccff4b9888297ddab5967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FatShotgunAnimScript
-  shotSound: {fileID: 0}
-  reloadSound: {fileID: 0}
+  shotSound: {fileID: 8300000, guid: 4d45ee5a2593ea54d83064aa90377f5c, type: 3}
+  reloadSound: {fileID: 8300000, guid: 7d957f337d7f14b44abb410aba9c04d0, type: 3}
   fireSfxDelay: 0
-  reloadSfxDelay: 0
+  reloadSfxDelay: 0.5
+  reloadSound2: {fileID: 8300000, guid: c263c5adec7ac7a4cb5a7eabf7de1929, type: 3}
+  reloadSound3: {fileID: 8300000, guid: 3219365f1b0024b4eab5deb5a18f371b, type: 3}
+  reloadSound4: {fileID: 8300000, guid: c967fd53ad015654aa0b663274359130, type: 3}
+  altReloadSound: {fileID: 8300000, guid: f302672cce76947458514a10f8ed5488, type: 3}
+  nextReloadSfxDelay: 0.05
+  nextReloadSfxDelay2: 0.05
+  nextReloadSfxDelay3: 0.2
 --- !u!114 &1619843565434384445
 MonoBehaviour:
   m_ObjectHideFlags: 0
