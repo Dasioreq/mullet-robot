@@ -708,6 +708,7 @@ MonoBehaviour:
   altReloadSound: {fileID: 8300000, guid: f302672cce76947458514a10f8ed5488, type: 3}
   nextReloadSfxDelay: 0.55
   nextReloadSfxDelay2: 0.45
+  emptyReloadSound: {fileID: 8300000, guid: d3e6279dbf396cf48967463d24ad3b29, type: 3}
 --- !u!114 &4061839139822713363
 MonoBehaviour:
   m_ObjectHideFlags: 0

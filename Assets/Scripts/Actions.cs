@@ -20,4 +20,5 @@ public class Actions : MonoBehaviour
 
     virtual public IEnumerator Fire(){yield break;}
     virtual public IEnumerator Reload(){yield break;}
+    virtual public IEnumerator EmptyReload() { yield break; }
 }

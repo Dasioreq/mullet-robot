@@ -37,13 +37,17 @@ using UnityEngine;
                 reloading = false;
             }
 
-            if(Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
+            if (Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
             {
                 Fire();
             }
-            else if(Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
+            else if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
             {
                 Reload();
+            }
+            else if (Input.GetMouseButtonDown(0) && ammo == 0 && maxAmmo != 0)
+            {
+                EmptyReload();
             }
         }
     }
@@ -89,6 +93,19 @@ using UnityEngine;
         foreach(Actions action in gunActions)
         {
             StartCoroutine(action.Reload());
+        }
+
+        cooldown = reloadCooldown;
+    }
+    void EmptyReload()
+    {
+        reloading = true;
+
+        var gunActions = GetComponentsInChildren<Actions>();
+
+        foreach (Actions action in gunActions)
+        {
+            StartCoroutine(action.EmptyReload());
         }
 
         cooldown = reloadCooldown;

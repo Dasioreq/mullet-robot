@@ -652,6 +652,7 @@ MonoBehaviour:
   fireSfxDelay: 0
   reloadSfxDelay: 0.67
   altReloadSound: {fileID: 8300000, guid: e7fa2099f026e084b8f42dcaf74a8b11, type: 3}
+  emptyReloadSound: {fileID: 8300000, guid: d3e6279dbf396cf48967463d24ad3b29, type: 3}
 --- !u!114 &966838667995260760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,4 +783,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   fireCooldown: 0.2
   reloadCooldown: 1
+  projectileCount: 1
+  spreadDeg: 0
+  hitPrefab: {fileID: 0}
   maxAmmo: 6
