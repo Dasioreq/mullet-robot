@@ -20,7 +20,7 @@ public class GeneratorBehaviour : MonoBehaviour
 
     void Init()
     {
-        position = Vector3.zero;
+        position = new Vector3(0, 0, -7.5f);
         direction = origin.exitDirection;
 
         originInstance = origin.CreateInstance(position, direction);

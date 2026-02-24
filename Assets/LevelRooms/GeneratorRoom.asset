@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7efb295ac293a194abeb95bafd964371, type: 3}
-  m_Name: StraightCorridor20_0
+  m_Name: GeneratorRoom
   m_EditorClassIdentifier: Assembly-CSharp::Room
-  exit: {x: 0, y: 0, z: 20}
+  exit: {x: 0, y: 0, z: 15}
   exitDirection: {x: 0, y: 0, z: 1}
-  prefab: {fileID: 4391080216032343539, guid: 93218d3468985db4c80a92446889e9f5, type: 3}
+  prefab: {fileID: 2236570829254240883, guid: fd244dafda27de047ae60703bf28c86a, type: 3}
   weight: 1

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efb295ac293a194abeb95bafd964371, type: 3}
+  m_Name: StraightCorridor20m_0
+  m_EditorClassIdentifier: Assembly-CSharp::Room
+  exit: {x: 0, y: 0, z: 20}
+  exitDirection: {x: 0, y: 0, z: 1}
+  prefab: {fileID: 2812193481681067959, guid: 7cc878265cd74694db9d871f5937484a, type: 3}
+  weight: 1
