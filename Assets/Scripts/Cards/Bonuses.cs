@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using static RandCards;
 
 public class Bonuses : MonoBehaviour
 {
@@ -6,5 +8,4 @@ public class Bonuses : MonoBehaviour
     {
         Debug.Log("Button works");
     }
-    
 }
