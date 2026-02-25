@@ -1353,8 +1353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraContols
   player: {fileID: 472848259}
-  xSens: 400
-  ySens: 400
+  xSens: 2
+  ySens: 2
 --- !u!1 &1198223602
 GameObject:
   m_ObjectHideFlags: 0
