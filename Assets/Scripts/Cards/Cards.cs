@@ -1,4 +1,5 @@
 using UnityEngine;
+using static RandCards;
 
 public class Cards : MonoBehaviour
 {
@@ -6,6 +7,9 @@ public class Cards : MonoBehaviour
     public GameObject Player;
     public GameObject Camera;
     public GameObject weapon;
+    [SerializeField] private GameObject ButtonOrg;
+    [SerializeField] private Transform cardPanel;
+    GameObject[] Buttons = new GameObject[4];
 
     private void ShowCards()
     {
@@ -18,6 +22,18 @@ public class Cards : MonoBehaviour
         weapon.GetComponent<Animator>().enabled = false;
         weapon.GetComponent<AudioSource>().enabled = false;
         weapon.GetComponent<Gun>().enabled = false;
+
+        for (int i = 0; i < 4; i++)
+        {
+            Buttons[i] = Instantiate(ButtonOrg, cardPanel); 
+        }
+
+        var but1 = Buttons[0];
+        var but2 = Buttons[1];
+        var but3 = Buttons[2];
+        var but4 = Buttons[3];
+
+        RandCards.RCards(but1, but2, but3, but4);
     }
 
     public void CloseWin()

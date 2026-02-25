@@ -7,7 +7,7 @@ public class MovementHandler : MonoBehaviour
     [SerializeField] private Transform orientation;
 
     [Header("Speed Controls")]
-    [SerializeField] private float acceleration;
+    [SerializeField] public float acceleration;
     [SerializeField] public float maxVelocity;
 
     [Header("Drag controls")]
@@ -19,12 +19,12 @@ public class MovementHandler : MonoBehaviour
     RaycastHit groundData;
 
     [Header("Jump controls")]
-    [SerializeField] private float jumpHeight;
+    [SerializeField] public float jumpHeight;
     [SerializeField] private float airControl;
     [SerializeField] private float airMaxVelocity;
 
     [Header("Dash controls")]
-    [SerializeField] private float dashForce;
+    [SerializeField] public float dashForce;
     [SerializeField] private float dashTime;
     [SerializeField] private float dashCooldownTime;
     private float dashTimer = 0;
