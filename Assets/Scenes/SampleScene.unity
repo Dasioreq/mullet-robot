@@ -1196,7 +1196,8 @@ MonoBehaviour:
   Player: {fileID: 470769254}
   Camera: {fileID: 1065840836}
   weapon: {fileID: 693276721}
-  ButtonOrg: {fileID: 0}
+  ButtonOrg: {fileID: 3858510886950610588, guid: 935beffc09fdeae439bc85d0dc64d2f3, type: 3}
+  cardPanel: {fileID: 1005373331}
 --- !u!4 &933511616
 Transform:
   m_ObjectHideFlags: 0
@@ -1277,7 +1278,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

@@ -11,10 +11,10 @@ public class RandCards : MonoBehaviour
 
     public static void RCards(GameObject b1, GameObject b2, GameObject b3, GameObject b4)
     {
-        b4.transform.localPosition = new Vector3(-900f, 360f, 0f);
-        b1.transform.localPosition = new Vector3(-900f, 120f, 0f);
-        b2.transform.localPosition = new Vector3(-900f, -120f, 0f);
-        b3.transform.localPosition = new Vector3(-900f, -360f, 0f);
+        b4.transform.localPosition = new Vector3(-700f, 360f, 0f);
+        b1.transform.localPosition = new Vector3(-700f, 120f, 0f);
+        b2.transform.localPosition = new Vector3(-700f, -120f, 0f);
+        b3.transform.localPosition = new Vector3(-700f, -360f, 0f);
 
         var values = Enum.GetValues(typeof(UpgradeType));
         UpgradeType Option1 = (UpgradeType)values.GetValue(UnityEngine.Random.Range(0,values.Length));
