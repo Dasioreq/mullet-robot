@@ -56,7 +56,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 759
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
@@ -163,6 +163,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8820954063222217607}
   - component: {fileID: 9085256295986761076}
+  - component: {fileID: 3731253319060549846}
+  - component: {fileID: 7163349803993208441}
   m_Layer: 6
   m_Name: GeneratorRoom
   m_TagString: Untagged
@@ -239,6 +241,46 @@ MonoBehaviour:
   - light: {fileID: 8997946258284309823}
     lightmapBaketype: 2
     mixedLightingMode: 2
+--- !u!54 &3731253319060549846
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2236570829254240883}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7163349803993208441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2236570829254240883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4340594c710db364693e22259b30b90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ViewmodelAmbientLighting
+  sunColor: {r: 0, g: 1, b: 0.9394505, a: 0}
 --- !u!1 &2423074461091565393
 GameObject:
   m_ObjectHideFlags: 0
