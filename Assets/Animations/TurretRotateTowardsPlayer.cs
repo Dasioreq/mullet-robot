@@ -3,7 +3,7 @@ using UnityEngine;
 public class TurretRotateTowardsPlayer : MonoBehaviour
 {
     [SerializeField] Transform playerPosition;
-    [SerializeField] float degreesPerSecond;
+    [SerializeField] float yawSpeed, pitchSpeed;
     [SerializeField] float range;
 
     private Quaternion baseYaw, basePitch;
@@ -14,68 +14,75 @@ public class TurretRotateTowardsPlayer : MonoBehaviour
         yawBone = transform.Find("Root/Yaw");
         pitchBone = transform.Find("Root/Yaw/Pitch");
 
-        baseYaw = yawBone.rotation;
-        basePitch = pitchBone.rotation;
+        baseYaw = yawBone.localRotation;
+        basePitch = pitchBone.localRotation;
     }
 
     void Update()
     {
-        Vector3 direction = playerPosition.position - transform.position;
+        float distance = (playerPosition.position - transform.position).magnitude;
 
-        if(direction.magnitude <= range)
+        if(distance <= range)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            Vector3 yawDirection = playerPosition.position - yawBone.position;
+
+            Quaternion yawRotation = Quaternion.LookRotation(Quaternion.Inverse(transform.rotation) * yawDirection);
 
             Quaternion nextYaw = Quaternion.RotateTowards(
-                yawBone.rotation, 
-                targetRotation, 
-                degreesPerSecond * Time.deltaTime
+                yawBone.localRotation, 
+                yawRotation, 
+                yawSpeed * Time.deltaTime
             );
 
-            yawBone.rotation = Quaternion.Euler(
-                yawBone.rotation.eulerAngles.x, 
+            yawBone.localRotation = Quaternion.Euler(
+                yawBone.localRotation.eulerAngles.x, 
                 nextYaw.eulerAngles.y, 
-                yawBone.rotation.eulerAngles.z
+                yawBone.localRotation.eulerAngles.z
             );
 
-            targetRotation = targetRotation * Quaternion.Euler(-transform.rotation.eulerAngles);
+
+            Vector3 pitchDirection = playerPosition.position - pitchBone.position;
+
+            Quaternion pitchRotation = Quaternion.LookRotation(Quaternion.Inverse(transform.rotation) * pitchDirection);
+
+            pitchRotation = pitchRotation * basePitch;
 
             Quaternion nextPitch = Quaternion.RotateTowards(
-                pitchBone.rotation, 
-                targetRotation, 
-                degreesPerSecond * Time.deltaTime
+                pitchBone.localRotation, 
+                pitchRotation, 
+                pitchSpeed * Time.deltaTime
             );
 
-            pitchBone.rotation = Quaternion.Euler(
+            pitchBone.localRotation = Quaternion.Euler(
                 nextPitch.eulerAngles.x, 
-                yawBone.rotation.eulerAngles.y,
-                yawBone.rotation.eulerAngles.z
+                pitchBone.localRotation.eulerAngles.y,
+                pitchBone.localRotation.eulerAngles.z
             );
         }
         else
         {
             Quaternion nextYaw = Quaternion.RotateTowards(
-                yawBone.rotation, 
+                yawBone.localRotation, 
                 baseYaw, 
-                degreesPerSecond * Time.deltaTime
+                yawSpeed * Time.deltaTime
             );
 
-            yawBone.rotation = Quaternion.Euler(
-                yawBone.rotation.eulerAngles.x, 
+            yawBone.localRotation = Quaternion.Euler(
+                yawBone.localRotation.eulerAngles.x, 
                 nextYaw.eulerAngles.y, 
-                yawBone.rotation.eulerAngles.z
+                yawBone.localRotation.eulerAngles.z
             );
 
             Quaternion nextPitch = Quaternion.RotateTowards(
-                pitchBone.rotation, 
+                pitchBone.localRotation, 
                 basePitch, 
-                degreesPerSecond * Time.deltaTime
+                pitchSpeed * Time.deltaTime
             );
 
-            pitchBone.rotation = Quaternion.Euler(
+            pitchBone.localRotation = Quaternion.Euler(
                 nextPitch.eulerAngles.x, 
-                yawBone.rotation.eulerAngles.y,
-                yawBone.rotation.eulerAngles.z
+                pitchBone.localRotation.eulerAngles.y,
+                pitchBone.localRotation.eulerAngles.z
             );
         }
     }
