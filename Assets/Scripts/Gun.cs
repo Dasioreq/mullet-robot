@@ -66,9 +66,15 @@ using UnityEngine;
 
             direction = spreadRoll * (spreadYaw * direction);
 
-            if (Physics.Raycast(origin, direction, out hit))
+            if(Physics.Raycast(origin, direction, out hit))
             {
-                Instantiate(hitPrefab, hit.point, Quaternion.identity);
+                var obj = hit.transform.gameObject;
+                if(obj)
+                {
+                    var damageHandler = obj.GetComponent<DamageHandler>();
+                    if(damageHandler)
+                        damageHandler.GetDamaged(gunDamage);
+                }
             }
         }
 

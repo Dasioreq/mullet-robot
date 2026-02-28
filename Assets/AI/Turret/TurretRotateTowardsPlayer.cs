@@ -16,6 +16,11 @@ public class TurretRotateTowardsPlayer : MonoBehaviour
 
         baseYaw = yawBone.localRotation;
         basePitch = pitchBone.localRotation;
+
+        if(!playerPosition)
+        {
+            playerPosition = GameObject.FindWithTag("Player").transform;
+        }
     }
 
     void Update()

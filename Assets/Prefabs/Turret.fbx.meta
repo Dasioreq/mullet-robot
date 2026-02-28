@@ -3,7 +3,27 @@ guid: 04372605cd187eb4989059011c7095fa
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretDarkMetal
+    second: {fileID: 2100000, guid: 0ddeaf9fc762c364997d0d61600e069f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretLightMetal
+    second: {fileID: 2100000, guid: 130d2cb9888ff1e4fa99bf60fcb405d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretMetal
+    second: {fileID: 2100000, guid: a4d63e9e22ca49d41bbe1dfc520012c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretRedPaint
+    second: {fileID: 2100000, guid: 0ed560e1b7d38994c895d2196554bb7e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
