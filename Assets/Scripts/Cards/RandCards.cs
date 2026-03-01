@@ -1,40 +1,76 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class RandCards : MonoBehaviour
 {
+    public Bonuses[] Btn;
     public enum UpgradeType
     {
         speed,
         jump
     }
 
-    public static void RCards(GameObject b1, GameObject b2, GameObject b3, GameObject b4)
+    public void RCards(GameObject[] spawnedButtons)
     {
-        b4.transform.localPosition = new Vector3(-700f, 360f, 0f);
-        b1.transform.localPosition = new Vector3(-700f, 120f, 0f);
-        b2.transform.localPosition = new Vector3(-700f, -120f, 0f);
-        b3.transform.localPosition = new Vector3(-700f, -360f, 0f);
+
+        if (spawnedButtons.Length >= 4)
+        {
+            spawnedButtons[0].transform.localPosition = new Vector3(-400f, 200f, 0f);
+            spawnedButtons[1].transform.localPosition = new Vector3(400f, 200f, 0f);
+            spawnedButtons[2].transform.localPosition = new Vector3(-400f, -200f, 0f);
+            spawnedButtons[3].transform.localPosition = new Vector3(400f, -200f, 0f);
+        }
 
         var values = Enum.GetValues(typeof(UpgradeType));
-        UpgradeType Option1 = (UpgradeType)values.GetValue(UnityEngine.Random.Range(0,values.Length));
-        UpgradeType Option2 = (UpgradeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
-        UpgradeType Option3 = (UpgradeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
-        UpgradeType Option4 = (UpgradeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
 
-        Debug.Log("Dzieje Sie");
+        foreach (GameObject btnObj in spawnedButtons)
+        {
+            if (btnObj == null) continue;
+
+            Bonuses bonusScript = btnObj.GetComponent<Bonuses>();
+
+            if (bonusScript != null)
+            {
+                UpgradeType option = (UpgradeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+                bonusScript.Setup(option, this);
+            }
+            else
+            {
+                Debug.Log($"Missing Bonuses on {btnObj.name}");
+            }
+        }
     }
 
     public void ApplyUpgrade(UpgradeType uprg)
     {
-        switch ((int)uprg)
+
+        foreach (var b in Btn)
         {
-            case 0:
+            if (b != null)
+            {
+                b.GetComponent<UnityEngine.UI.Button>().interactable = false;
+            }
+        }
+        switch (uprg)
+        {
+            case UpgradeType.speed:
+                Debug.Log("speed");
                 break;
-            case 1:
+            case UpgradeType.jump:
+                Debug.Log("jump");
                 break;
         }
 
-    }
+        GetComponent<Cards>().CloseWin();
+        foreach (var b in Btn) 
+        { 
+            if (b != null)
+            {
+                Destroy(b.gameObject); 
+            }
 
+        }
+
+    }
 }
