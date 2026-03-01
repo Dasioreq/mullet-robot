@@ -5,25 +5,15 @@ using UnityEngine.UI;
 
 public class Bonuses : MonoBehaviour
 {
-    public UpgradeType assignedUpgrade;
+    public RandCards.UpgradeData data;
     public RandCards manager;
-
     public void OnClick()
     {
-        if (manager != null)
-        {
-            manager.ApplyUpgrade(assignedUpgrade);
-        }
-        else
-        {
-            Debug.LogError("Manager is null");
-        }
+        manager.ApplyUpgrade(data);
     }
-
-    public void Setup(UpgradeType newUpgrade, RandCards m)
+    public void Setup(RandCards.UpgradeData newData, RandCards m)
     {
-        assignedUpgrade = newUpgrade;
+        data = newData;
         manager = m;
     }
 }
-

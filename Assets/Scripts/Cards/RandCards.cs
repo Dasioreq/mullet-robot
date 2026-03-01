@@ -5,12 +5,14 @@ using UnityEngine;
 public class RandCards : MonoBehaviour
 {
     public Bonuses[] Btn;
-    public enum UpgradeType
+    public enum UpgradeType{ speed, jump, dashing }
+    public enum UpgradeTier { tier1, tier2, tier3 }
+    public struct UpgradeData
     {
-        speed,
-        jump
+        public UpgradeType type;
+        public UpgradeTier tier;
+        public float multiplier;
     }
-
     public void RCards(GameObject[] spawnedButtons)
     {
 
@@ -27,38 +29,55 @@ public class RandCards : MonoBehaviour
         foreach (GameObject btnObj in spawnedButtons)
         {
             if (btnObj == null) continue;
-
             Bonuses bonusScript = btnObj.GetComponent<Bonuses>();
 
             if (bonusScript != null)
             {
-                UpgradeType option = (UpgradeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
-                bonusScript.Setup(option, this);
-            }
-            else
-            {
-                Debug.Log($"Missing Bonuses on {btnObj.name}");
+                UpgradeData randomUpgrade = GetRandomUpgrade();
+                bonusScript.Setup(randomUpgrade, this);
             }
         }
     }
-
-    public void ApplyUpgrade(UpgradeType uprg)
+    private UpgradeData GetRandomUpgrade()
     {
+        var values = Enum.GetValues(typeof(UpgradeType));
+        UpgradeType randomType = (UpgradeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
 
-        foreach (var b in Btn)
+        UpgradeTier selectedTier;
+        float multiplier;
+
+        int roll = UnityEngine.Random.Range(0, 101);
+
+        if (roll <= 60)
         {
-            if (b != null)
-            {
-                b.GetComponent<UnityEngine.UI.Button>().interactable = false;
-            }
+            selectedTier = UpgradeTier.tier1;
+            multiplier = 0.05f;
         }
-        switch (uprg)
+        else if (roll <= 90)
+        {
+            selectedTier = UpgradeTier.tier2;
+            multiplier = 0.10f;
+        }
+        else
+        {
+            selectedTier = UpgradeTier.tier3;
+            multiplier = 0.15f;
+        }
+
+        return new UpgradeData { type = randomType, tier = selectedTier, multiplier = multiplier };
+    }
+    public void ApplyUpgrade(UpgradeData upgr)
+    {
+        switch (upgr.type)
         {
             case UpgradeType.speed:
-                Debug.Log("speed");
+                Debug.Log("Type: " + upgr.type + " | Tier: " + upgr.tier + " | Bonus: " + upgr.multiplier);
                 break;
             case UpgradeType.jump:
-                Debug.Log("jump");
+                Debug.Log("Type: " + upgr.type + " | Tier: " + upgr.tier + " | Bonus: " + upgr.multiplier);
+                break;
+            case UpgradeType.dashing:
+                Debug.Log("Type: " + upgr.type + " | Tier: " + upgr.tier + " | Bonus: " + upgr.multiplier);
                 break;
         }
 
@@ -69,7 +88,6 @@ public class RandCards : MonoBehaviour
             {
                 Destroy(b.gameObject); 
             }
-
         }
 
     }
