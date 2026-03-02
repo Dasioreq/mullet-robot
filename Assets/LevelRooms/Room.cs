@@ -10,7 +10,9 @@ public class Room : ScriptableObject
 
     public GameObject CreateInstance(Vector3 position, Vector3 direction)
     {
-        return Instantiate(prefab, position, Quaternion.LookRotation(direction));
+        var instance = Instantiate(prefab, position, Quaternion.LookRotation(direction));
+
+        return instance;
     }
 
     public static bool isColliding(GameObject instantiated, GameObject[] existingRooms)
@@ -53,5 +55,22 @@ public class Room : ScriptableObject
         }
 
         return false;
+    }
+
+    public static void SpawnEnemies(GameObject instance)
+    {
+        var nodeParent = instance.transform.Find("EnemySpawnNodes");
+        if(nodeParent)
+        {
+            var nodes = nodeParent.GetComponentsInChildren<EnemySpawnNode>();
+
+            foreach(var node in nodes)
+            {
+                if(Random.Range(0.0f, 1.0f) <= node.chance)
+                {
+                    node.Spawn();
+                }
+            }
+        }
     }
 }
