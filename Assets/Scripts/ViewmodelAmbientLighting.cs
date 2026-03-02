@@ -11,7 +11,7 @@ public class ViewmodelAmbientLighting : MonoBehaviour
 
     void Start()
     {
-        sun = RenderSettings.sun.gameObject;
+        sun = GameObject.Find("ViewmodelSun");
         sunDirection = Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), Vector3.down) * Quaternion.AngleAxis(Random.Range(45, 135), Vector3.right);
     }
 
