@@ -57,6 +57,7 @@ public class Cards : MonoBehaviour
 
     void Start()
     {
+
         CardPanel.SetActive(false);
     }
     void Update()

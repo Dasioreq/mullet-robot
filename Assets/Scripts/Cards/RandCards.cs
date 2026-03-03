@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -6,11 +7,20 @@ public class RandCards : MonoBehaviour
 {
     public Bonuses[] Btn;
     public enum UpgradeType{ speed, jump, dashing }
-    public enum UpgradeTier { tier1, tier2, tier3 }
+    private Dictionary<UpgradeType, float> currentMultipliers = new Dictionary<UpgradeType, float>();
+    private float startMultiplier = 0.10f;
+
+    private void Awake()
+    {
+        foreach (UpgradeType type in Enum.GetValues(typeof(UpgradeType)))
+        {
+            currentMultipliers[type] = startMultiplier;
+        }
+    }
+
     public struct UpgradeData
     {
         public UpgradeType type;
-        public UpgradeTier tier;
         public float multiplier;
     }
     public void RCards(GameObject[] spawnedButtons)
@@ -33,53 +43,61 @@ public class RandCards : MonoBehaviour
 
             if (bonusScript != null)
             {
-                UpgradeData randomUpgrade = GetRandomUpgrade();
-                bonusScript.Setup(randomUpgrade, this);
+                UpgradeData upgrade = GetRandomUpgrade();
+                bonusScript.Setup(upgrade, this);
             }
         }
     }
+
     private UpgradeData GetRandomUpgrade()
     {
         var values = Enum.GetValues(typeof(UpgradeType));
         UpgradeType randomType = (UpgradeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
 
-        UpgradeTier selectedTier;
-        float multiplier;
+        float multiplier = currentMultipliers[randomType];
 
-        int roll = UnityEngine.Random.Range(0, 101);
-
-        if (roll <= 60)
-        {
-            selectedTier = UpgradeTier.tier1;
-            multiplier = 0.05f;
-        }
-        else if (roll <= 90)
-        {
-            selectedTier = UpgradeTier.tier2;
-            multiplier = 0.10f;
-        }
-        else
-        {
-            selectedTier = UpgradeTier.tier3;
-            multiplier = 0.15f;
-        }
-
-        return new UpgradeData { type = randomType, tier = selectedTier, multiplier = multiplier };
+        return new UpgradeData { type = randomType, multiplier = multiplier };
     }
+
     public void ApplyUpgrade(UpgradeData upgr)
     {
+        float multiplierUpgrade = (currentMultipliers[upgr.type] >= 0.20f) ? 0.01f : 0.05f;
+        currentMultipliers[upgr.type] += multiplierUpgrade;
         switch (upgr.type)
         {
             case UpgradeType.speed:
-                Debug.Log("Type: " + upgr.type + " | Tier: " + upgr.tier + " | Bonus: " + upgr.multiplier);
-                break;
+                if(currentMultipliers[UpgradeType.speed] < 1.5f)
+                {
+                    Debug.Log("Type: " + upgr.type + " | Bonus: " + upgr.multiplier);
+                }
+                else
+                {
+                    Debug.Log("Too fast");
+                }
+                    break;
             case UpgradeType.jump:
-                Debug.Log("Type: " + upgr.type + " | Tier: " + upgr.tier + " | Bonus: " + upgr.multiplier);
+                if (currentMultipliers[UpgradeType.jump] < 1.5f)
+                {
+                    Debug.Log("Type: " + upgr.type + " | Bonus: " + upgr.multiplier);
+                }
+                else
+                {
+                    Debug.Log("Too high");
+                }
                 break;
             case UpgradeType.dashing:
-                Debug.Log("Type: " + upgr.type + " | Tier: " + upgr.tier + " | Bonus: " + upgr.multiplier);
+                if (currentMultipliers[UpgradeType.dashing] < 1.5f)
+                {
+                    Debug.Log("Type: " + upgr.type + " | Bonus: " + upgr.multiplier);
+                }
+                else
+                {
+                    Debug.Log("Too good");
+                }
                 break;
         }
+
+
 
         GetComponent<Cards>().CloseWin();
         foreach (var b in Btn) 
