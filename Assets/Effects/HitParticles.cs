@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public interface IHittable
 {
@@ -13,7 +14,7 @@ public interface IHitImpact: IHittable
 public class HitParticles : MonoBehaviour, IHitImpact
 {
     [SerializeField] GameObject[] particles;
-
+    [SerializeField] AudioClip [] ricochets;
     virtual public void OnHit(RaycastHit hit, float damage)
     {
         this.SpawnParticles(hit, damage);
@@ -21,18 +22,27 @@ public class HitParticles : MonoBehaviour, IHitImpact
 
     virtual public void SpawnParticles(RaycastHit hit, float damage)
     {
-        foreach(var p in particles)
+        int chance = Random.Range(0, 2);
+        if (chance < 1)
         {
-            Vector3 position = hit.point;
-            Vector3 normal = hit.normal;
-            foreach(ParticleSystem particle in p.GetComponentsInChildren<ParticleSystem>())
+            if (ricochets.Length > 0)
             {
-                var instance = Instantiate(particle, position, Quaternion.LookRotation(normal));
-                var main = instance.main;
-                var emmision = instance.emission;
-                
-                emmision.rateOverTime = 1 / main.duration * damage;
+                int chance2 = Random.Range(0, ricochets.Length);
+                AudioSource.PlayClipAtPoint(ricochets[chance2], hit.point);
             }
         }
+        foreach (var p in particles)
+            {
+                Vector3 position = hit.point;
+                Vector3 normal = hit.normal;
+                foreach (ParticleSystem particle in p.GetComponentsInChildren<ParticleSystem>())
+                {
+                    var instance = Instantiate(particle, position, Quaternion.LookRotation(normal));
+                    var main = instance.main;
+                    var emmision = instance.emission;
+
+                    emmision.rateOverTime = 1 / main.duration * damage;
+                }
+            }
     }
 }

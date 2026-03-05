@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TurretAnims : EnemyActions
 {
+    [SerializeField] AudioClip altAttackSound;
     public override IEnumerator Attack()
     {
         anim.SetTrigger("TrAttack");
@@ -10,7 +11,15 @@ public class TurretAnims : EnemyActions
         if(attackSound)
         {
             yield return new WaitForSeconds(attackSfxDelay);
-            source.PlayOneShot(attackSound);
+            int chance = Random.Range(0, 2);
+            if (chance < 1)
+            {
+                source.PlayOneShot(attackSound,4);
+            }
+            else
+            {
+                source.PlayOneShot(altAttackSound,4);
+            }
         }
         yield break;
     }
