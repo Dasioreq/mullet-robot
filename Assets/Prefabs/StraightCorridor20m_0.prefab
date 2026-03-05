@@ -980,6 +980,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4406159958128362776}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5400510585440916658}
     - targetCorrespondingSourceObject: {fileID: -8712324458216795722, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2265942680139154471}
@@ -1088,6 +1091,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ViewmodelAmbientLighting
   sunColor: {r: 0.7921569, g: 0.67058825, b: 0.3254902, a: 0}
+--- !u!114 &5400510585440916658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812193481681067959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2934a26f2c302499321d053866a3a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitParticles
+  particles:
+  - {fileID: 4914974483878241075, guid: 47d0cbef942de9447993cd435a8c0c81, type: 3}
+  - {fileID: 2261239161522803298, guid: 563206967e2df184fb6dec9ed9821cc0, type: 3}
 --- !u!4 &3192273402164708621 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}

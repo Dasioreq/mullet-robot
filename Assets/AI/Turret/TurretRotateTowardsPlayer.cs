@@ -23,7 +23,7 @@ public class TurretRotateTowardsPlayer : MonoBehaviour
         }
     }
 
-    void Update()
+    public float advanceTowardsPlayer()
     {
         float distance = (playerPosition.position - transform.position).magnitude;
 
@@ -63,6 +63,8 @@ public class TurretRotateTowardsPlayer : MonoBehaviour
                 pitchBone.localRotation.eulerAngles.y,
                 pitchBone.localRotation.eulerAngles.z
             );
+
+            return Vector3.Angle(pitchDirection, pitchBone.up);
         }
         else
         {
@@ -89,6 +91,8 @@ public class TurretRotateTowardsPlayer : MonoBehaviour
                 pitchBone.localRotation.eulerAngles.y,
                 pitchBone.localRotation.eulerAngles.z
             );
+
+            return 180;
         }
     }
 }

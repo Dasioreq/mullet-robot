@@ -66,14 +66,16 @@ using UnityEngine;
 
             direction = spreadRoll * (spreadYaw * direction);
 
-            if(Physics.Raycast(origin, direction, out hit))
+            if(Physics.Raycast(origin, direction, out hit, Mathf.Infinity, ~(1 << LayerMask.NameToLayer("Bounds"))))
             {
                 var obj = hit.transform.gameObject;
                 if(obj)
                 {
-                    var damageHandler = obj.GetComponent<DamageHandler>();
-                    if(damageHandler)
-                        damageHandler.GetDamaged(gunDamage);
+                    IHittable hittable = obj.GetComponentInParent<IHittable>();
+                    if(hittable != null)
+                    {
+                        hittable.OnHit(hit, gunDamage);
+                    }
                 }
             }
         }
