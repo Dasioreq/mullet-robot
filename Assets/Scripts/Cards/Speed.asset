@@ -15,4 +15,4 @@ MonoBehaviour:
   type: 0
   displayName: Speed
   icon: {fileID: 21300000, guid: df62b035f4a05944b83bdf0379b6bc00, type: 3}
-  themeColor: {r: 0, g: 0, b: 0, a: 1}
+  themeColor: {r: 1, g: 1, b: 1, a: 1}

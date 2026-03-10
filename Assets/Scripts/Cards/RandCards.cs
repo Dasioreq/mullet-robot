@@ -31,10 +31,10 @@ public class RandCards : MonoBehaviour
 
         if (spawnedButtons.Length >= 4)
         {
-            spawnedButtons[0].transform.localPosition = new Vector3(-400f, 200f, 0f);
-            spawnedButtons[1].transform.localPosition = new Vector3(400f, 200f, 0f);
-            spawnedButtons[2].transform.localPosition = new Vector3(-400f, -200f, 0f);
-            spawnedButtons[3].transform.localPosition = new Vector3(400f, -200f, 0f);
+            spawnedButtons[0].transform.localPosition = new Vector3(600f, 0f, 0f);
+            spawnedButtons[1].transform.localPosition = new Vector3(200f, 0f, 0f);
+            spawnedButtons[2].transform.localPosition = new Vector3(-200f, 0f, 0f);
+            spawnedButtons[3].transform.localPosition = new Vector3(-600f, 0f, 0f);
         }
 
         var values = Enum.GetValues(typeof(UpgradeType));
