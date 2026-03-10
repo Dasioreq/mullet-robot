@@ -37,6 +37,15 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         if(lifeTime <= 0)
             Destroy();
     }
+    public float GetLifeTime()
+    {
+        return lifeTime;
+    }
+
+    public float GetMaxLifeTime()
+    {
+        return maxLifeTime;
+    }
 
     virtual public void Destroy() {lifeTime = maxLifeTime;}
 }
