@@ -848,7 +848,7 @@ MonoBehaviour:
   reloadCooldown: 0
   projectileCount: 1
   spreadDeg: 0
-  hitPrefab: {fileID: 0}
+  crosshairSprite: {fileID: 2032129976270723174, guid: 88e62caf32758de4e945c805e968ad11, type: 3}
   maxAmmo: 0
 --- !u!4 &2902821048339485449 stripped
 Transform:

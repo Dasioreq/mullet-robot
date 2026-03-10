@@ -7,8 +7,9 @@ public class TurretDamage : EnemyDamage
     [SerializeField] GameObject[] explosionParticles;
     [SerializeField] AudioClip deadSound;
     protected AudioSource source;
-    public void Start()
+    override protected void Start()
     {
+        base.Start();
         source = GetComponent<AudioSource>();
     }
 

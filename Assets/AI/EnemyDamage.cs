@@ -12,7 +12,7 @@ public class EnemyDamage : HitParticles, IDamagable
     float health;
     bool destroyed = false;
 
-    void Start()
+    virtual protected void Start()
     {
         health = maxHealth;
     }

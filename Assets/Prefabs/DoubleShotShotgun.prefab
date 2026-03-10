@@ -707,7 +707,7 @@ MonoBehaviour:
   reloadCooldown: 0
   projectileCount: 24
   spreadDeg: 10
-  hitPrefab: {fileID: 0}
+  crosshairSprite: {fileID: 1901157413412849402, guid: cc8fd64bb15beb9488f2e6977f48da0b, type: 3}
   maxAmmo: 0
 --- !u!114 &1873775490397331521
 MonoBehaviour:

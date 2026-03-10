@@ -9,8 +9,7 @@ using UnityEngine;
     [SerializeField] private float reloadCooldown;
     [SerializeField] private uint projectileCount = 1;
     [SerializeField] private float spreadDeg;
-
-    [SerializeField] public GameObject hitPrefab;
+    [SerializeField] public GameObject crosshairSprite;
 
     [SerializeField] uint maxAmmo;
     uint ammo;

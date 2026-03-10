@@ -24,8 +24,6 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         {
             Damage(Time.deltaTime);
         }
-
-        Debug.Log(lifeTime);
     }
 
     virtual public void OnHit(RaycastHit hit, float damage)
