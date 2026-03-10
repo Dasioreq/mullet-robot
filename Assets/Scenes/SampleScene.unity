@@ -1304,7 +1304,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969e83bd12383fa4391d8505b4f28201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandCards
-  Btn: []
+  Btn:
+  - {fileID: 7739945386142655533, guid: 935beffc09fdeae439bc85d0dc64d2f3, type: 3}
+  Icon:
+  - {fileID: 11400000, guid: 0ff4344554724c34d8ee13a2aaf1edd2, type: 2}
+  - {fileID: 11400000, guid: 7c47a5b3bd6db304795ea7201a955990, type: 2}
+  - {fileID: 11400000, guid: dc73938e4d86af94db64a0d96d8c4a43, type: 2}
 --- !u!1 &1005373327
 GameObject:
   m_ObjectHideFlags: 0

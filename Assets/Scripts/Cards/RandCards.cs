@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static RandCards;
+using static UnityEngine.Analytics.IAnalytic;
 
 public class RandCards : MonoBehaviour
 {
     public Bonuses[] Btn;
+    public List<Icons> Icon;
     public enum UpgradeType{ speed, jump, dashing }
     private Dictionary<UpgradeType, float> currentMultipliers = new Dictionary<UpgradeType, float>();
     private float startMultiplier = 0.10f;
@@ -44,7 +47,8 @@ public class RandCards : MonoBehaviour
             if (bonusScript != null)
             {
                 UpgradeData upgrade = GetRandomUpgrade();
-                bonusScript.Setup(upgrade, this);
+                Icons ui = Icon.Find(x => x.type == upgrade.type);
+                bonusScript.Setup(upgrade, this, ui);
             }
         }
     }
