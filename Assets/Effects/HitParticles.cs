@@ -3,7 +3,7 @@ using static Unity.VisualScripting.Member;
 
 public interface IHittable
 {
-    public void OnHit(RaycastHit hit, float damage);
+    public virtual void OnHit(RaycastHit hit, float damage){}
 }
 
 public interface IHitImpact: IHittable
