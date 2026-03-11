@@ -27,13 +27,20 @@ public class Cards : MonoBehaviour
         {
             Buttons[i] = Instantiate(ButtonOrg, cardPanel); 
         }
+        RandCards rc = GetComponent<RandCards>();
+        Bonuses[] bScripts = new Bonuses[4];
+        for (int i = 0; i < 4; i++) bScripts[i] = Buttons[i].GetComponent<Bonuses>();
+        RandCards randCardsScript = GetComponent<RandCards>();
+        randCardsScript.Btn = bScripts;
 
-        var but1 = Buttons[0];
-        var but2 = Buttons[1];
-        var but3 = Buttons[2];
-        var but4 = Buttons[3];
-
-        RandCards.RCards(but1, but2, but3, but4);
+        if (rc != null)
+        {
+            rc.RCards(Buttons);
+        }
+        else
+        {
+            Debug.Log("No RandCards on object " + gameObject.name);
+        }
     }
 
     public void CloseWin()
@@ -50,6 +57,7 @@ public class Cards : MonoBehaviour
 
     void Start()
     {
+
         CardPanel.SetActive(false);
     }
     void Update()
