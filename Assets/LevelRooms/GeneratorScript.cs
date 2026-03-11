@@ -96,6 +96,6 @@ public class GeneratorBehaviour : MonoBehaviour
     void Awake()
     {
         Init();
-        StartCoroutine(Generate(50));
+        StartCoroutine(Generate(20));
     }
 }
