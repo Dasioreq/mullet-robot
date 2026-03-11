@@ -8,6 +8,7 @@ public class BeltRevolverAnimScript : Actions
     override public IEnumerator Fire()
     {
         anim.SetTrigger("TrFire");
+        StartCoroutine(Flash(.1f));
         foreach(var animator in GetComponentsInChildren<Animator>())
         {
             animator.SetTrigger("TrFire");

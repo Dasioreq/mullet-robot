@@ -7,8 +7,9 @@ public class EquipWeapon : MonoBehaviour
     [SerializeField] GameObject gunHolder;
     [SerializeField] Camera cam;
     [SerializeField] Cards cardPanelScript;
-    [SerializeField] GameObject hitPrefab;
-    int currentWeapon = 0;
+    [SerializeField] GameObject crosshairCanvas;
+    int currentWeapon = -1;
+    GameObject crosshair = null;
 
     void Equip(int index)
     {
@@ -22,7 +23,10 @@ public class EquipWeapon : MonoBehaviour
         var equippedGun = Instantiate(gunPrefabs[index], gunHolder.transform);
         equippedGun.GetComponent<ViewmodelSway>().player = gameObject;
         equippedGun.GetComponent<Gun>().cam = cam;
-        equippedGun.GetComponent<Gun>().hitPrefab = hitPrefab;
+
+        if(crosshair)
+            Destroy(crosshair);
+        crosshair = Instantiate(equippedGun.GetComponent<Gun>().crosshairSprite, crosshairCanvas.transform);
 
         cardPanelScript.weapon = equippedGun;
     }

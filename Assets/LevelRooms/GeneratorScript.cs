@@ -86,6 +86,11 @@ public class GeneratorBehaviour : MonoBehaviour
 
             yield return null;
         }
+
+        foreach(var room in generatedRooms)
+        {
+            Room.SpawnEnemies(room.instance);
+        }
     }
 
     void Awake()

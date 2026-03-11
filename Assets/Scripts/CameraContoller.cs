@@ -23,8 +23,8 @@ public class CameraContoller : MonoBehaviour
 
     void Update()
     {
-        float xMouse = Input.GetAxisRaw("Mouse X") * Time.deltaTime * xSens;
-        float yMouse = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * ySens;
+        float xMouse = Input.GetAxisRaw("Mouse X") * xSens;
+        float yMouse = Input.GetAxisRaw("Mouse Y") * ySens;
 
         yRotation += xMouse;
         xRotation -= yMouse;
