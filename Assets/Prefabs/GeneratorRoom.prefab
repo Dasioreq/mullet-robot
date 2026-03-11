@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5016906770419798090
 Transform:
@@ -79,7 +79,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2235819197106804560
 Transform:
@@ -165,12 +165,14 @@ GameObject:
   - component: {fileID: 9085256295986761076}
   - component: {fileID: 3731253319060549846}
   - component: {fileID: 7163349803993208441}
+  - component: {fileID: 2692714265138520040}
+  - component: {fileID: 2715069956586718778}
   m_Layer: 6
   m_Name: GeneratorRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8820954063222217607
 Transform:
@@ -181,7 +183,7 @@ Transform:
   m_GameObject: {fileID: 2236570829254240883}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 19.637285, y: 0.0000010195181, z: 42.026436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -212,22 +214,22 @@ MonoBehaviour:
   m_RendererInfo:
   - renderer: {fileID: 6533650554394860253}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.4724442, y: 0.47069284, z: 0.5988349, w: 0.50850075}
+    lightmapOffsetScale: {x: 0.4724442, y: 0.47069284, z: 0.17110051, w: 0.2047898}
   - renderer: {fileID: 6443014129455196100}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.4724441, y: 0.47069308, z: 0.022663042, w: 0.5104538}
+    lightmapOffsetScale: {x: 0.4724441, y: 0.47069308, z: 0.20820992, w: 0.11494598}
   - renderer: {fileID: 3227707885675096063}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.5314063, y: 0.53198695, z: 0.45471287, w: 0.36482233}
+    lightmapOffsetScale: {x: 0.5314063, y: 0.53198695, z: 0.45764256, w: 0.48591608}
   - renderer: {fileID: 1227747350277389836}
     lightmapIndex: 0
     lightmapOffsetScale: {x: 1.0824881, y: 1.0831941, z: -0.054340884, w: -0.054376647}
   - renderer: {fileID: 4826819705879505010}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.25230125, y: 0.25325269, z: 0.14235929, w: 0.022983987}
+    lightmapOffsetScale: {x: 0.25230125, y: 0.25325269, z: 0.3269296, w: 0.77103084}
   - renderer: {fileID: 480306937246620682}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.25397405, y: 0.2553039, z: 0.310892, w: 0.4795093}
+    lightmapOffsetScale: {x: 0.25397405, y: 0.2553039, z: 0.7396029, w: 0.63380617}
   m_Lightmaps:
   - {fileID: 2800000, guid: 15ded82273610094fa583192c277be67, type: 3}
   m_LightmapsDir:
@@ -281,6 +283,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ViewmodelAmbientLighting
   sunColor: {r: 0, g: 1, b: 0.9394505, a: 0}
+--- !u!114 &2692714265138520040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2236570829254240883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2934a26f2c302499321d053866a3a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitParticles
+  particles:
+  - {fileID: 4914974483878241075, guid: 47d0cbef942de9447993cd435a8c0c81, type: 3}
+  - {fileID: 2261239161522803298, guid: 563206967e2df184fb6dec9ed9821cc0, type: 3}
+  ricochets:
+  - {fileID: 8300000, guid: 4a39d8612d9845c49b3cf1400f73a722, type: 3}
+  - {fileID: 8300000, guid: b93cc4271ea68d34f875dd6492b7b992, type: 3}
+  - {fileID: 8300000, guid: d2bc9ce69dcfc844f947874e6236355c, type: 3}
+--- !u!114 &2715069956586718778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2236570829254240883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f588b3e4d610b489c25c4e648182dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntermisionActions
 --- !u!1 &2423074461091565393
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +330,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 0
 --- !u!4 &2812072097096273339
 Transform:
@@ -424,7 +457,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 0
 --- !u!4 &6809590196282592290
 Transform:
@@ -551,7 +584,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2325971425628725490
 Transform:
@@ -642,7 +675,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5292395668144931580
 Transform:
@@ -734,7 +767,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1264040154326909891
 Transform:
@@ -850,7 +883,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &930150461953883817
 Transform:
@@ -941,7 +974,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4411475242468567956
 Transform:

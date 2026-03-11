@@ -11,6 +11,7 @@ public class LongRevolverAnimScript : Actions
     override public IEnumerator Fire()
     {
         anim.SetTrigger("TrFire");
+        StartCoroutine(Flash(.1f));
         yield return new WaitForSeconds(fireSfxDelay);
         source.PlayOneShot(shotSound);
         yield break;
