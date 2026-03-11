@@ -2618,10 +2618,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddebea76f7ae4144cafe4cf18cd9e0e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwitchMusic
-  switchTime: 1
-  intermissionTrack: {fileID: 8300000, guid: 99cb2e1656b6a0f42a7a4c92b1b8da91, type: 3}
+  switchTime: 0.5
+  intermissionTrack: {fileID: 8300000, guid: f24b017d64475b04e9ed7d63348072cf, type: 3}
   combatTracks:
-  - {fileID: 8300000, guid: d3e6279dbf396cf48967463d24ad3b29, type: 3}
+  - {fileID: 8300000, guid: 28c88bd51aa0dd744bca83883385a7d1, type: 3}
+  - {fileID: 8300000, guid: 39bfe041929180545b12ecc958ea9a1b, type: 3}
+  - {fileID: 8300000, guid: d3c5cf278e825d747bd1c3f4c0cd33c1, type: 3}
+  - {fileID: 8300000, guid: 14c2d5c0559aac2428f9487f6b74c56b, type: 3}
+  - {fileID: 8300000, guid: 5d7a003d263607d4997bad25638dde86, type: 3}
+  - {fileID: 8300000, guid: 88f29de2f0a32a244be06477a2264b89, type: 3}
 --- !u!1 &1253119019
 GameObject:
   m_ObjectHideFlags: 0
