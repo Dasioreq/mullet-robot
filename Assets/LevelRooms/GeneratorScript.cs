@@ -20,7 +20,7 @@ public class GeneratorBehaviour : MonoBehaviour
 
     void Init()
     {
-        position = Vector3.zero;
+        position = new Vector3(0, 0, -7.5f);
         direction = origin.exitDirection;
 
         originInstance = origin.CreateInstance(position, direction);
@@ -86,11 +86,16 @@ public class GeneratorBehaviour : MonoBehaviour
 
             yield return null;
         }
+
+        foreach(var room in generatedRooms)
+        {
+            Room.SpawnEnemies(room.instance);
+        }
     }
 
     void Awake()
     {
         Init();
-        StartCoroutine(Generate(50));
+        StartCoroutine(Generate(20));
     }
 }

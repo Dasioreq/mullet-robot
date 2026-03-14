@@ -6,10 +6,12 @@ using UnityEngine;
 public class LongRevolverAnimScript : Actions
 {
     [SerializeField] AudioClip altReloadSound;
+    [SerializeField] AudioClip emptyReloadSound;
 
     override public IEnumerator Fire()
     {
         anim.SetTrigger("TrFire");
+        StartCoroutine(Flash(.1f));
         yield return new WaitForSeconds(fireSfxDelay);
         source.PlayOneShot(shotSound);
         yield break;
@@ -28,6 +30,12 @@ public class LongRevolverAnimScript : Actions
         {
             source.PlayOneShot(reloadSound);
         }
+        yield break;
+    }
+    public override IEnumerator EmptyReload()
+    {
+        source.PlayOneShot(emptyReloadSound);
+        StartCoroutine(Reload());
         yield break;
     }
 }
