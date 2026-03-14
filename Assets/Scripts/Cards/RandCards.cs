@@ -10,9 +10,9 @@ public class RandCards : MonoBehaviour
 {
     public Bonuses[] Btn;
     public List<Icons> Icon;
-    public GameObject noMoreUpgradesWindow;
-
-    public enum UpgradeType{ speed, jump, dashing, newWeapon }
+    public MovementHandler player;
+    //public GameObject noMoreUpgradesWindow;
+    public enum UpgradeType{ speed, jump, dashing}
     private Dictionary<UpgradeType, float> currentMultipliers = new Dictionary<UpgradeType, float>();
     private float startMultiplier = 1.10f;
 
@@ -69,44 +69,23 @@ public class RandCards : MonoBehaviour
     }
     public void ApplyUpgrade(UpgradeData upgr)
     {
-        float multiplierUpgrade = (currentMultipliers[upgr.type] + 0.05f > 1.5f) ? 0.01f : 0.05f;
+        float multiplierUpgrade = (currentMultipliers[upgr.type] + 0.05f > 1.2f) ? 0.01f : 0.05f;
         currentMultipliers[upgr.type] += multiplierUpgrade;
         switch (upgr.type)
         {
             case UpgradeType.speed:
-                if(currentMultipliers[UpgradeType.speed] <= 1.5f)
-                {
-                    Debug.Log("Type: " + upgr.type + " | Bonus: " + upgr.multiplier);
-                }
-                else
-                {
-                    Debug.Log("Too fast");
-                }
-                    break;
+                player.acceleration *= (1 + multiplierUpgrade);
+                player.maxVelocity *= (1 + multiplierUpgrade);
+                break;
             case UpgradeType.jump:
-                if (currentMultipliers[UpgradeType.jump] <= 1.5f)
-                {
-                    Debug.Log("Type: " + upgr.type + " | Bonus: " + upgr.multiplier);
-                }
-                else
-                {
-                    Debug.Log("Too high");
-                }
+                player.jumpHeight *= (1 + multiplierUpgrade);
                 break;
             case UpgradeType.dashing:
-                if (currentMultipliers[UpgradeType.dashing] <= 1.5f)
-                {
-                    Debug.Log("Type: " + upgr.type + " | Bonus: " + upgr.multiplier);
-                }
-                else
-                {
-                    Debug.Log("Too good");
-                }
+                player.dashForce *= (1 + multiplierUpgrade);
                 break;
             default: 
                 Debug.Log("Different option");
                 break;
-
         }
 
         GetComponent<Cards>().CloseWin();
