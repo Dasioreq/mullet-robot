@@ -36,7 +36,7 @@ public class ViewmodelAmbientLighting : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "PlayerObj")
+        if(other.gameObject.name == "PlayerCamera")
         {
             StartCoroutine(Switcheroo());
         }

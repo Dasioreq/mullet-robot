@@ -863,15 +863,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.83092
+      value: -34.341312
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000002441825
+      value: 0.37500164
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.24257
+      value: 114.22958
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -986,6 +986,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8712324458216795722, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2265942680139154471}
+    - targetCorrespondingSourceObject: {fileID: -3385367274666899773, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 841911659988794043}
+    - targetCorrespondingSourceObject: {fileID: 5572470494081719859, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3316408050679102689}
     - targetCorrespondingSourceObject: {fileID: -7272911518199237601, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7231193734243931607}
@@ -1016,10 +1022,10 @@ MonoBehaviour:
   m_RendererInfo:
   - renderer: {fileID: 1905529625974531870}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.26344734, y: 0.26410314, z: 0.22667773, w: 0.6317947}
+    lightmapOffsetScale: {x: 0.26344734, y: 0.26410314, z: 0.62706834, w: 0.24995872}
   - renderer: {fileID: 8059922552805505513}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.26149952, y: 0.2628238, z: 0.64218163, w: 0.741475}
+    lightmapOffsetScale: {x: 0.26149952, y: 0.2628238, z: 0.31112695, w: 0.31276402}
   - renderer: {fileID: 9102126844365912089}
     lightmapIndex: 1
     lightmapOffsetScale: {x: 1.1327132, y: 1.1317902, z: -0.06754225, w: -0.06748681}
@@ -1169,11 +1175,65 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8643041769963566295, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
+--- !u!1 &7391223515189345493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5572470494081719859, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
+  m_PrefabInstance: {fileID: 3154633840430539494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3316408050679102689
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7391223515189345493}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8127108271548317024, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
 --- !u!23 &8059922552805505513 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4908107860533598991, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
   m_PrefabInstance: {fileID: 3154633840430539494}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8845985174265439269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3385367274666899773, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
+  m_PrefabInstance: {fileID: 3154633840430539494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &841911659988794043
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845985174265439269}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1468059533706618700, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}
 --- !u!23 &9102126844365912089 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -3056041028626425089, guid: 3f630738a72ac724eb167fcad8d7d1c3, type: 3}

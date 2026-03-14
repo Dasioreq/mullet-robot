@@ -206,6 +206,7 @@ MonoBehaviour:
   particles:
   - {fileID: 8738499301014372334, guid: 0da4ed688721af94998778f07e62a017, type: 3}
   - {fileID: 4914974483878241075, guid: 47d0cbef942de9447993cd435a8c0c81, type: 3}
+  ricochets: []
   maxHealth: 15
   explosionParticles:
   - {fileID: 942827086087318643, guid: 878b1960fd4f18b48a0141aaa7180176, type: 3}
@@ -388,8 +389,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.005299701, y: 0.0021131167, z: 0.0052997014}
-  m_Center: {x: -8.271803e-25, y: 0.0039812373, z: -0.0000000017462298}
+  m_Size: {x: 0.005299701, y: 0.006113117, z: 0.0052997014}
+  m_Center: {x: -8.271803e-25, y: 0.005, z: -0.0000000017462298}
 --- !u!1 &2991617909475244327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2984609629645764809, guid: 04372605cd187eb4989059011c7095fa, type: 3}
