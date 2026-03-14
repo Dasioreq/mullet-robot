@@ -26,9 +26,8 @@ public class Bonuses : MonoBehaviour
             titleText.text = ic.displayName;
             iconImage.sprite = ic.icon;
             iconImage.color = ic.themeColor;
-            //iconImage.color = Color.white;
         }
 
-        valueText.text = $"+{(data.multiplier * 100):0}%";
+        valueText.text = $"+{((data.multiplier - 1.0f) * 100):0}%";
     }
 }

@@ -1075,6 +1075,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ff4344554724c34d8ee13a2aaf1edd2, type: 2}
   - {fileID: 11400000, guid: 7c47a5b3bd6db304795ea7201a955990, type: 2}
   - {fileID: 11400000, guid: dc73938e4d86af94db64a0d96d8c4a43, type: 2}
+  noMoreUpgradesWindow: {fileID: 0}
 --- !u!1 &1005373327
 GameObject:
   m_ObjectHideFlags: 0
