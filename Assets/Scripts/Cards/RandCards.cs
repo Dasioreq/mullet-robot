@@ -11,8 +11,7 @@ public class RandCards : MonoBehaviour
     public Bonuses[] Btn;
     public List<Icons> Icon;
     public MovementHandler player;
-    //public GameObject noMoreUpgradesWindow;
-    public enum UpgradeType{ speed, jump, dashing}
+    public enum UpgradeType{speed, jump, dashing, health, dashingTime, newWeapon, upgradeWeapon}
     private Dictionary<UpgradeType, float> currentMultipliers = new Dictionary<UpgradeType, float>();
     private float startMultiplier = 1.10f;
 
@@ -56,11 +55,15 @@ public class RandCards : MonoBehaviour
         foreach (GameObject btnObj in spawnedButtons)
         {
             if (btnObj == null) continue;
+            if (available.Count == 0) break;
             Bonuses bonusScript = btnObj.GetComponent<Bonuses>();
 
             if (bonusScript != null)
             {
-                UpgradeType randomType = available[UnityEngine.Random.Range(0, available.Count)];
+                int randomIndex = UnityEngine.Random.Range(0, available.Count);
+                UpgradeType randomType = available[randomIndex];
+                available.RemoveAt(randomIndex);
+
                 UpgradeData upgrade = new UpgradeData { type = randomType, multiplier = currentMultipliers[randomType] };
                 Icons ui = Icon.Find(x => x.type == upgrade.type);
                 bonusScript.Setup(upgrade, this, ui);
@@ -69,7 +72,7 @@ public class RandCards : MonoBehaviour
     }
     public void ApplyUpgrade(UpgradeData upgr)
     {
-        float multiplierUpgrade = (currentMultipliers[upgr.type] + 0.05f > 1.2f) ? 0.01f : 0.05f;
+        float multiplierUpgrade = (currentMultipliers[upgr.type] + 0.05f > 1.2f) ? 0.02f : 0.05f;
         currentMultipliers[upgr.type] += multiplierUpgrade;
         switch (upgr.type)
         {
@@ -82,6 +85,14 @@ public class RandCards : MonoBehaviour
                 break;
             case UpgradeType.dashing:
                 player.dashForce *= (1 + multiplierUpgrade);
+                break;
+            case UpgradeType.health:
+                break;
+            case UpgradeType.dashingTime:
+                break;
+            case UpgradeType.newWeapon:
+                break;
+            case UpgradeType.upgradeWeapon:
                 break;
             default: 
                 Debug.Log("Different option");
