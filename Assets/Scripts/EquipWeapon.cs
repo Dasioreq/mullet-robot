@@ -62,5 +62,9 @@ public class EquipWeapon : MonoBehaviour
         {
             Equip(5);
         }
+        else if(Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            Equip(6);
+        }
     }
 }

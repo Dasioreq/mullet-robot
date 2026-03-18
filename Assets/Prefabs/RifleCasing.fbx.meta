@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8e1e37ba7cefd374b89c9bb17ed06389
+guid: ab8807eb51aa8374a9ca0f32a1e6d2d8
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.005
-    second: {fileID: 2100000, guid: 08bd2bacb36c8074db2f1276dd009119, type: 2}
+      name: RifleCasing
+    second: {fileID: 2100000, guid: 8bf5d32299267e443895a1fd9cd0c11a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -701,6 +701,7 @@ MonoBehaviour:
   - {fileID: 1614549078057529415, guid: 0d01cd57b19c80141ae57d1cc1065044, type: 3}
   - {fileID: 3326300764672640460, guid: d8c6d7bb2b8979344b4ebe750ef5e74e, type: 3}
   - {fileID: 8223597310898346559, guid: 7b0a5ed8d4a70ec4b89157d8b9dc8247, type: 3}
+  - {fileID: 3046295012330808072, guid: 947b04ec6c52f0b47a088a976e9e9ca4, type: 3}
   gunHolder: {fileID: 1065840836}
   cam: {fileID: 1065840840}
   cardPanelScript: {fileID: 933511615}
@@ -2279,7 +2280,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 35.96677
   orthographic: 0

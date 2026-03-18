@@ -61,7 +61,8 @@ public class MovementHandler : MonoBehaviour
 
         GroundCast();
         Drag();
-        LimitVelocity(direction);
+        LimitVelocity();
+        StickToGround();
 
         if(Input.GetKeyDown("space") && grounded)
             Jump();
@@ -105,11 +106,6 @@ public class MovementHandler : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(orientation.position - new Vector3(0, .65f, 0), .45f);
-    }
-
     private void GroundCast()
     {
         grounded = Physics.SphereCast(orientation.position, .45f, Vector3.down, out groundData, .55f + .1f, groundLayer) && mState != MoveState.jumping;
@@ -131,7 +127,7 @@ public class MovementHandler : MonoBehaviour
             rb.linearDamping = 0;
     }
 
-    private void LimitVelocity(Vector3 direction)
+    private void LimitVelocity()
     {
         if(mState != MoveState.dashing)
         {
@@ -161,6 +157,14 @@ public class MovementHandler : MonoBehaviour
         {
             Vector3 moveVector = Vector3.ProjectOnPlane(direction, groundData.normal).normalized;
             rb.AddForce(moveVector * acceleration * airControl, ForceMode.Force);
+        }
+    }
+
+    void StickToGround()
+    {
+        if(grounded)
+        {
+            rb.AddForce(Vector3.Project(Physics.gravity, -groundData.normal), ForceMode.Force);
         }
     }
 
