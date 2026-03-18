@@ -26,7 +26,7 @@ public class MovementHandler : MonoBehaviour
     [Header("Dash controls")]
     [SerializeField] public float dashForce;
     [SerializeField] private float dashTime;
-    [SerializeField] private float dashCooldownTime;
+    [SerializeField] public float dashCooldownTime;
     private float dashTimer = 0;
     private float dashCooldownTimer = 0;
 

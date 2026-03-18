@@ -8,10 +8,10 @@ public class EquipWeapon : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] Cards cardPanelScript;
     [SerializeField] GameObject crosshairCanvas;
-    int currentWeapon = -1;
+    public int currentWeapon = -1;
     GameObject crosshair = null;
 
-    void Equip(int index)
+    public void Equip(int index)
     {
         if(index >= gunPrefabs.Count || index == currentWeapon)
             return;

@@ -705,6 +705,7 @@ MonoBehaviour:
   cam: {fileID: 1065840840}
   cardPanelScript: {fileID: 933511615}
   crosshairCanvas: {fileID: 1150158819}
+  currentWeapon: -1
 --- !u!114 &470769260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,6 +1081,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 442b4372a17eb994c9581ab8ea6ed578, type: 2}
   - {fileID: 11400000, guid: 2728754ee27f51542874d6dd9b53dbc9, type: 2}
   player: {fileID: 470769258}
+  playerDmg: {fileID: 470769260}
+  curWeap: {fileID: 470769259}
 --- !u!1 &1005373327
 GameObject:
   m_ObjectHideFlags: 0

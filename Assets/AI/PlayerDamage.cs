@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour, IDamagable
 {
-    [SerializeField] float maxLifeTime;
+    [SerializeField] public float maxLifeTime;
     float lifeTime;
 
     void Start()
