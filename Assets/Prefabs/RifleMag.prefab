@@ -830,10 +830,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5bbe6d7c8a71147a5728bd64e19db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RifleMagAnimScript
-  shotSound: {fileID: 0}
-  reloadSound: {fileID: 0}
+  shotSound: {fileID: 8300000, guid: a1c5fe38d85edca489a262bd75182624, type: 3}
+  reloadSound: {fileID: 8300000, guid: b38174fbe23d47f4e93e870e746ce5d5, type: 3}
   fireSfxDelay: 0
-  reloadSfxDelay: 0
+  reloadSfxDelay: 0.17
+  emptyReloadSound: {fileID: 8300000, guid: d3e6279dbf396cf48967463d24ad3b29, type: 3}
+  altReloadSound: {fileID: 8300000, guid: 950b422dd87f2e74d89ebfd6dc0404aa, type: 3}
+  shotSound2: {fileID: 8300000, guid: 5ee7d0d6a6f7b7a46ba4638379991ba4, type: 3}
+  reloadSound2: {fileID: 8300000, guid: 32b27738545f9724185c4b7674e114ba, type: 3}
+  Charginghandle: {fileID: 8300000, guid: 087a7e4d27ff647459537b2418c2dda1, type: 3}
+  Charginghandle2: {fileID: 8300000, guid: d9648ed3d90a4514d9d1807a519216b5, type: 3}
+  nextReloadSfxDelay: 0.45
+  nextReloadSfxDelay2: 0.25
+  nextReloadSfxDelay3: 0.16
 --- !u!114 &8590884497525293729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,7 +857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   gunDamage: 7.5
   cam: {fileID: 0}
-  fireCooldown: 0.1
+  fireCooldown: 0.11111111
   reloadCooldown: 1.65
   projectileCount: 1
   spreadDeg: 2.5
