@@ -55,6 +55,7 @@ public class AddCasing : MonoBehaviour
             lastCasing = casing;
         }
         currentLink = gameObject.transform;
+        Debug.Log("test");
     }
 
     public void AddLink()

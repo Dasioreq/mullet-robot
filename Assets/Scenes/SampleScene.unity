@@ -753,6 +753,7 @@ MonoBehaviour:
   - {fileID: 3326300764672640460, guid: d8c6d7bb2b8979344b4ebe750ef5e74e, type: 3}
   - {fileID: 8223597310898346559, guid: 7b0a5ed8d4a70ec4b89157d8b9dc8247, type: 3}
   - {fileID: 3046295012330808072, guid: 947b04ec6c52f0b47a088a976e9e9ca4, type: 3}
+  - {fileID: 2565685871109822237, guid: fcd6516742aa1c745b56cb304ab57b8b, type: 3}
   gunHolder: {fileID: 1065840836}
   cam: {fileID: 1065840840}
   cardPanelScript: {fileID: 933511615}

@@ -10,6 +10,7 @@ using UnityEngine;
     [SerializeField] private uint projectileCount = 1;
     [SerializeField] private float spreadDeg;
     [SerializeField] public GameObject crosshairSprite;
+    [SerializeField] bool automatic = false;
 
     [SerializeField] uint maxAmmo;
     uint ammo;
@@ -36,17 +37,28 @@ using UnityEngine;
                 reloading = false;
             }
 
-            if (Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
+            if(!automatic)
             {
-                Fire();
+                if (Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
+                {
+                    Fire();
+                }
+                else if (Input.GetMouseButtonDown(0) && ammo == 0 && maxAmmo != 0)
+                {
+                    EmptyReload();
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
+            else
+            {
+                if (Input.GetMouseButton(0) && (ammo > 0 || maxAmmo == 0))
+                {
+                    Fire();
+                }
+            }
+            
+            if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
             {
                 Reload();
-            }
-            else if (Input.GetMouseButtonDown(0) && ammo == 0 && maxAmmo != 0)
-            {
-                EmptyReload();
             }
         }
     }
