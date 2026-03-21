@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Microsoft.Unity.VisualStudio.Editor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -17,10 +19,12 @@ public class OptionsMenu : MonoBehaviour
     Quaternion baseWeaponRotation;
     public GameObject Player;
     public GameObject Camera;
+    RectTransform menuTransform;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        menuTransform = GetComponentInChildren<Canvas>().gameObject.transform.Find("Image").GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -39,7 +43,7 @@ public class OptionsMenu : MonoBehaviour
                     animator.SetTrigger("TrOpen");
                     Time.timeScale = 0;
                     uiCamera.gameObject.SetActive(false);
-                    StartCoroutine(BlurLerp(blurVolume.weight, 1, .5f));
+                    StartCoroutine(BlurLerp(blurVolume.weight, 1, .4f));
                     StartCoroutine(MoveWeapon(.5f, true));
                     Camera.GetComponent<CameraContoller>().enabled = false;
                     Player.GetComponent<MovementHandler>().rb.linearVelocity = Vector3.zero;
@@ -49,6 +53,7 @@ public class OptionsMenu : MonoBehaviour
                     weapon.GetComponent<Animator>().enabled = false;
                     weapon.GetComponent<AudioSource>().enabled = false;
                     weapon.GetComponent<Gun>().enabled = false;
+                    StartCoroutine(OpenMenu(1f, 0.1f, false));
                 }
                 else
                 {
@@ -64,6 +69,7 @@ public class OptionsMenu : MonoBehaviour
                     weapon.GetComponent<Animator>().enabled = true;
                     weapon.GetComponent<AudioSource>().enabled = true;
                     weapon.GetComponent<Gun>().enabled = true;
+                    StartCoroutine(OpenMenu(0f, 0.1f, true));
                 }
                 open = !open;
                 timer = openTime;
@@ -119,5 +125,34 @@ public class OptionsMenu : MonoBehaviour
                 yield return null;
             }
         }
+    }
+
+    IEnumerator OpenMenu(float timeOffset, float time, bool close)
+    {
+        float elapsed = 0;
+        while(elapsed < time + timeOffset)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            if(elapsed >= timeOffset)
+            {
+                float t = (elapsed - timeOffset) / time;
+                t = t * t;
+                if(!close)
+                {
+                    menuTransform.gameObject.SetActive(true);
+                    menuTransform.gameObject.GetComponentInChildren<Light>().intensity = Mathf.Lerp(0, .05f, t);
+                    menuTransform.localScale = Vector3.Lerp(new Vector3(1, 0, 1), Vector3.one, t);
+                }
+                else
+                {
+                    menuTransform.localScale = Vector3.Lerp(Vector3.one, new Vector3(1, 0, 1), t);
+                    menuTransform.gameObject.GetComponentInChildren<Light>().intensity = Mathf.Lerp(.05f, 0, t);
+                }
+            }
+            yield return null;
+        }
+
+        if(close)
+            menuTransform.gameObject.SetActive(false);
     }
 }
