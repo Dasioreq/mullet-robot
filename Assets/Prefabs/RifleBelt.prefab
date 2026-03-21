@@ -840,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   gunDamage: 7.5
   cam: {fileID: 0}
-  fireCooldown: 0.1
+  fireCooldown: 0.11
   reloadCooldown: 1.65
   projectileCount: 1
   spreadDeg: 5

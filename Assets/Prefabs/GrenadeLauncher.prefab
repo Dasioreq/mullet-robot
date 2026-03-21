@@ -1011,11 +1011,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8669c06ccca4b4193e22b9cf0ccc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RifleBeltAnimScript
-  shotSound: {fileID: 8300000, guid: a1c5fe38d85edca489a262bd75182624, type: 3}
+  shotSound: {fileID: 8300000, guid: 7152c548b88dc414f9d9e90da7f64366, type: 3}
   reloadSound: {fileID: 0}
   fireSfxDelay: 0
   reloadSfxDelay: 0
-  shotSound2: {fileID: 8300000, guid: 5ee7d0d6a6f7b7a46ba4638379991ba4, type: 3}
+  shotSound2: {fileID: 8300000, guid: f7605feba96934e418e3dba15d19eaa7, type: 3}
 --- !u!114 &3453740019533914994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   gunDamage: 50
   cam: {fileID: 0}
-  fireCooldown: 0.5
+  fireCooldown: 0.7
   reloadCooldown: 1.65
   projectileCount: 1
   spreadDeg: 2.5
