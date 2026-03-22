@@ -588,6 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64fdea65de626c448c8fbce5686c2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ViewmodelSway
+  updateMode: 0
   player: {fileID: 0}
   speed: 8
   magnitude: 0.2
@@ -602,7 +603,7 @@ AudioSource:
   m_GameObject: {fileID: 1614549078057529415}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8460749196958340834, guid: d4746fe7b88b67f4198d2a9e130a6229, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

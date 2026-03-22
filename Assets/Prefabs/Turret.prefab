@@ -207,6 +207,7 @@ MonoBehaviour:
   - {fileID: 8738499301014372334, guid: 0da4ed688721af94998778f07e62a017, type: 3}
   - {fileID: 4914974483878241075, guid: 47d0cbef942de9447993cd435a8c0c81, type: 3}
   ricochets: []
+  Group: {fileID: 0}
   maxHealth: 15
   explosionParticles:
   - {fileID: 942827086087318643, guid: 878b1960fd4f18b48a0141aaa7180176, type: 3}
@@ -245,7 +246,7 @@ AudioSource:
   m_GameObject: {fileID: 877713570929065151}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8460749196958340834, guid: d4746fe7b88b67f4198d2a9e130a6229, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
