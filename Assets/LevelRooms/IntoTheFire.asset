@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7efb295ac293a194abeb95bafd964371, type: 3}
-  m_Name: StraightCorridor20m_0
+  m_Name: IntoTheFire
   m_EditorClassIdentifier: Assembly-CSharp::Room
-  exit: {x: 0, y: 0, z: 20}
+  exit: {x: 0, y: 8, z: 65}
   exitDirection: {x: 0, y: 0, z: 1}
-  prefab: {fileID: 2812193481681067959, guid: 7cc878265cd74694db9d871f5937484a, type: 3}
-  weight: 3
+  prefab: {fileID: 6328034721242432435, guid: 03b39590a1a7e77449e477382c80ef11, type: 3}
+  weight: 1
