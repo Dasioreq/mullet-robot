@@ -73,6 +73,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6815786589273786296, guid: 563206967e2df184fb6dec9ed9821cc0, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815786589273786296, guid: 563206967e2df184fb6dec9ed9821cc0, type: 3}
       propertyPath: ShapeModule.type
       value: 4
       objectReference: {fileID: 0}
@@ -911,7 +915,7 @@ AudioSource:
   m_GameObject: {fileID: 6356243405752288959}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8460749196958340834, guid: d4746fe7b88b67f4198d2a9e130a6229, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -1050,8 +1054,8 @@ MonoBehaviour:
   reloadCooldown: 1.65
   projectileCount: 1
   spreadDeg: 2.5
-  crosshairSprite: {fileID: 2032129976270723174, guid: 88e62caf32758de4e945c805e968ad11, type: 3}
-  automatic: 1
+  crosshairSprite: {fileID: 4033864290179105063, guid: 3d1b32ae299b414448968af64463d39e, type: 3}
+  automatic: 0
   maxAmmo: 0
 --- !u!114 &-6732934455139278345
 MonoBehaviour:

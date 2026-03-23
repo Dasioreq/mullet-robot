@@ -276,15 +276,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a1ae0776a5924694e8a94da3555d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.423656
+      value: 110.40693
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a1ae0776a5924694e8a94da3555d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1322168
+      value: 1.1322175
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a1ae0776a5924694e8a94da3555d4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -41.73562
+      value: 123.92641
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a1ae0776a5924694e8a94da3555d4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -516,6 +516,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4a39d8612d9845c49b3cf1400f73a722, type: 3}
   - {fileID: 8300000, guid: b93cc4271ea68d34f875dd6492b7b992, type: 3}
   - {fileID: 8300000, guid: d2bc9ce69dcfc844f947874e6236355c, type: 3}
+  Group: {fileID: -8460749196958340834, guid: d4746fe7b88b67f4198d2a9e130a6229, type: 2}
 --- !u!114 &6798401830964477582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,36 +533,39 @@ MonoBehaviour:
   m_RendererInfo:
   - renderer: {fileID: 8775817879455893347}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 1.0592798, y: 1.0587649, z: -0.027819037, w: 0.04549387}
+    lightmapOffsetScale: {x: 1.0592798, y: 1.0587649, z: -0.022936225, w: 0.29940012}
   - renderer: {fileID: 7661296650302234034}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.9734781, y: 0.97432053, z: 0.14993551, w: -0.122746825}
+    lightmapOffsetScale: {x: 0.9734781, y: 0.97432053, z: -0.22115824, w: -0.033879638}
   - renderer: {fileID: 770520676920910311}
-    lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.9734782, y: 0.97432035, z: 0.08548233, w: -0.13739526}
-  - renderer: {fileID: 7446776302966888973}
     lightmapIndex: 2
+    lightmapOffsetScale: {x: 0.9734782, y: 0.97432035, z: 0.122591704, w: 0.12627661}
+  - renderer: {fileID: 7446776302966888973}
+    lightmapIndex: 3
     lightmapOffsetScale: {x: 1.273737, y: 1.2733626, z: -0.17382114, w: -0.17376992}
   - renderer: {fileID: 4419837270821273060}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.25230125, y: 0.25325269, z: 0.5808358, w: 0.017124612}
+    lightmapOffsetScale: {x: 0.25230125, y: 0.25325269, z: 0.46364835, w: 0.36771056}
   - renderer: {fileID: 3038060153491323872}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.25394222, y: 0.25257623, z: 0.7259389, w: 0.2477602}
+    lightmapOffsetScale: {x: 0.25394222, y: 0.25257623, z: 0.687853, w: 0.6383852}
   - renderer: {fileID: 2232739826132359878}
-    lightmapIndex: 3
+    lightmapIndex: 4
     lightmapOffsetScale: {x: 1.2738925, y: 1.2751815, z: -0.22249755, w: -0.22272319}
   m_Lightmaps:
-  - {fileID: 2800000, guid: d192e121a8c9d424981eacd968b8cbf4, type: 3}
-  - {fileID: 2800000, guid: 15ded82273610094fa583192c277be67, type: 3}
   - {fileID: 2800000, guid: f5ea83f5c954d8e4eaacc62b56abd869, type: 3}
-  - {fileID: 2800000, guid: 35c694a48a52e0f4fab6d53536515f34, type: 3}
+  - {fileID: 2800000, guid: 15ded82273610094fa583192c277be67, type: 3}
+  - {fileID: 2800000, guid: d192e121a8c9d424981eacd968b8cbf4, type: 3}
+  - {fileID: 2800000, guid: 473720ec55514224db7ec2fabaf97302, type: 3}
+  - {fileID: 2800000, guid: ae5c569099bebbf4f9a90e3e1ad0086a, type: 3}
   m_LightmapsDir:
-  - {fileID: 2800000, guid: 7d68ca45b43f90247aa88ad95358481e, type: 3}
-  - {fileID: 2800000, guid: a82cdf5e9325a82498bf73246ce4c5ea, type: 3}
   - {fileID: 2800000, guid: 5575962665d0cfe41bd90b1af68aff5d, type: 3}
-  - {fileID: 2800000, guid: eac29a24e6be76a478821c32b8cbc1d4, type: 3}
+  - {fileID: 2800000, guid: a82cdf5e9325a82498bf73246ce4c5ea, type: 3}
+  - {fileID: 2800000, guid: 7d68ca45b43f90247aa88ad95358481e, type: 3}
+  - {fileID: 2800000, guid: 6ba9777661ba1754eaf9dcc70bc4b519, type: 3}
+  - {fileID: 2800000, guid: b935ed091ecb4124cbe66eb9b56f81b1, type: 3}
   m_ShadowMasks:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
