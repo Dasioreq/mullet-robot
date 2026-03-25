@@ -9,6 +9,13 @@ public class GeneratorBehaviour : MonoBehaviour
     [SerializeField] private Room origin;
     [SerializeField] private LayerMask roomMask;
 
+    [Header("Light culling")]
+    [SerializeField] float LightCullingDistance;
+    [SerializeField] LayerMask lightLayer;
+    private CullingGroup cullingGroup;
+    List<Light> levelLights = new List<Light>();
+    BoundingSphere[] boundingSpheres;
+
     Vector3 position;
     Vector3 direction;
 
@@ -40,6 +47,7 @@ public class GeneratorBehaviour : MonoBehaviour
 
     IEnumerator Generate(uint roomNumber)
     {
+        levelLights = new List<Light>();
         for(int roomIndex = 1; roomIndex <= roomNumber; roomIndex++)
         {
             var lastRoom = generatedRooms[roomIndex - 1];
@@ -90,12 +98,70 @@ public class GeneratorBehaviour : MonoBehaviour
         foreach(var room in generatedRooms)
         {
             Room.SpawnEnemies(room.instance);
+
+            foreach(var light in room.instance.GetComponentsInChildren<Light>())
+            {
+                if((lightLayer.value & (1 << light.gameObject.layer)) != 0)
+                {
+                    levelLights.Add(light);
+                    light.enabled = false;
+                }
+            }
+        }
+
+        InitializeCullingGroup();
+    }
+
+    void InitializeCullingGroup()
+    {
+        Light[] lights = levelLights.ToArray();
+        boundingSpheres = new BoundingSphere[lights.Length];
+
+        foreach(var (light, i) in lights.Select((value, i) => (value, i)))
+        {
+            boundingSpheres[i] = new BoundingSphere(light.transform.position, light.range);
+        }
+
+        cullingGroup = new CullingGroup();
+        cullingGroup.targetCamera = Camera.main;
+        cullingGroup.SetBoundingSpheres(boundingSpheres);
+        cullingGroup.SetBoundingSphereCount(lights.Length);
+        cullingGroup.SetBoundingDistances(new float[] {LightCullingDistance});
+        cullingGroup.SetDistanceReferencePoint(Camera.main.transform);
+
+        cullingGroup.onStateChanged = OnStateChanged;
+
+        foreach(var (light, i) in lights.Select((value, i) => (value, i)))
+        {
+            UpdateLightState(i);
+        }
+    }
+
+    void OnStateChanged(CullingGroupEvent ev)
+    {
+        UpdateLightState(ev.index);
+    }
+
+    void UpdateLightState(int index)
+    {
+        bool inFrustum = cullingGroup.IsVisible(index);
+        bool inDistance = cullingGroup.GetDistance(index) == 0; 
+
+        levelLights[index].enabled = inFrustum && inDistance;
+    }
+
+    private void OnDestroy()
+    {
+        if (cullingGroup != null)
+        {
+            cullingGroup.Dispose();
+            cullingGroup = null;
         }
     }
 
     void Awake()
     {
         Init();
-        StartCoroutine(Generate(20));
+        StartCoroutine(Generate(100));
     }
 }
