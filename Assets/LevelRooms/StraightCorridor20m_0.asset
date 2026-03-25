@@ -15,4 +15,4 @@ MonoBehaviour:
   exit: {x: 0, y: 0, z: 20}
   exitDirection: {x: 0, y: 0, z: 1}
   prefab: {fileID: 2812193481681067959, guid: 7cc878265cd74694db9d871f5937484a, type: 3}
-  weight: 1
+  weight: 3

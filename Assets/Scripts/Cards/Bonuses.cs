@@ -26,9 +26,23 @@ public class Bonuses : MonoBehaviour
             titleText.text = ic.displayName;
             iconImage.sprite = ic.icon;
             iconImage.color = ic.themeColor;
-            //iconImage.color = Color.white;
         }
 
-        valueText.text = $"+{(data.multiplier * 100):0}%";
+        if (data.type == RandCards.UpgradeType.newWeapon)
+        {
+            if (data.isUpgrade)
+            {
+                int level = (data.weaponID % 3) + 1;
+                valueText.text = $"LVL {level}";
+            }
+            else
+            {
+                valueText.text = data.weaponName;
+            }
+        }
+        else
+        {
+            valueText.text = $"+{((data.multiplier - 1.0f) * 100):0}%";
+        }
     }
 }
