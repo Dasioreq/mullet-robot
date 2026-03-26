@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static GameController;
 
     public class Gun : MonoBehaviour
 {
@@ -51,28 +52,31 @@ using UnityEngine;
                 reloading = false;
             }
 
-            if(!automatic)
+            if(gameController.GetGameState() == GameState.Normal)
             {
-                if (Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
+                if(!automatic)
                 {
-                    Fire();
+                    if (Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
+                    {
+                        Fire();
+                    }
+                    else if (Input.GetMouseButtonDown(0) && ammo == 0 && maxAmmo != 0)
+                    {
+                        EmptyReload();
+                    }
                 }
-                else if (Input.GetMouseButtonDown(0) && ammo == 0 && maxAmmo != 0)
+                else
                 {
-                    EmptyReload();
+                    if (Input.GetMouseButton(0) && (ammo > 0 || maxAmmo == 0))
+                    {
+                        Fire();
+                    }
                 }
-            }
-            else
-            {
-                if (Input.GetMouseButton(0) && (ammo > 0 || maxAmmo == 0))
+                
+                if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
                 {
-                    Fire();
+                    Reload();
                 }
-            }
-            
-            if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
-            {
-                Reload();
             }
         }
     }

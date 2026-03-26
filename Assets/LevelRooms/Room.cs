@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Room", menuName = "Scriptable Objects/Room")]
@@ -33,9 +34,10 @@ public class Room : ScriptableObject
         return false;
     }
 
-    public static void SpawnEnemies(GameObject instance)
+    public static GameObject[] SpawnEnemies(GameObject instance)
     {
         var nodeParent = instance.transform.Find("EnemySpawnNodes");
+        List<GameObject> enemies = new List<GameObject>();
         if(nodeParent)
         {
             var nodes = nodeParent.GetComponentsInChildren<EnemySpawnNode>();
@@ -44,9 +46,10 @@ public class Room : ScriptableObject
             {
                 if(Random.Range(0.0f, 1.0f) <= node.chance)
                 {
-                    node.Spawn();
+                    enemies.Add(node.Spawn());
                 }
             }
         }
+        return enemies.ToArray();
     }
 }

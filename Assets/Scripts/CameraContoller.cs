@@ -1,4 +1,5 @@
 using UnityEngine;
+using static GameController;
 
 public class CameraContoller : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class CameraContoller : MonoBehaviour
 
     void Update()
     {
+        if(gameController.GetGameState() != GameState.Normal)
+            return;
         float xMouse = Input.GetAxisRaw("Mouse X") * xSens;
         float yMouse = Input.GetAxisRaw("Mouse Y") * ySens;
 
@@ -33,5 +36,13 @@ public class CameraContoller : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         player.rotation = Quaternion.Euler(0, yRotation, 0);
+    }
+
+    public void SetRotation(Quaternion rotation)
+    {
+        transform.rotation = rotation;
+        player.rotation = rotation;
+
+        xRotation = yRotation = 0;
     }
 }

@@ -23,10 +23,31 @@ public class GeneratorBehaviour : MonoBehaviour
 
     List<int> indices = new List<int>();
 
-    List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)> generatedRooms;
+    List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)> generatedRooms = new List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)>();
+    List<GameObject> enemies = new List<GameObject>();
 
-    void Init()
+    public IEnumerator Generate(int roomNumber)
     {
+        if(cullingGroup != null)
+        {
+            cullingGroup.Dispose();
+            cullingGroup = null;
+        }
+        
+        levelLights = new List<Light>();
+
+        foreach(var room in generatedRooms)
+        {
+            if(room.instance)
+                Destroy(room.instance);
+        }
+
+        foreach(var enemy in enemies)
+        {
+            if(enemy)
+                Destroy(enemy);
+        }
+
         position = new Vector3(0, 0, -7.5f);
         direction = origin.exitDirection;
 
@@ -43,11 +64,8 @@ public class GeneratorBehaviour : MonoBehaviour
         }
 
         generatedRooms = new List<(GameObject, Vector3, Vector3, int, List<int>)>{(originInstance, Vector3.zero, origin.exitDirection, -1, new List<int>(indices))};
-    }
+        enemies.Clear();
 
-    IEnumerator Generate(uint roomNumber)
-    {
-        levelLights = new List<Light>();
         for(int roomIndex = 1; roomIndex <= roomNumber; roomIndex++)
         {
             var lastRoom = generatedRooms[roomIndex - 1];
@@ -97,7 +115,7 @@ public class GeneratorBehaviour : MonoBehaviour
 
         foreach(var room in generatedRooms)
         {
-            Room.SpawnEnemies(room.instance);
+            enemies.AddRange(Room.SpawnEnemies(room.instance));
 
             foreach(var light in room.instance.GetComponentsInChildren<Light>())
             {
@@ -152,7 +170,7 @@ public class GeneratorBehaviour : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (cullingGroup != null)
+        if(cullingGroup != null)
         {
             cullingGroup.Dispose();
             cullingGroup = null;
@@ -161,7 +179,6 @@ public class GeneratorBehaviour : MonoBehaviour
 
     void Awake()
     {
-        Init();
-        StartCoroutine(Generate(100));
+        // StartCoroutine(Generate(100));
     }
 }
