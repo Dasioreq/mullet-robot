@@ -5,6 +5,9 @@ public class IntermisionActions : MonoBehaviour
     Rigidbody rb;
     SwitchMusic jukebox;
 
+    bool endLevel = false;
+    GeneratorBehaviour levelGenerator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -15,6 +18,11 @@ public class IntermisionActions : MonoBehaviour
     {
         if(other.gameObject.tag == "MainCamera")
             StartCoroutine(jukebox.Switch(false));
+
+        if(endLevel)
+        {
+            
+        }
     }
 
     void OnTriggerExit(Collider other)

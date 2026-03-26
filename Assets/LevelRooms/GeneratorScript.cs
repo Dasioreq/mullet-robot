@@ -87,9 +87,19 @@ public class GeneratorBehaviour : MonoBehaviour
                 }
             }
 
-            int i = availibleIndices[UnityEngine.Random.Range(0, availibleIndices.Count)];
-            
-            Room r = rooms[i];
+            Room r;
+            int i;
+
+            if(roomIndex == roomNumber)
+            {
+                r = origin;
+                i = -1;
+            }
+            else
+            {
+                i = availibleIndices[UnityEngine.Random.Range(0, availibleIndices.Count)];
+                r = rooms[i];
+            }
 
             GameObject instance = r.CreateInstance(position, direction);
 
@@ -97,7 +107,7 @@ public class GeneratorBehaviour : MonoBehaviour
             {
                 Destroy(instance);
 
-                availibleIndices.RemoveAll(el => el == i);
+                availibleIndices.RemoveAll(el => el == i || roomIndex == roomNumber);
                 roomIndex--;
             }
             else
@@ -179,6 +189,11 @@ public class GeneratorBehaviour : MonoBehaviour
 
     void Awake()
     {
-        // StartCoroutine(Generate(100));
+        // StartCoroutine(Generate(10));
+    }
+
+    public void Regenerate()
+    {
+        
     }
 }
