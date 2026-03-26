@@ -64,8 +64,8 @@ public class OptionsMenu : MonoBehaviour
                     StartCoroutine(MoveWeapon(.5f, false));
                     Camera.GetComponent<CameraContoller>().enabled = true;
                     Player.GetComponent<MovementHandler>().enabled = true;
-                    Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
                     weapon.GetComponent<Animator>().enabled = true;
                     weapon.GetComponent<AudioSource>().enabled = true;
                     weapon.GetComponent<Gun>().enabled = true;

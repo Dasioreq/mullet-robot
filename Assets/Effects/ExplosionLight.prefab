@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 562949237268752338}
   - component: {fileID: 8262162401538439849}
   - component: {fileID: 1442389166554416555}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ExplosionLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

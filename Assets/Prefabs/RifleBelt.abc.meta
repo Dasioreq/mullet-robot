@@ -22,7 +22,7 @@ ScriptedImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Circle_021/Circle_022:003:RifleDarkMetal
-    second: {fileID: 4635017941809033476, guid: 929dad12decf5584e92725b410369902, type: 3}
+    second: {fileID: -6922793697723135513, guid: 8e1e37ba7cefd374b89c9bb17ed06389, type: 3}
   serializedVersion: 2
   userData: 
   assetBundleName: 

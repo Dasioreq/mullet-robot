@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
     public class Gun : MonoBehaviour
@@ -18,9 +20,21 @@ using UnityEngine;
 
     private float cooldown = .0f;
 
+    List<EmitBulletParticle> bulletParticleEmitters = new List<EmitBulletParticle>();
+
+    List<(Vector3 v, bool useDirection)> scheduledBulletParticles = new List<(Vector3 v, bool useDirection)>();
+
     void Start()
     {
         ammo = maxAmmo;
+
+        foreach(var emitter in GetComponentsInChildren<ParticleSystem>())
+        {
+            if(emitter.gameObject.TryGetComponent<EmitBulletParticle>(out EmitBulletParticle bulletPart))
+            {
+                bulletParticleEmitters.Add(bulletPart);
+            }
+        }
     }
 
     private void Update()
@@ -63,10 +77,33 @@ using UnityEngine;
         }
     }
 
+    void LateUpdate()
+    {
+        foreach(var scheduled in scheduledBulletParticles)
+        {
+            foreach(var emitter in bulletParticleEmitters)
+            {
+                if(scheduled.useDirection)
+                    emitter.EmitDirection(scheduled.v);
+                else
+                    emitter.Emit(scheduled.v);
+            }
+        }
+
+        scheduledBulletParticles.Clear();
+    }
+
     void Fire()
     {
         RaycastHit hit;
         Vector3 origin = cam.transform.position;
+
+        var gunActions = GetComponentsInChildren<Actions>();
+
+        foreach(Actions action in gunActions)
+        {
+            StartCoroutine(action.Fire());
+        }
 
         for(int i = 0; i < projectileCount; i++)
         {
@@ -77,8 +114,11 @@ using UnityEngine;
 
             direction = spreadRoll * (spreadYaw * direction);
 
+            Vector3? hitPos = null;
+
             if(Physics.Raycast(origin, direction, out hit, Mathf.Infinity, ~(1 << LayerMask.NameToLayer("Bounds"))))
             {
+                hitPos = hit.point;
                 var obj = hit.transform.gameObject;
                 if(obj)
                 {
@@ -89,13 +129,18 @@ using UnityEngine;
                     }
                 }
             }
-        }
 
-        var gunActions = GetComponentsInChildren<Actions>();
-
-        foreach(Actions action in gunActions)
-        {
-            StartCoroutine(action.Fire());
+            foreach(var emitter in bulletParticleEmitters)
+            {
+                if(hitPos != null)
+                {
+                    scheduledBulletParticles.Add((hitPos ?? Vector3.zero, false));
+                }
+                else
+                {
+                    scheduledBulletParticles.Add((direction, true));
+                }
+            }
         }
 
         ammo--;

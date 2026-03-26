@@ -18,7 +18,7 @@ public class CameraContoller : MonoBehaviour
         xRotation = transform.rotation.eulerAngles.x;
         yRotation = transform.rotation.eulerAngles.y;
 
-        Application.targetFrameRate = 240;
+        Application.targetFrameRate = 480;
     }
 
     void Update()
