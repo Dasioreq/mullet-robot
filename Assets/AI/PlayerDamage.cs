@@ -1,7 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using URPGlitch;
 using static GameController;
 
 public class PlayerDamage : MonoBehaviour, IDamagable
@@ -10,16 +13,32 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     [SerializeField] Camera[] camerasToBeDisabled;
     [SerializeField] Volume cameraVolume;
     [SerializeField] GameObject deathScreen;
+    GameObject weapon;
+    Vector3 baseWeaponPosition;
+    Quaternion baseWeaponRotation;
     float lifeTime;
+
+    public void Destroy() {}
+
+    void FindWeapon()
+    {
+        weapon = GetComponent<EquipWeapon>().gunHolder.GetComponentInChildren<Gun>().gameObject;
+        baseWeaponPosition = weapon.transform.localPosition;
+        baseWeaponRotation = weapon.transform.localRotation;
+    }
 
     void Start()
     {
         lifeTime = maxLifeTime;
         deathScreen.SetActive(false);
+        FindWeapon();
     }
 
     void Update()
     {
+        if(!weapon)
+            FindWeapon();
+
         if(gameController.GetGameState() == GameState.Normal)
         {
             if(lifeTime <= 1.0f)
@@ -54,19 +73,31 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     {
         lifeTime -= damage;
         if(lifeTime <= 0)
-            Destroy();
+            StartCoroutine(Destroy(Camera.main.transform.rotation, 1));
         
         foreach(var comp in cameraVolume.profile.components)
         {
             if(comp is ChromaticAberration)
-                ((ChromaticAberration)comp).intensity.value = (lifeTime < maxLifeTime * .5f)
-                    ? 1 - lifeTime / (maxLifeTime * .5f)
+                ((ChromaticAberration)comp).intensity.value = (lifeTime <= 5)
+                    ? 1 - lifeTime / 5
                     : 0f;
             
             if(comp is FilmGrain)
-                ((FilmGrain)comp).intensity.value = (lifeTime < maxLifeTime * .5f)
-                    ? 1 - lifeTime / (maxLifeTime * .5f)
+                ((FilmGrain)comp).intensity.value = (lifeTime <= 5)
+                    ? 1 - lifeTime / 5
                     : 0f;
+
+            if(comp is AnalogGlitchVolume)
+            {
+                float intensity = (lifeTime <= .5f)
+                    ? 1 - lifeTime - .5f
+                    : 0;
+
+                ((AnalogGlitchVolume)comp).scanLineJitter.value = .5f * intensity;
+                ((AnalogGlitchVolume)comp).verticalJump.value = .1f * intensity;
+                ((AnalogGlitchVolume)comp).horizontalShake.value = .2f * intensity;
+                ((AnalogGlitchVolume)comp).colorDrift.value = .25f * intensity;
+            }
         }
     }
     public float GetLifeTime()
@@ -79,8 +110,46 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         return maxLifeTime;
     }
 
-    virtual public void Destroy() 
+    virtual public IEnumerator Destroy(Quaternion baseCameraRotation, float time) 
     {
+        gameController.SetGameState(GameState.DeathScreen);
+        StartCoroutine(MoveWeapon(1, true));
+
+        float elapsed = 0;
+        while(elapsed < time)
+        {
+            foreach(var comp in cameraVolume.profile.components)
+            {
+                if(comp is AnalogGlitchVolume)
+                {
+                    float intensity = (elapsed + .5f * time) / time;
+
+                    ((AnalogGlitchVolume)comp).scanLineJitter.value = .5f * intensity;
+                    ((AnalogGlitchVolume)comp).verticalJump.value = .1f * intensity;
+                    ((AnalogGlitchVolume)comp).horizontalShake.value = .2f * intensity;
+                    ((AnalogGlitchVolume)comp).colorDrift.value = .25f * intensity;
+                }
+            }
+
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / time;
+            Camera.main.transform.localPosition = Vector3.Lerp(new Vector3(0, .75f, 0), new Vector3(0, .75f, 0) + new Vector3(0, -1f, -.25f), t * t * (3f - 2f * t));
+            Camera.main.transform.localRotation = Quaternion.Lerp(baseCameraRotation, baseCameraRotation * Quaternion.Euler(Vector3.up * -30) * Quaternion.Euler(Vector3.right * -60), t * t * (3f - 2f * t));
+            
+            if(gameController.GetGameState() == GameState.DeathScreen)
+            {
+                if(Input.anyKeyDown) // Restart
+                {
+                    weapon.transform.localPosition = baseWeaponPosition;
+                    weapon.transform.localRotation = baseWeaponRotation;
+                    Camera.main.transform.localPosition = new Vector3(0, .75f, 0);
+                    yield break;
+                }
+            }
+
+            yield return null;
+        }
+
         OpenDeathScreen();
     }
 
@@ -88,15 +157,42 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     {
         foreach(var cam in camerasToBeDisabled)
             cam.enabled = false;
-        gameController.SetGameState(GameState.DeathScreen);
 
         deathScreen.SetActive(true);
+    }
+
+    IEnumerator MoveWeapon(float time, bool away)
+    {
+        float elapsed = 0;
+        if(away)
+        {
+            while(elapsed < time)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float t = elapsed / time;
+                weapon.transform.localPosition = Vector3.Lerp(baseWeaponPosition, baseWeaponPosition + new Vector3(0, -.75f, -.25f), t * t * (3f - 2f * t));
+                weapon.transform.localRotation = Quaternion.Lerp(baseWeaponRotation, baseWeaponRotation * Quaternion.Euler(Vector3.up * -15) * Quaternion.Euler(Vector3.right * -30), t * t * (3f - 2f * t));
+                yield return null;
+            }
+        }
+        else
+        {
+            while(elapsed < time)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float t = elapsed / time;
+                weapon.transform.localPosition = Vector3.Lerp(baseWeaponPosition + new Vector3(0, -.75f, -.25f), baseWeaponPosition, t * t * (3f - 2f * t));
+                weapon.transform.localRotation = Quaternion.Lerp(baseWeaponRotation * Quaternion.Euler(Vector3.up * -15) * Quaternion.Euler(Vector3.right * -30), baseWeaponRotation, t * t * (3f - 2f * t));
+                yield return null;
+            }
+        }
     }
 
     public void CloseDeathScreen()
     {
         foreach(var cam in camerasToBeDisabled)
             cam.enabled = true;
+
         deathScreen.SetActive(false);
     }
 

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.subbu.urp-glitch": "https://github.com/saimarei/URPGlitch.git",
     "com.unity.ai.navigation": "2.0.9",
     "com.unity.collab-proxy": "2.11.3",
     "com.unity.formats.alembic": "2.4.4",
