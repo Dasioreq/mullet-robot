@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3bebdbdbc28014ba05508d01ceb028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDamage
-  maxLifeTime: 10
+  maxLifeTime: 53.66
   camerasToBeDisabled:
   - {fileID: 22148914}
   - {fileID: 2087628327}

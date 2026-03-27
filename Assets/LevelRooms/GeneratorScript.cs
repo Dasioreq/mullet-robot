@@ -123,6 +123,9 @@ public class GeneratorBehaviour : MonoBehaviour
             yield return null;
         }
 
+        generatedRooms.Last().instance.GetComponent<IntermisionActions>().levelGenerator = this;
+        generatedRooms.Last().instance.GetComponent<IntermisionActions>().endLevel = true;
+
         foreach(var room in generatedRooms)
         {
             enemies.AddRange(Room.SpawnEnemies(room.instance));

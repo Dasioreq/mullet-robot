@@ -26,7 +26,7 @@ public class SwitchMusic : MonoBehaviour
 
     public IEnumerator Switch(bool intermission)
     {
-        if (switchState == intermission)
+        if(switchState == intermission)
             yield break;
 
         switchState = intermission;

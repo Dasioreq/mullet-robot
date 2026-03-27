@@ -43,6 +43,7 @@ public class CameraContoller : MonoBehaviour
         transform.rotation = rotation;
         player.rotation = rotation;
 
-        xRotation = yRotation = 0;
+        xRotation = transform.rotation.eulerAngles.x;
+        yRotation = transform.rotation.eulerAngles.y;
     }
 }

@@ -22,11 +22,18 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(levelGenerator.Generate(10 + level));
+        level = 0;
+        GenerateLevel();
         player.transform.position = Vector3.up;
         player.GetComponent<Rigidbody>().MovePosition(Vector3.up);
         playerCamera.GetComponent<CameraContoller>().SetRotation(Quaternion.identity);
+        playerCamera.transform.localPosition = new Vector3(0, .75f, 0);
         StartCoroutine(gameController.SetGameStateDelayed(GameState.Normal, 1));
+    }
+
+    public void GenerateLevel()
+    {
+        StartCoroutine(levelGenerator.Generate(5 + level));
     }
 
     void Awake()
