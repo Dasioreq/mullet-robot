@@ -1,75 +1,67 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Timeline;
+using UnityEngine.Audio;
 
 public class SwitchMusic : MonoBehaviour
 {
     AudioSource mainAS;
+
     [SerializeField] float switchTime;
 
     [SerializeField] AudioClip intermissionTrack;
     [SerializeField] AudioClip[] combatTracks;
 
+    [SerializeField] AudioMixerGroup musicMixerGroup;
+
+    bool switchState = true;
+
     void Start()
     {
         mainAS = GetComponent<AudioSource>();
         mainAS.clip = intermissionTrack;
+
+        if (musicMixerGroup != null)
+            mainAS.outputAudioMixerGroup = musicMixerGroup; 
     }
 
     public IEnumerator Switch(bool intermission)
     {
+        if(switchState == intermission)
+            yield break;
+
+        switchState = intermission;
         float timer = switchTime;
 
-        if(intermission)
+        AudioSource newAS = gameObject.AddComponent<AudioSource>();
+
+        if (musicMixerGroup != null)
+            newAS.outputAudioMixerGroup = musicMixerGroup; 
+
+        if (intermission)
         {
-            AudioSource newAS = gameObject.AddComponent<AudioSource>();
-
             int randIndex = Random.Range(0, combatTracks.Length);
-            AudioClip clip = combatTracks[randIndex];
-
-            newAS.clip = clip;
-            newAS.loop = true;
-            newAS.Play();
-
-            while(timer > 0)
-            {
-                newAS.volume = (switchTime - timer) / switchTime;
-                mainAS.volume = timer / switchTime;
-
-                timer -= Time.deltaTime;
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-
-            Destroy(mainAS);
-
-            mainAS = newAS;
-            mainAS.volume = 1;
+            newAS.clip = combatTracks[randIndex];
         }
         else
         {
-            AudioSource newAS = gameObject.AddComponent<AudioSource>();
-
-            AudioClip clip = intermissionTrack;
-
-            newAS.clip = clip;
-            newAS.loop = true;
-            newAS.Play();
-
-            while(timer > 0)
-            {
-                newAS.volume = (switchTime - timer) / switchTime;
-                mainAS.volume = timer / switchTime;
-
-                timer -= Time.deltaTime;
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-
-            Destroy(mainAS);
-
-            mainAS = newAS;
-            mainAS.volume = 1;
+            newAS.clip = intermissionTrack;
         }
 
-        yield break;
+        newAS.loop = true;
+        newAS.Play();
+
+        while (timer > 0)
+        {
+            newAS.volume = (switchTime - timer) / switchTime;
+            mainAS.volume = timer / switchTime;
+
+            timer -= Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+        Destroy(mainAS);
+
+        mainAS = newAS;
+        mainAS.volume = 1;
     }
 }

@@ -1,7 +1,11 @@
 using UnityEngine;
 
+enum UpdateMode { Scaled, Unscaled }
+
 public class ViewmodelSway : MonoBehaviour
 {
+    [SerializeField] UpdateMode updateMode = UpdateMode.Scaled;
+
     [SerializeField] public GameObject player;
 
     [Header("Move Sway")]
@@ -29,19 +33,29 @@ public class ViewmodelSway : MonoBehaviour
 
     void Update()
     {
-        if(movementScript.grounded)
+        if(updateMode == UpdateMode.Scaled)
         {
-            float speedRatio = playerRb.linearVelocity.magnitude / movementScript.maxVelocity;
-            float horizontalSway = Mathf.Sin(Time.time * speed) * magnitude * speedRatio;
-            float verticalSway = Mathf.Cos(Time.time * speed * 2) * magnitude * speedRatio + Mathf.Sin(Time.time * breathingSpeed) * breathingMagnitude;
+                if(movementScript.grounded)
+            {
+                float speedRatio = playerRb.linearVelocity.magnitude / movementScript.maxVelocity;
+                float horizontalSway = Mathf.Sin(Time.time * speed) * magnitude * speedRatio;
+                float verticalSway = Mathf.Cos(Time.time * speed * 2) * magnitude * speedRatio + Mathf.Sin(Time.time * breathingSpeed) * breathingMagnitude;
 
-            targetPosition = basePosition + new Vector3(horizontalSway, verticalSway, 0);
+                targetPosition = basePosition + new Vector3(horizontalSway, verticalSway, 0);
+            }
+            else
+            {
+                targetPosition = basePosition;
+            }
+
+            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime);
         }
         else
         {
-            targetPosition = basePosition;
-        }
+            float verticalSway = Mathf.Cos(Time.unscaledTime * speed * 2) * breathingMagnitude + Mathf.Sin(Time.unscaledTime * breathingSpeed) * breathingMagnitude;
 
-        transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime);
+            targetPosition = basePosition + new Vector3(0, verticalSway, 0);
+            transform.localPosition = targetPosition;
+        }
     }
 }

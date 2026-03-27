@@ -1,0 +1,58 @@
+fileFormatVersion: 2
+guid: 57f5aaca0c5c77e418d95c86f3c97eeb
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle_050/Circle_055:000:RifleCasing
+    second: {fileID: 2100000, guid: 8bf5d32299267e443895a1fd9cd0c11a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle_050/Circle_055:001:RifleGreenVasing
+    second: {fileID: 2100000, guid: 9d874103ffaa4354b842118a60d11a74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle_050/Circle_055:002:RifleLightMetal_001
+    second: {fileID: 7455727426670727179, guid: 10e19bf5c210f2d4ab9e3e11df813e04, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle_050/Circle_055:003:RifleDarkMetal
+    second: {fileID: -6922793697723135513, guid: bfcd5b757659a384f92173a52ee65678, type: 3}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f53f5fc499d31e44b9deee84d28a9ee8, type: 3}
+  rootGameObjectId: 
+  rootGameObjectName: 
+  importerVersion: 1
+  streamSettings:
+    normals: 1
+    tangents: 1
+    cameraAspectRatio: 2
+    importVisibility: 1
+    scaleFactor: 0.01
+    swapHandedness: 1
+    flipFaces: 0
+    interpolateSamples: 1
+    importPointPolygon: 1
+    importLinePolygon: 1
+    importTrianglePolygon: 1
+    importXform: 1
+    importCameras: 1
+    importMeshes: 1
+    importPoints: 0
+    importCurves: 1
+    createCurveRenderers: 0
+  abcStartTime: 0.016666666666666666
+  abcEndTime: 0.6666666666666667
+  startTime: 0.016666666666666666
+  endTime: 0.6666666666666667
+  importWarning: 
+  firstImport: 0
+  isHDF5: 0

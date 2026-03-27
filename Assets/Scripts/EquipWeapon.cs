@@ -4,7 +4,7 @@ using UnityEngine;
 public class EquipWeapon : MonoBehaviour
 {
     [SerializeField] List<GameObject> gunPrefabs;
-    [SerializeField] GameObject gunHolder;
+    [SerializeField] public GameObject gunHolder;
     [SerializeField] Camera cam;
     [SerializeField] Cards cardPanelScript;
     [SerializeField] GameObject crosshairCanvas;
@@ -61,6 +61,18 @@ public class EquipWeapon : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Alpha6))
         {
             Equip(5);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            Equip(6);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            Equip(7);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            Equip(8);
         }
     }
 }

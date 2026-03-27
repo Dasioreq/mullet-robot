@@ -56,6 +56,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -8179647937002693420, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7885100542387318940, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7683541291016997926, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -7395630296750266676, guid: 04372605cd187eb4989059011c7095fa, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -72,8 +84,28 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -3753800991334195332, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -3597606487115796533, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2994265953512753361, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2231191684664742483, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -1410827854097985105, guid: 04372605cd187eb4989059011c7095fa, type: 3}
       propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 139492087708557259, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 183103113896612909, guid: 04372605cd187eb4989059011c7095fa, type: 3}
@@ -104,8 +136,20 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4247319510826480834, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5332809968238436118, guid: 04372605cd187eb4989059011c7095fa, type: 3}
       propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6362800244010575924, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826254374307893913, guid: 04372605cd187eb4989059011c7095fa, type: 3}
+      propertyPath: m_RenderingLayerMask
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7385939173572589169, guid: 04372605cd187eb4989059011c7095fa, type: 3}
@@ -186,7 +230,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877713570929065151}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3198a46a509b8c449e95b00a644419c, type: 3}
   m_Name: 
@@ -207,6 +251,7 @@ MonoBehaviour:
   - {fileID: 8738499301014372334, guid: 0da4ed688721af94998778f07e62a017, type: 3}
   - {fileID: 4914974483878241075, guid: 47d0cbef942de9447993cd435a8c0c81, type: 3}
   ricochets: []
+  Group: {fileID: 0}
   maxHealth: 15
   explosionParticles:
   - {fileID: 942827086087318643, guid: 878b1960fd4f18b48a0141aaa7180176, type: 3}
@@ -245,7 +290,7 @@ AudioSource:
   m_GameObject: {fileID: 877713570929065151}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8460749196958340834, guid: d4746fe7b88b67f4198d2a9e130a6229, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
