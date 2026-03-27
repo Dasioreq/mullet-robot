@@ -65,7 +65,7 @@ MonoBehaviour:
   components:
   - {fileID: 3225244545209445349}
   - {fileID: -3946772257732554863}
-  - {fileID: -6511211474275100337}
+  - {fileID: 5461526111661070709}
 --- !u!114 &3225244545209445349
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -81,4 +81,29 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &5461526111661070709
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 184499cf55e934449ba010599fdafa04, type: 3}
+  m_Name: AnalogGlitchVolume
+  m_EditorClassIdentifier: URPGlitch::URPGlitch.AnalogGlitchVolume
+  active: 1
+  scanLineJitter:
+    m_OverrideState: 0
+    m_Value: 0
+  verticalJump:
+    m_OverrideState: 0
+    m_Value: 0
+  horizontalShake:
+    m_OverrideState: 0
+    m_Value: 0
+  colorDrift:
+    m_OverrideState: 0
     m_Value: 0
