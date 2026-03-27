@@ -140,8 +140,6 @@ public class PlayerDamage : MonoBehaviour, IDamagable
             {
                 if(Input.anyKeyDown) // Restart
                 {
-                    weapon.transform.localPosition = baseWeaponPosition;
-                    weapon.transform.localRotation = baseWeaponRotation;
                     Camera.main.transform.localPosition = new Vector3(0, .75f, 0);
                     yield break;
                 }
@@ -168,6 +166,11 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         {
             while(elapsed < time)
             {
+                if(Input.anyKeyDown) // Restart
+                {
+                    yield break;
+                }
+
                 elapsed += Time.unscaledDeltaTime;
                 float t = elapsed / time;
                 weapon.transform.localPosition = Vector3.Lerp(baseWeaponPosition, baseWeaponPosition + new Vector3(0, -.75f, -.25f), t * t * (3f - 2f * t));
@@ -199,6 +202,8 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     public void Respawn()
     {
         lifeTime = maxLifeTime;
+        weapon.transform.localPosition = baseWeaponPosition;
+        weapon.transform.localRotation = baseWeaponRotation;
         gameController.StartGame();
         GetComponent<EquipWeapon>().Equip(0);
     }

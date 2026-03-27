@@ -96,14 +96,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: URPGlitch::URPGlitch.AnalogGlitchVolume
   active: 1
   scanLineJitter:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   verticalJump:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   horizontalShake:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   colorDrift:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
