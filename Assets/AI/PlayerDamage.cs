@@ -113,7 +113,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     virtual public IEnumerator Destroy(Quaternion baseCameraRotation, float time) 
     {
         gameController.SetGameState(GameState.DeathScreen);
-        StartCoroutine(MoveWeapon(1, true));
+        StartCoroutine(MoveWeapon(.5f, true));
 
         float elapsed = 0;
         while(elapsed < time)
