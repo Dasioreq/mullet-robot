@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Audio;
@@ -42,6 +43,7 @@ public class MassAudioAssigner : EditorWindow
         }
 
         AssetDatabase.SaveAssets();
-        Debug.Log($"Ukoñczono! Zaktualizowano {count} komponentów AudioSource w prefabach.");
+        Debug.Log($"Ukoï¿½czono! Zaktualizowano {count} komponentï¿½w AudioSource w prefabach.");
     }
 }
+#endif
