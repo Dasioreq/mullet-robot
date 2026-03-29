@@ -45,6 +45,11 @@ public class Cards : MonoBehaviour
         Cursor.visible = false;
         CardPanel.SetActive(false);
         gameController.SetGameState(GameState.Normal);
+        foreach (var btn in CardPanel.GetComponentsInChildren<Transform>())
+        {
+            if (btn.gameObject != null && btn.gameObject != CardPanel)
+                Destroy(btn.gameObject);
+        }
     }
 
     void Start()

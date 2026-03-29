@@ -18,7 +18,7 @@ public class RandCards : MonoBehaviour
     public EquipWeapon curWeap;
     private List<int> weaponBases = new List<int> {0,3,6};
     private int[] weaponProgress = new int[] {0,0,0};
-    private string[] weaponNames = {"A","B","C"};
+    private string[] weaponNames = {"Revolver","Double-barrel","Ironfang"};
 
     public enum UpgradeType{speed, jump, dashing, health, dashingTime, newWeapon, upgradeWeapon, extraA, extraB, extraC}
     private Dictionary<UpgradeType, float> currentMultipliers = new Dictionary<UpgradeType, float>();
@@ -59,10 +59,10 @@ public class RandCards : MonoBehaviour
 
         if (spawnedButtons.Length >= 4)
         {
-            spawnedButtons[0].transform.localPosition = new Vector3(600f, 0f, 0f);
-            spawnedButtons[1].transform.localPosition = new Vector3(200f, 0f, 0f);
-            spawnedButtons[2].transform.localPosition = new Vector3(-200f, 0f, 0f);
-            spawnedButtons[3].transform.localPosition = new Vector3(-600f, 0f, 0f);
+            spawnedButtons[0].transform.localPosition = new Vector3(720f, 0f, 0f);
+            spawnedButtons[1].transform.localPosition = new Vector3(240f, 0f, 0f);
+            spawnedButtons[2].transform.localPosition = new Vector3(-240f, 0f, 0f);
+            spawnedButtons[3].transform.localPosition = new Vector3(-720f, 0f, 0f);
         }
 
         var values = Enum.GetValues(typeof(UpgradeType));
