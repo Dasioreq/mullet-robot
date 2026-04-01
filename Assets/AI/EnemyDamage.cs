@@ -10,7 +10,7 @@ public class EnemyDamage : HitParticles, IDamagable
 {
     [SerializeField] float maxHealth;
     float health;
-    bool destroyed = false;
+    protected bool destroyed = false;
 
     virtual protected void Start()
     {
