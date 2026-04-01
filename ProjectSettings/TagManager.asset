@@ -3,23 +3,25 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Music
+  - ViewmodelCamera
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - ground
   - Viewmodel
   - Bounds
   - Particles
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PipMan
+  - PostProcess
+  - UiBloom
+  - DynamicLight
+  - DeathPP
   - 
   - 
   - 

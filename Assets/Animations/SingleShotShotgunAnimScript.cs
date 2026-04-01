@@ -10,9 +10,11 @@ public class SingleShotShotgunAnimScript : Actions
     [SerializeField] AudioClip altReloadSound;
     [SerializeField] float nextReloadSfxDelay;
     [SerializeField] float nextReloadSfxDelay2;
+    [SerializeField] AudioClip emptyReloadSound;
     override public IEnumerator Fire()
     {
         anim.SetTrigger("TrFire");
+        StartCoroutine(Flash(.1f));
         yield return new WaitForSeconds(fireSfxDelay);
         source.PlayOneShot(shotSound);
         yield break;
@@ -36,6 +38,12 @@ public class SingleShotShotgunAnimScript : Actions
         {
             source.PlayOneShot(reloadSound2);
         }
+        yield break;
+    }
+    public override IEnumerator EmptyReload()
+    {
+        source.PlayOneShot(emptyReloadSound);
+        StartCoroutine(Reload());
         yield break;
     }
 }

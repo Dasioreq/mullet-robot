@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static GameController;
 
     public class Gun : MonoBehaviour
 {
@@ -9,8 +12,8 @@ using UnityEngine;
     [SerializeField] private float reloadCooldown;
     [SerializeField] private uint projectileCount = 1;
     [SerializeField] private float spreadDeg;
-
-    [SerializeField] public GameObject hitPrefab;
+    [SerializeField] public GameObject crosshairSprite;
+    [SerializeField] bool automatic = false;
 
     [SerializeField] uint maxAmmo;
     uint ammo;
@@ -18,9 +21,21 @@ using UnityEngine;
 
     private float cooldown = .0f;
 
+    List<EmitBulletParticle> bulletParticleEmitters = new List<EmitBulletParticle>();
+
+    List<(Vector3 v, bool useDirection)> scheduledBulletParticles = new List<(Vector3 v, bool useDirection)>();
+
     void Start()
     {
         ammo = maxAmmo;
+
+        foreach(var emitter in GetComponentsInChildren<ParticleSystem>())
+        {
+            if(emitter.gameObject.TryGetComponent<EmitBulletParticle>(out EmitBulletParticle bulletPart))
+            {
+                bulletParticleEmitters.Add(bulletPart);
+            }
+        }
     }
 
     private void Update()
@@ -37,21 +52,62 @@ using UnityEngine;
                 reloading = false;
             }
 
-            if(Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
+            if(gameController.GetGameState() == GameState.Normal)
             {
-                Fire();
-            }
-            else if(Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
-            {
-                Reload();
+                if(!automatic)
+                {
+                    if (Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
+                    {
+                        Fire();
+                    }
+                    else if (Input.GetMouseButtonDown(0) && ammo == 0 && maxAmmo != 0)
+                    {
+                        EmptyReload();
+                    }
+                }
+                else
+                {
+                    if (Input.GetMouseButton(0) && (ammo > 0 || maxAmmo == 0))
+                    {
+                        Fire();
+                    }
+                }
+                
+                if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
+                {
+                    Reload();
+                }
             }
         }
+    }
+
+    void LateUpdate()
+    {
+        foreach(var scheduled in scheduledBulletParticles)
+        {
+            foreach(var emitter in bulletParticleEmitters)
+            {
+                if(scheduled.useDirection)
+                    emitter.EmitDirection(scheduled.v);
+                else
+                    emitter.Emit(scheduled.v);
+            }
+        }
+
+        scheduledBulletParticles.Clear();
     }
 
     void Fire()
     {
         RaycastHit hit;
         Vector3 origin = cam.transform.position;
+
+        var gunActions = GetComponentsInChildren<Actions>();
+
+        foreach(Actions action in gunActions)
+        {
+            StartCoroutine(action.Fire());
+        }
 
         for(int i = 0; i < projectileCount; i++)
         {
@@ -62,17 +118,33 @@ using UnityEngine;
 
             direction = spreadRoll * (spreadYaw * direction);
 
-            if (Physics.Raycast(origin, direction, out hit))
+            Vector3? hitPos = null;
+
+            if(Physics.Raycast(origin, direction, out hit, Mathf.Infinity, ~(1 << LayerMask.NameToLayer("Bounds"))))
             {
-                Instantiate(hitPrefab, hit.point, Quaternion.identity);
+                hitPos = hit.point;
+                var obj = hit.transform.gameObject;
+                if(obj)
+                {
+                    IHittable hittable = obj.GetComponentInParent<IHittable>();
+                    if(hittable != null)
+                    {
+                        hittable.OnHit(hit, gunDamage);
+                    }
+                }
             }
-        }
 
-        var gunActions = GetComponentsInChildren<Actions>();
-
-        foreach(Actions action in gunActions)
-        {
-            StartCoroutine(action.Fire());
+            foreach(var emitter in bulletParticleEmitters)
+            {
+                if(hitPos != null)
+                {
+                    scheduledBulletParticles.Add((hitPos ?? Vector3.zero, false));
+                }
+                else
+                {
+                    scheduledBulletParticles.Add((direction, true));
+                }
+            }
         }
 
         ammo--;
@@ -89,6 +161,19 @@ using UnityEngine;
         foreach(Actions action in gunActions)
         {
             StartCoroutine(action.Reload());
+        }
+
+        cooldown = reloadCooldown;
+    }
+    void EmptyReload()
+    {
+        reloading = true;
+
+        var gunActions = GetComponentsInChildren<Actions>();
+
+        foreach (Actions action in gunActions)
+        {
+            StartCoroutine(action.EmptyReload());
         }
 
         cooldown = reloadCooldown;

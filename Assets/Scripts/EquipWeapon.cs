@@ -4,13 +4,14 @@ using UnityEngine;
 public class EquipWeapon : MonoBehaviour
 {
     [SerializeField] List<GameObject> gunPrefabs;
-    [SerializeField] GameObject gunHolder;
+    [SerializeField] public GameObject gunHolder;
     [SerializeField] Camera cam;
     [SerializeField] Cards cardPanelScript;
-    [SerializeField] GameObject hitPrefab;
-    int currentWeapon = 0;
+    [SerializeField] GameObject crosshairCanvas;
+    public int currentWeapon = -1;
+    GameObject crosshair = null;
 
-    void Equip(int index)
+    public void Equip(int index)
     {
         if(index >= gunPrefabs.Count || index == currentWeapon)
             return;
@@ -22,7 +23,10 @@ public class EquipWeapon : MonoBehaviour
         var equippedGun = Instantiate(gunPrefabs[index], gunHolder.transform);
         equippedGun.GetComponent<ViewmodelSway>().player = gameObject;
         equippedGun.GetComponent<Gun>().cam = cam;
-        equippedGun.GetComponent<Gun>().hitPrefab = hitPrefab;
+
+        if(crosshair)
+            Destroy(crosshair);
+        crosshair = Instantiate(equippedGun.GetComponent<Gun>().crosshairSprite, crosshairCanvas.transform);
 
         cardPanelScript.weapon = equippedGun;
     }
@@ -57,6 +61,18 @@ public class EquipWeapon : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Alpha6))
         {
             Equip(5);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            Equip(6);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            Equip(7);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            Equip(8);
         }
     }
 }

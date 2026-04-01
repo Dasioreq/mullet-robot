@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Room", menuName = "Scriptable Objects/Room")]
@@ -10,36 +11,14 @@ public class Room : ScriptableObject
 
     public GameObject CreateInstance(Vector3 position, Vector3 direction)
     {
-        return Instantiate(prefab, position, Quaternion.LookRotation(direction));
+        var instance = Instantiate(prefab, position, Quaternion.LookRotation(direction));
+
+        return instance;
     }
 
     public static bool isColliding(GameObject instantiated, GameObject[] existingRooms)
     {
         var boundingBox = instantiated.transform.Find("Bounds").GetComponent<Collider>().bounds;
-
-        // Vector3 center = boundingBox.center;
-        // Vector3 extents = boundingBox.extents - Vector3.one * 0.05f;
-
-        // Quaternion rotation = Quaternion.LookRotation(direction);
-
-        // // float angle = Vector3.SignedAngle(Vector3.forward, direction, Vector3.up);
-        // // center = Quaternion.AngleAxis(angle, Vector3.up) * center;
-        // // extents = Quaternion.AngleAxis(angle, Vector3.up) * extents;
-
-        // // center += position;
-        // // Vector3 newDirection = Quaternion.AngleAxis(angle, Vector3.up) * exitDirection;
-        // // center += (newDirection + direction).normalized;
-
-        // Debug.DrawLine(center - extents, center + extents, Color.red, 99999);
-
-        // Physics.SyncTransforms();
-
-        // Collider[] collisions = Physics.OverlapBox(
-        //     center,
-        //     extents,
-        //     Quaternion.identity,
-        //     layer
-        // );
 
         foreach(GameObject room in existingRooms)
         {
@@ -53,5 +32,24 @@ public class Room : ScriptableObject
         }
 
         return false;
+    }
+
+    public static GameObject[] SpawnEnemies(GameObject instance)
+    {
+        var nodeParent = instance.transform.Find("EnemySpawnNodes");
+        List<GameObject> enemies = new List<GameObject>();
+        if(nodeParent)
+        {
+            var nodes = nodeParent.GetComponentsInChildren<EnemySpawnNode>();
+
+            foreach(var node in nodes)
+            {
+                if(Random.Range(0.0f, 1.0f) <= node.chance)
+                {
+                    enemies.Add(node.Spawn());
+                }
+            }
+        }
+        return enemies.ToArray();
     }
 }

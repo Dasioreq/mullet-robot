@@ -1,13 +1,14 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using static GameController;
 
 public class MovementHandler : MonoBehaviour
 {
     [SerializeField] private Transform orientation;
 
     [Header("Speed Controls")]
-    [SerializeField] private float acceleration;
+    [SerializeField] public float acceleration;
     [SerializeField] public float maxVelocity;
 
     [Header("Drag controls")]
@@ -19,14 +20,14 @@ public class MovementHandler : MonoBehaviour
     RaycastHit groundData;
 
     [Header("Jump controls")]
-    [SerializeField] private float jumpHeight;
+    [SerializeField] public float jumpHeight;
     [SerializeField] private float airControl;
     [SerializeField] private float airMaxVelocity;
 
     [Header("Dash controls")]
-    [SerializeField] private float dashForce;
+    [SerializeField] public float dashForce;
     [SerializeField] private float dashTime;
-    [SerializeField] private float dashCooldownTime;
+    [SerializeField] public float dashCooldownTime;
     private float dashTimer = 0;
     private float dashCooldownTimer = 0;
 
@@ -54,20 +55,29 @@ public class MovementHandler : MonoBehaviour
         Timers();
         StateMachine();
 
+        GroundCast();
+        Drag();
+        LimitVelocity();
+
+        if(gameController.GetGameState() != GameState.DeathScreen)
+            StickToGround();
+
+        if(gameController.GetGameState() != GameState.Normal)
+        {
+            direction = Vector3.zero;
+            return;            
+        }
+
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
 
         direction = (orientation.forward * vertical + orientation.right * horizontal).normalized;
 
-        GroundCast();
-        Drag();
-        LimitVelocity(direction);
-
         if(Input.GetKeyDown("space") && grounded)
             Jump();
 
         if(Input.GetKeyDown("left shift"))
-            Dash(horizontal, vertical);
+            StartDash(horizontal, vertical);
     }
 
     void FixedUpdate()
@@ -85,7 +95,7 @@ public class MovementHandler : MonoBehaviour
 
             case MoveState.jumping:
             {
-                if(rb.linearVelocity.y <= 0)
+                if(Vector3.Project(rb.linearVelocity, groundData.normal).y <= .05f)
                 {
                     mState = MoveState.walking;
                 }
@@ -94,6 +104,7 @@ public class MovementHandler : MonoBehaviour
 
             case MoveState.dashing:
             {
+                Dash();
                 if(dashTimer <= 0)
                 {
                     mState = MoveState.walking;
@@ -106,10 +117,10 @@ public class MovementHandler : MonoBehaviour
 
     private void GroundCast()
     {
-        grounded = Physics.Raycast(orientation.position, Vector3.down, out groundData, 1.3f, groundLayer) && mState != MoveState.jumping;
+        grounded = Physics.SphereCast(orientation.position, .45f, Vector3.down, out groundData, .55f + .1f, groundLayer) && mState != MoveState.jumping;
 
         if(mState != MoveState.dashing)
-            rb.useGravity = !grounded && Vector3.Angle(Vector3.up, groundData.normal) <= 45;
+            rb.useGravity = !grounded && Vector3.Angle(Vector3.up, groundData.normal) <= 45;        
     }
 
     private void Drag()
@@ -125,21 +136,15 @@ public class MovementHandler : MonoBehaviour
             rb.linearDamping = 0;
     }
 
-    private float SlopeMultiplier(Vector3 direction)
-    {
-        return 1 + Mathf.Cos(Vector3.Angle(direction, groundData.normal) * Mathf.Deg2Rad) * .5f;
-    }
-
-    private void LimitVelocity(Vector3 direction)
+    private void LimitVelocity()
     {
         if(mState != MoveState.dashing)
         {
             if(grounded)
             {
-                float slopeMult = SlopeMultiplier(direction);
-                Vector3 horizontalVelocity = Vector3.ProjectOnPlane(rb.linearVelocity, Vector3.up);
-                if(horizontalVelocity.magnitude > maxVelocity * slopeMult)
-                    rb.linearVelocity = Vector3.ProjectOnPlane(horizontalVelocity.normalized * maxVelocity * slopeMult, groundData.normal);
+                Vector3 horizontalVelocity = Vector3.ProjectOnPlane(rb.linearVelocity, groundData.normal);
+                if(horizontalVelocity.magnitude > maxVelocity)
+                    rb.linearVelocity = Vector3.ProjectOnPlane(horizontalVelocity.normalized * maxVelocity, groundData.normal);
             }
             else
             {
@@ -155,13 +160,20 @@ public class MovementHandler : MonoBehaviour
         if(grounded)
         {
             Vector3 moveVector = Vector3.ProjectOnPlane(direction, groundData.normal).normalized;
-            float slopeMult = SlopeMultiplier(direction);
-            rb.AddForce(moveVector * acceleration * slopeMult, ForceMode.Force);
+            rb.AddForce(moveVector * acceleration, ForceMode.Force);
         }
         else
         {
             Vector3 moveVector = Vector3.ProjectOnPlane(direction, groundData.normal).normalized;
             rb.AddForce(moveVector * acceleration * airControl, ForceMode.Force);
+        }
+    }
+
+    void StickToGround()
+    {
+        if(grounded)
+        {
+            rb.AddForce(Vector3.Project(Physics.gravity, -groundData.normal), ForceMode.Force);
         }
     }
 
@@ -186,27 +198,32 @@ public class MovementHandler : MonoBehaviour
         }
     }
 
-    private void Dash(float horizontal, float vertical)
+    Vector2 dashInputs = Vector2.zero;
+    private void StartDash(float horizontal, float vertical)
     {
         if(dashTimer <= 0 && dashCooldownTimer <= 0)
         {
-            Vector3 direction;
-            if(horizontal != 0 || vertical != 0)
-            {
-                direction = (orientation.forward * vertical + orientation.right * horizontal).normalized;
-            }
-            else
-            {
-                direction = orientation.forward.normalized;
-            }
-            rb.useGravity = false;
+            dashInputs = new Vector2(horizontal, vertical);
             rb.linearDamping = 0;
-            rb.linearVelocity = Vector3.zero;
-            rb.AddForce(direction * dashForce, ForceMode.Impulse);
-
             dashTimer = dashTime;
             dashCooldownTimer = dashCooldownTime;
             mState = MoveState.dashing;
         }
+    }
+
+    private void Dash()
+    {
+        Vector3 direction;
+        if(dashInputs.x != 0 || dashInputs.y != 0)
+        {
+            direction = (orientation.forward * dashInputs.y + orientation.right * dashInputs.x).normalized;
+        }
+        else
+        {
+            direction = orientation.forward.normalized;
+        }
+        
+        Vector3 dash = Vector3.ProjectOnPlane(direction * dashForce, groundData.normal);
+        rb.linearVelocity = new Vector3(dash.x, 0, dash.z);
     }
 }
