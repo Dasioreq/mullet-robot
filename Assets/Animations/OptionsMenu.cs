@@ -4,7 +4,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
-
+using static GameController;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -36,6 +36,7 @@ public class OptionsMenu : MonoBehaviour
         }
         else
         {
+            if(gameController.GetGameState() != GameState.DeathScreen)
             if(Input.GetKeyDown(KeyCode.Escape))
             {
                 if(!open)
@@ -45,15 +46,10 @@ public class OptionsMenu : MonoBehaviour
                     uiCamera.gameObject.SetActive(false);
                     StartCoroutine(BlurLerp(blurVolume.weight, 1, .4f));
                     StartCoroutine(MoveWeapon(.5f, true));
-                    Camera.GetComponent<CameraContoller>().enabled = false;
-                    Player.GetComponent<MovementHandler>().rb.linearVelocity = Vector3.zero;
-                    Player.GetComponent<MovementHandler>().enabled = false;
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
-                    weapon.GetComponent<Animator>().enabled = false;
-                    weapon.GetComponent<AudioSource>().enabled = false;
-                    weapon.GetComponent<Gun>().enabled = false;
                     StartCoroutine(OpenMenu(1f, 0.1f, false));
+                    gameController.SetGameState(GameState.Menu);
                 }
                 else
                 {
@@ -62,14 +58,10 @@ public class OptionsMenu : MonoBehaviour
                     uiCamera.gameObject.SetActive(true);
                     StartCoroutine(BlurLerp(blurVolume.weight, 0, .5f));
                     StartCoroutine(MoveWeapon(.5f, false));
-                    Camera.GetComponent<CameraContoller>().enabled = true;
-                    Player.GetComponent<MovementHandler>().enabled = true;
-                    Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = false;
-                    weapon.GetComponent<Animator>().enabled = true;
-                    weapon.GetComponent<AudioSource>().enabled = true;
-                    weapon.GetComponent<Gun>().enabled = true;
+                    Cursor.lockState = CursorLockMode.Locked;
                     StartCoroutine(OpenMenu(0f, 0.1f, true));
+                    gameController.SetGameState(GameState.Normal);
                 }
                 open = !open;
                 timer = openTime;

@@ -4,7 +4,7 @@ using UnityEngine;
 public class EquipWeapon : MonoBehaviour
 {
     [SerializeField] List<GameObject> gunPrefabs;
-    [SerializeField] GameObject gunHolder;
+    [SerializeField] public GameObject gunHolder;
     [SerializeField] Camera cam;
     [SerializeField] Cards cardPanelScript;
     [SerializeField] GameObject crosshairCanvas;

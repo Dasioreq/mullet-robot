@@ -3,7 +3,42 @@ guid: 929dad12decf5584e92725b410369902
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: 21cfee45284431c4db6a26aebeb0c38b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: 7eaa51ad8aae65a46bdd5acffd12632f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.008
+    second: {fileID: 2100000, guid: 7ba9ab812693814488af13b7a155b48f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RifleDarkMetal
+    second: {fileID: 2100000, guid: 094fa71d9595d474dbb2e649aa8d22d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RifleDarkishMetal
+    second: {fileID: 2100000, guid: fc7b14eedbb7cbe4bb5dbfe753853f17, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RifleGreenGlass
+    second: {fileID: 2100000, guid: 0002a099ad6c90e4790adc5388d1cdfe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RifleLightMetal
+    second: {fileID: 2100000, guid: 88f083d3b87a7ad409292d8ee25a1f1a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
