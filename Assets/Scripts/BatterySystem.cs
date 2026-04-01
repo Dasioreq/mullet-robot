@@ -14,9 +14,9 @@ public class SmoothFollowWithOffset : MonoBehaviour
 
     void Update()
     {
-        var targetPos = basePosition - transform.parent.rotation * playerRb.linearVelocity * multiplier;
+        var targetPos = basePosition - Quaternion.Inverse(transform.parent.rotation) * playerRb.linearVelocity * multiplier;
 
         Vector3 vel = Vector3.zero;
-        transform.localPosition = Vector3.SmoothDamp(transform.localPosition, targetPos, ref vel, smoothTime);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, smoothTime * Time.deltaTime);
     }
 }

@@ -33,7 +33,8 @@ public class GameController : MonoBehaviour
 
     public void GenerateLevel()
     {
-        StartCoroutine(levelGenerator.Generate(5 + level));
+        if(levelGenerator.gameObject.activeSelf)
+            StartCoroutine(levelGenerator.Generate(5 + level));
     }
 
     void Awake()

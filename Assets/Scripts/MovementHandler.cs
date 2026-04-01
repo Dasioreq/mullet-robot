@@ -18,6 +18,7 @@ public class MovementHandler : MonoBehaviour
     [Header("Ground")]
     public bool grounded;
     RaycastHit groundData;
+    Vector3 groundNormal = Vector3.up;
 
     [Header("Jump controls")]
     [SerializeField] public float jumpHeight;
@@ -52,15 +53,12 @@ public class MovementHandler : MonoBehaviour
 
     void Update()
     {
+        GroundCast();
+
         Timers();
         StateMachine();
-
-        GroundCast();
         Drag();
         LimitVelocity();
-
-        if(gameController.GetGameState() != GameState.DeathScreen)
-            StickToGround();
 
         if(gameController.GetGameState() != GameState.Normal)
         {
@@ -84,6 +82,9 @@ public class MovementHandler : MonoBehaviour
     {
         if(mState != MoveState.dashing)
             MovePlayer(direction);
+
+        if(gameController.GetGameState() != GameState.DeathScreen)
+            StickToGround();
     }
 
     private void StateMachine()
@@ -95,9 +96,11 @@ public class MovementHandler : MonoBehaviour
 
             case MoveState.jumping:
             {
-                if(Vector3.Project(rb.linearVelocity, groundData.normal).y <= .05f)
+                Debug.Log($"{groundNormal}, {Vector3.Project(rb.linearVelocity, groundNormal)}");
+                if(Vector3.Project(rb.linearVelocity, groundNormal).y <= .05f)
                 {
                     mState = MoveState.walking;
+                    Debug.Log($"Max height: {rb.gameObject.transform.position.y}");
                 }
                 break;
             }
@@ -118,9 +121,13 @@ public class MovementHandler : MonoBehaviour
     private void GroundCast()
     {
         grounded = Physics.SphereCast(orientation.position, .45f, Vector3.down, out groundData, .55f + .1f, groundLayer) && mState != MoveState.jumping;
+        if(groundData.normal != Vector3.zero)
+            groundNormal = groundData.normal;
+        else
+            groundNormal = Vector3.up;
 
         if(mState != MoveState.dashing)
-            rb.useGravity = !grounded && Vector3.Angle(Vector3.up, groundData.normal) <= 45;        
+            rb.useGravity = !grounded && Vector3.Angle(Vector3.up, groundNormal) <= 45;        
     }
 
     private void Drag()
@@ -142,9 +149,9 @@ public class MovementHandler : MonoBehaviour
         {
             if(grounded)
             {
-                Vector3 horizontalVelocity = Vector3.ProjectOnPlane(rb.linearVelocity, groundData.normal);
+                Vector3 horizontalVelocity = Vector3.ProjectOnPlane(rb.linearVelocity, groundNormal);
                 if(horizontalVelocity.magnitude > maxVelocity)
-                    rb.linearVelocity = Vector3.ProjectOnPlane(horizontalVelocity.normalized * maxVelocity, groundData.normal);
+                    rb.linearVelocity = Vector3.ProjectOnPlane(horizontalVelocity.normalized * maxVelocity, groundNormal);
             }
             else
             {
@@ -159,21 +166,21 @@ public class MovementHandler : MonoBehaviour
     {
         if(grounded)
         {
-            Vector3 moveVector = Vector3.ProjectOnPlane(direction, groundData.normal).normalized;
+            Vector3 moveVector = Vector3.ProjectOnPlane(direction, groundNormal).normalized;
             rb.AddForce(moveVector * acceleration, ForceMode.Force);
         }
         else
         {
-            Vector3 moveVector = Vector3.ProjectOnPlane(direction, groundData.normal).normalized;
+            Vector3 moveVector = Vector3.ProjectOnPlane(direction, groundNormal).normalized;
             rb.AddForce(moveVector * acceleration * airControl, ForceMode.Force);
         }
     }
 
     void StickToGround()
     {
-        if(grounded)
+        if(grounded && mState != MoveState.jumping)
         {
-            rb.AddForce(Vector3.Project(Physics.gravity, -groundData.normal), ForceMode.Force);
+            rb.AddForce(Vector3.Project(Physics.gravity, -groundNormal), ForceMode.Force);
         }
     }
 
@@ -223,7 +230,7 @@ public class MovementHandler : MonoBehaviour
             direction = orientation.forward.normalized;
         }
         
-        Vector3 dash = Vector3.ProjectOnPlane(direction * dashForce, groundData.normal);
+        Vector3 dash = Vector3.ProjectOnPlane(direction * dashForce, groundNormal);
         rb.linearVelocity = new Vector3(dash.x, 0, dash.z);
     }
 }

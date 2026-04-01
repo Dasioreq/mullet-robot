@@ -1,0 +1,213 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RobotEmptyAvatar
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Root
+    m_Weight: 0
+  - m_Path: Root/Circle.003
+    m_Weight: 0
+  - m_Path: Root/Circle.004
+    m_Weight: 0
+  - m_Path: Root/Circle.005
+    m_Weight: 0
+  - m_Path: Root/Circle.006
+    m_Weight: 0
+  - m_Path: Root/Circle.017
+    m_Weight: 0
+  - m_Path: Root/Circle.021
+    m_Weight: 0
+  - m_Path: Root/Cube.005
+    m_Weight: 0
+  - m_Path: Root/Cube.006
+    m_Weight: 0
+  - m_Path: Root/Spine.001
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Arm_L
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Arm_L/Circle.007
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Arm_L/Circle.008
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Arm_L/Circle.009
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Arm_L/Circle.010
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Arm_L/Cube.007
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Arm_L/Forearm_L
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Arm_L/Forearm_L/Circle.011
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Arm_L/Forearm_L/Forearm_L_end
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Hand_L
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Hand_L/Cube.008
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_L/Hand_L/Hand_L_end
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Circle.012
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Circle.013
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Circle.014
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Circle.015
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Cube.017
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Forearm_R
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Forearm_R/Circle.016
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Forearm_R/Forearm_R_end
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/BarrelLong
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Bone.001
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Bone.001/Bone.001_end
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Bone.001/Circle.030
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Bone.002
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Bone.002/Bone.002_end
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Bone.002/Circle.036
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Bone.002/Circle.037
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Bone.003
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Bone.003/Bone.003_end
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Bone.003/Cube.019
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Circle.025
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Circle.026
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Circle.027
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Circle.028
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Circle.029
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Circle.031
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Circle.032
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Circle.033
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Circle.034
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Cube.018
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Armature.001/Bone/Cube.020
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Cube.010
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Hand_R/Hand_R_end
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Circle.002
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Circle.001
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head/Circle
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head/Cube
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head/Cube.001
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head/Cube.002
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head/Cube.003
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head/Cube.004
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head/Cube.009
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head/Head_end
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Plane
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Plane.001
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Plane.002
+    m_Weight: 0
+  - m_Path: Root/Thigh_L
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Circle.018
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Circle.019
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Cube.011
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Shin_L
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Shin_L/Circle.020
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Shin_L/Cube.012
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Shin_L/Foot_L
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Shin_L/Foot_L/Cube.060
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Shin_L/Foot_L/Cube.062
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Shin_L/Foot_L/Foot_L_end
+    m_Weight: 0
+  - m_Path: Root/Thigh_L/Shin_L/Foot_L/Plane.016
+    m_Weight: 0
+  - m_Path: Root/Thigh_R
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Circle.022
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Circle.023
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Cube.014
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Shin_R
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Shin_R/Circle.024
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Shin_R/Cube.015
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Shin_R/Foot_R
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Shin_R/Foot_R/Cube.013
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Shin_R/Foot_R/Cube.016
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Shin_R/Foot_R/Foot_R_end
+    m_Weight: 0
+  - m_Path: Root/Thigh_R/Shin_R/Foot_R/Plane.003
+    m_Weight: 0
