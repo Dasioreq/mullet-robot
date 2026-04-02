@@ -4,23 +4,24 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class RobotAnims : MonoBehaviour
+public class RobotAnims : EnemyActions
 {
     public Transform target;
-    Animator anim;
     [SerializeField] float marginAngle;
     [SerializeField] float maxOvershoot;
+    [SerializeField] Transform aimingTarget;
+    [SerializeField] Transform aimingBone;
     bool checking = false;
 
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
+    float angleFromPlayer = 180;
+    public float Angle {get {return angleFromPlayer;}}
 
     void Update()
     {
         if(!checking)
             StartCoroutine(TryTurning(.75f));
+
+        angleFromPlayer = Vector3.Angle(aimingBone.up, aimingTarget.position - aimingBone.position);
     }
 
     IEnumerator TryTurning(float checkDelay)
@@ -68,5 +69,11 @@ public class RobotAnims : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public override IEnumerator Attack()
+    {
+        anim.SetTrigger("TrFire");
+        yield break;
     }
 }

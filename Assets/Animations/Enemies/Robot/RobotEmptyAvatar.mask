@@ -11,6 +11,26 @@ AvatarMask:
   m_Elements:
   - m_Path: 
     m_Weight: 1
+  - m_Path: Foot_L
+    m_Weight: 0
+  - m_Path: Foot_L/Cube.060
+    m_Weight: 0
+  - m_Path: Foot_L/Cube.062
+    m_Weight: 0
+  - m_Path: Foot_L/Foot_L_end
+    m_Weight: 0
+  - m_Path: Foot_L/Plane.016
+    m_Weight: 0
+  - m_Path: Foot_R
+    m_Weight: 0
+  - m_Path: Foot_R/Cube.013
+    m_Weight: 0
+  - m_Path: Foot_R/Cube.016
+    m_Weight: 0
+  - m_Path: Foot_R/Foot_R_end
+    m_Weight: 0
+  - m_Path: Foot_R/Plane.003
+    m_Weight: 0
   - m_Path: Root
     m_Weight: 0
   - m_Path: Root/Circle.003
@@ -177,15 +197,7 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Root/Thigh_L/Shin_L/Cube.012
     m_Weight: 0
-  - m_Path: Root/Thigh_L/Shin_L/Foot_L
-    m_Weight: 0
-  - m_Path: Root/Thigh_L/Shin_L/Foot_L/Cube.060
-    m_Weight: 0
-  - m_Path: Root/Thigh_L/Shin_L/Foot_L/Cube.062
-    m_Weight: 0
-  - m_Path: Root/Thigh_L/Shin_L/Foot_L/Foot_L_end
-    m_Weight: 0
-  - m_Path: Root/Thigh_L/Shin_L/Foot_L/Plane.016
+  - m_Path: Root/Thigh_L/Shin_L/Shin_L_end
     m_Weight: 0
   - m_Path: Root/Thigh_R
     m_Weight: 0
@@ -201,13 +213,5 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Root/Thigh_R/Shin_R/Cube.015
     m_Weight: 0
-  - m_Path: Root/Thigh_R/Shin_R/Foot_R
-    m_Weight: 0
-  - m_Path: Root/Thigh_R/Shin_R/Foot_R/Cube.013
-    m_Weight: 0
-  - m_Path: Root/Thigh_R/Shin_R/Foot_R/Cube.016
-    m_Weight: 0
-  - m_Path: Root/Thigh_R/Shin_R/Foot_R/Foot_R_end
-    m_Weight: 0
-  - m_Path: Root/Thigh_R/Shin_R/Foot_R/Plane.003
+  - m_Path: Root/Thigh_R/Shin_R/Shin_R_end
     m_Weight: 0
