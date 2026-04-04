@@ -6,6 +6,13 @@ public class TerminalCancer : MonoBehaviour
     public float timeTilDeath;
     float deathTimer;
 
+    public TerminalCancer(float time, bool destroy)
+    {
+        timeTilDeath = time;
+        this.destroy = destroy;
+        deathTimer = 0.0f;
+    }
+
     void Start()
     {
         deathTimer = 0.0f;

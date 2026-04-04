@@ -18,6 +18,8 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     Quaternion baseWeaponRotation;
     float lifeTime;
 
+    float damageFlashTimer = 0;
+
     public void Destroy() {}
 
     void FindWeapon()
@@ -36,6 +38,9 @@ public class PlayerDamage : MonoBehaviour, IDamagable
 
     void Update()
     {
+        if(damageFlashTimer > 0)
+            damageFlashTimer -= Time.unscaledDeltaTime;
+
         if(!weapon)
             FindWeapon();
 
@@ -64,10 +69,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         }
     }
 
-    virtual public void OnHit(RaycastHit hit, float damage)
-    {
-        Damage(damage);
-    }
+    virtual public void OnHit(RaycastHit hit, float damage) {}
 
     virtual public void Damage(float damage)
     {
@@ -89,17 +91,31 @@ public class PlayerDamage : MonoBehaviour, IDamagable
 
             if(comp is AnalogGlitchVolume)
             {
-                float intensity = (lifeTime <= .5f)
-                    ? 1 - lifeTime - .5f
-                    : 0;
+                if(damageFlashTimer > 0)
+                {
+                    ((AnalogGlitchVolume)comp).colorDrift.value = .5f;
+                }
+                else
+                {
+                    float intensity = (lifeTime <= .5f)
+                        ? 1 - lifeTime - .5f
+                        : 0;
 
-                ((AnalogGlitchVolume)comp).scanLineJitter.value = .5f * intensity;
-                ((AnalogGlitchVolume)comp).verticalJump.value = .1f * intensity;
-                ((AnalogGlitchVolume)comp).horizontalShake.value = .2f * intensity;
-                ((AnalogGlitchVolume)comp).colorDrift.value = .25f * intensity;
+                    ((AnalogGlitchVolume)comp).scanLineJitter.value = .5f * intensity;
+                    ((AnalogGlitchVolume)comp).verticalJump.value = .1f * intensity;
+                    ((AnalogGlitchVolume)comp).horizontalShake.value = .2f * intensity;
+                    ((AnalogGlitchVolume)comp).colorDrift.value = .25f * intensity;
+                }
             }
         }
     }
+
+    public void DamageWithEffect(float damage)
+    {
+        Damage(damage);
+        damageFlashTimer = 0.05f * damage;
+    }
+
     public float GetLifeTime()
     {
         return lifeTime;

@@ -25,11 +25,11 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Foot_R/Cube.013
     m_Weight: 0
-  - m_Path: Foot_R/Cube.016
+  - m_Path: Foot_R/Cube.023
     m_Weight: 0
   - m_Path: Foot_R/Foot_R_end
     m_Weight: 0
-  - m_Path: Foot_R/Plane.003
+  - m_Path: Foot_R/Plane.004
     m_Weight: 0
   - m_Path: Root
     m_Weight: 0
@@ -41,9 +41,9 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Root/Circle.006
     m_Weight: 0
-  - m_Path: Root/Circle.017
+  - m_Path: Root/Circle.012
     m_Weight: 0
-  - m_Path: Root/Circle.021
+  - m_Path: Root/Circle.017
     m_Weight: 0
   - m_Path: Root/Cube.005
     m_Weight: 0
@@ -83,13 +83,13 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R
     m_Weight: 0
-  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Circle.012
-    m_Weight: 0
   - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Circle.013
     m_Weight: 0
   - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Circle.014
     m_Weight: 0
   - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Circle.015
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Circle.035
     m_Weight: 0
   - m_Path: Root/Spine.001/Spine/Aimer_R/Arm_R/Cube.017
     m_Weight: 0
@@ -175,6 +175,10 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Root/Spine.001/Spine/Neck/Head/Cube.009
     m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head/Cube.021
+    m_Weight: 0
+  - m_Path: Root/Spine.001/Spine/Neck/Head/Cube.022
+    m_Weight: 0
   - m_Path: Root/Spine.001/Spine/Neck/Head/Head_end
     m_Weight: 0
   - m_Path: Root/Spine.001/Spine/Plane
@@ -187,13 +191,13 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Root/Thigh_L/Circle.018
     m_Weight: 0
-  - m_Path: Root/Thigh_L/Circle.019
+  - m_Path: Root/Thigh_L/Circle.021
     m_Weight: 0
   - m_Path: Root/Thigh_L/Cube.011
     m_Weight: 0
   - m_Path: Root/Thigh_L/Shin_L
     m_Weight: 0
-  - m_Path: Root/Thigh_L/Shin_L/Circle.020
+  - m_Path: Root/Thigh_L/Shin_L/Circle.023
     m_Weight: 0
   - m_Path: Root/Thigh_L/Shin_L/Cube.012
     m_Weight: 0
@@ -201,15 +205,15 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Root/Thigh_R
     m_Weight: 0
-  - m_Path: Root/Thigh_R/Circle.022
+  - m_Path: Root/Thigh_R/Circle.019
     m_Weight: 0
-  - m_Path: Root/Thigh_R/Circle.023
+  - m_Path: Root/Thigh_R/Circle.022
     m_Weight: 0
   - m_Path: Root/Thigh_R/Cube.014
     m_Weight: 0
   - m_Path: Root/Thigh_R/Shin_R
     m_Weight: 0
-  - m_Path: Root/Thigh_R/Shin_R/Circle.024
+  - m_Path: Root/Thigh_R/Shin_R/Circle.020
     m_Weight: 0
   - m_Path: Root/Thigh_R/Shin_R/Cube.015
     m_Weight: 0

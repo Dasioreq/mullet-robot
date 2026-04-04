@@ -96,11 +96,9 @@ public class MovementHandler : MonoBehaviour
 
             case MoveState.jumping:
             {
-                Debug.Log($"{groundNormal}, {Vector3.Project(rb.linearVelocity, groundNormal)}");
                 if(Vector3.Project(rb.linearVelocity, groundNormal).y <= .05f)
                 {
                     mState = MoveState.walking;
-                    Debug.Log($"Max height: {rb.gameObject.transform.position.y}");
                 }
                 break;
             }

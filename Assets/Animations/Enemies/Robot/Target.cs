@@ -8,10 +8,17 @@ public class Target : MonoBehaviour
     [SerializeField] Transform boneTransform;
     [SerializeField] float maxAngle;
     [SerializeField] float aimSpeed;
+    [SerializeField] Vector3 offset;
 
     void Update()
     {
-        Vector3 dirToPlayer = targetTransform.position - boneTransform.position;
+        if(!rootTransform || !boneTransform)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Vector3 dirToPlayer = targetTransform.position - (boneTransform.position - offset);
         
         Vector3 limitedDir = Vector3.RotateTowards(
             rootTransform.rotation * rootTransform.forward, 

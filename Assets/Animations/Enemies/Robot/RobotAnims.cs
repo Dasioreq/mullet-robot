@@ -9,8 +9,8 @@ public class RobotAnims : EnemyActions
     public Transform target;
     [SerializeField] float marginAngle;
     [SerializeField] float maxOvershoot;
-    [SerializeField] Transform aimingTarget;
-    [SerializeField] Transform aimingBone;
+    [SerializeField] public Transform aimingTarget;
+    [SerializeField] public Transform aimingBone;
     bool checking = false;
 
     float angleFromPlayer = 180;
@@ -74,6 +74,8 @@ public class RobotAnims : EnemyActions
     public override IEnumerator Attack()
     {
         anim.SetTrigger("TrFire");
+        yield return new WaitForSeconds(attackSfxDelay);
+        source.PlayOneShot(attackSound);
         yield break;
     }
 }
