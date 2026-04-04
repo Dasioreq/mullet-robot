@@ -141,6 +141,13 @@ public class GeneratorBehaviour : MonoBehaviour
         }
 
         InitializeCullingGroup();
+
+        foreach(var anim in generatedRooms[0].instance.GetComponentsInChildren<Animator>())
+            anim.SetTrigger("TrEnterOpen");
+        foreach(var anim in generatedRooms.Last().instance.GetComponentsInChildren<Animator>())
+            anim.SetTrigger("TrExitOpen");
+
+        generatedRooms[0].instance.GetComponent<IntermisionActions>().ManualMusicSwitch();
     }
 
     void InitializeCullingGroup()

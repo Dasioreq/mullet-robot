@@ -19,7 +19,7 @@ public class CameraContoller : MonoBehaviour
         xRotation = transform.rotation.eulerAngles.x;
         yRotation = transform.rotation.eulerAngles.y;
 
-        Application.targetFrameRate = 480;
+        Application.targetFrameRate = 240;
     }
 
     void Update()
@@ -43,7 +43,7 @@ public class CameraContoller : MonoBehaviour
         transform.rotation = rotation;
         player.rotation = rotation;
 
-        xRotation = transform.rotation.eulerAngles.x;
-        yRotation = transform.rotation.eulerAngles.y;
+        xRotation = rotation.eulerAngles.x;
+        yRotation = rotation.eulerAngles.y;
     }
 }

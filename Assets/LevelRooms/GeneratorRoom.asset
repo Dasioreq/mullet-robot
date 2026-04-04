@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Room
   exit: {x: 0, y: 0, z: 17.1381}
   exitDirection: {x: 0, y: 0, z: 1}
-  prefab: {fileID: 2236570829254240883, guid: fd244dafda27de047ae60703bf28c86a, type: 3}
+  prefab: {fileID: 6238291040296468484, guid: fd244dafda27de047ae60703bf28c86a, type: 3}
   weight: 1

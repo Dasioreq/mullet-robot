@@ -6,20 +6,20 @@ using static GameController;
 
     public class Gun : MonoBehaviour
 {
-    [SerializeField] private float gunDamage;
+    [SerializeField] protected float gunDamage;
     [SerializeField] public Camera cam;
-    [SerializeField] private float fireCooldown;
-    [SerializeField] private float reloadCooldown;
-    [SerializeField] private uint projectileCount = 1;
-    [SerializeField] private float spreadDeg;
+    [SerializeField] protected float fireCooldown;
+    [SerializeField] protected float reloadCooldown;
+    [SerializeField] protected uint projectileCount = 1;
+    [SerializeField] protected float spreadDeg;
     [SerializeField] public GameObject crosshairSprite;
     [SerializeField] bool automatic = false;
 
     [SerializeField] uint maxAmmo;
-    uint ammo;
+    protected uint ammo;
     bool reloading = false;
 
-    private float cooldown = .0f;
+    protected float cooldown = .0f;
 
     List<EmitBulletParticle> bulletParticleEmitters = new List<EmitBulletParticle>();
 
@@ -38,7 +38,7 @@ using static GameController;
         }
     }
 
-    private void Update()
+    protected void Update()
     {
         if(cooldown > 0)
         {
@@ -97,7 +97,7 @@ using static GameController;
         scheduledBulletParticles.Clear();
     }
 
-    void Fire()
+    protected virtual void Fire()
     {
         RaycastHit hit;
         Vector3 origin = cam.transform.position;
