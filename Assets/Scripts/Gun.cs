@@ -1,7 +1,8 @@
-using System;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 
-    public class Gun : MonoBehaviour
+public class Gun : MonoBehaviour
 {
     [SerializeField] private float gunDamage;
     [SerializeField] public Camera cam;
@@ -11,33 +12,67 @@ using UnityEngine;
     [SerializeField] private float spreadDeg;
     [SerializeField] public GameObject crosshairSprite;
     [SerializeField] bool automatic = false;
-
     [SerializeField] uint maxAmmo;
     uint ammo;
     bool reloading = false;
+    [SerializeField] private Renderer targetRenderer;
+    [SerializeField] private ParticleSystem[] chargeObjects;
+    [SerializeField] private float[] thresholds;
+    [SerializeField] bool canOverheat = false;
+    [SerializeField] float overheatTime = 0.0f;
+    float overheatTimer = 0.0f;
+    float overheat = 0.0f;
+    bool OnPlay = false;
+    private bool[] onPlayStates;
 
     private float cooldown = .0f;
 
     void Start()
     {
         ammo = maxAmmo;
+        onPlayStates = new bool[chargeObjects.Length];
     }
 
     private void Update()
     {
-        if(cooldown > 0)
+        if (targetRenderer != null)
+        {
+            Color c = targetRenderer.material.GetColor("_BaseColor");
+            c.a = overheat; 
+            targetRenderer.material.SetColor("_BaseColor", c);
+        }
+        for (int i = 0; i < chargeObjects.Length; i++)
+        {
+            if (overheat >= thresholds[i])
+            {
+                if (!onPlayStates[i])
+                {
+                    chargeObjects[i].Play();
+                    onPlayStates[i] = true;
+                }
+            }
+            else
+            {
+                if (onPlayStates[i])
+                {
+                    chargeObjects[i].Stop();
+                    onPlayStates[i] = false;
+                }
+            }
+        }
+        if (cooldown > 0)
         {
             cooldown -= Time.deltaTime;
         }
         else
         {
-            if(reloading)
+            if (reloading)
             {
                 ammo = maxAmmo;
                 reloading = false;
             }
 
-            if(!automatic)
+            if (!automatic)
             {
                 if (Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
                 {
@@ -54,8 +89,15 @@ using UnityEngine;
                 {
                     Fire();
                 }
+                else if (canOverheat)
+                {
+                    overheatTimer = Mathf.Max(overheatTimer - Time.deltaTime, 0f);
+                }
+                if (overheatTime > 0)
+                    overheat = overheatTimer / overheatTime;
+                
             }
-            
+
             if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
             {
                 Reload();
@@ -68,7 +110,7 @@ using UnityEngine;
         RaycastHit hit;
         Vector3 origin = cam.transform.position;
 
-        for(int i = 0; i < projectileCount; i++)
+        for (int i = 0; i < projectileCount; i++)
         {
             Vector3 direction = cam.transform.forward;
 
@@ -77,13 +119,13 @@ using UnityEngine;
 
             direction = spreadRoll * (spreadYaw * direction);
 
-            if(Physics.Raycast(origin, direction, out hit, Mathf.Infinity, ~(1 << LayerMask.NameToLayer("Bounds"))))
+            if (Physics.Raycast(origin, direction, out hit, Mathf.Infinity, ~(1 << LayerMask.NameToLayer("Bounds"))))
             {
                 var obj = hit.transform.gameObject;
-                if(obj)
+                if (obj)
                 {
                     IHittable hittable = obj.GetComponentInParent<IHittable>();
-                    if(hittable != null)
+                    if (hittable != null)
                     {
                         hittable.OnHit(hit, gunDamage);
                     }
@@ -93,9 +135,14 @@ using UnityEngine;
 
         var gunActions = GetComponentsInChildren<Actions>();
 
-        foreach(Actions action in gunActions)
+        foreach (Actions action in gunActions)
         {
             StartCoroutine(action.Fire());
+        }
+
+        if (canOverheat)
+        {
+            overheatTimer = Mathf.Min(overheatTimer + fireCooldown, overheatTime);
         }
 
         ammo--;
@@ -109,7 +156,7 @@ using UnityEngine;
 
         var gunActions = GetComponentsInChildren<Actions>();
 
-        foreach(Actions action in gunActions)
+        foreach (Actions action in gunActions)
         {
             StartCoroutine(action.Reload());
         }

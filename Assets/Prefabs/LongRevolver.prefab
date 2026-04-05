@@ -741,6 +741,7 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: 71c87c0e93d37b94cab5238dbf2f75f4, type: 3}
   fireSfxDelay: 0
   reloadSfxDelay: 0.67
+  muzzleFlashes: []
   altReloadSound: {fileID: 8300000, guid: e7fa2099f026e084b8f42dcaf74a8b11, type: 3}
   emptyReloadSound: {fileID: 8300000, guid: d3e6279dbf396cf48967463d24ad3b29, type: 3}
 --- !u!114 &1076700315094598762
@@ -877,4 +878,10 @@ MonoBehaviour:
   projectileCount: 1
   spreadDeg: 0
   crosshairSprite: {fileID: 2032129976270723174, guid: 88e62caf32758de4e945c805e968ad11, type: 3}
+  automatic: 0
   maxAmmo: 6
+  targetRenderer: {fileID: 0}
+  chargeObjects: []
+  maxHoldTime: 2
+  thresholds: []
+  isHolding: 0
