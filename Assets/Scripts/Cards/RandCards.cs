@@ -14,16 +14,26 @@ public class RandCards : MonoBehaviour
     public List<Icons> Icon;
     public MovementHandler player;
     public PlayerDamage playerDmg;
+    public GameController gameController;
 
     public EquipWeapon curWeap;
-    private List<int> weaponBases = new List<int> {0,3,6};
-    private int[] weaponProgress = new int[] {0,0,0};
+    public int lastWeapID;
+    private List<int> weaponBases = new List<int> { 0, 3, 6 };
+    private int[] weaponProgress = new int[] { 0, 0, 0 };
     private string[] weaponNames = {"A","B","C"};
+    public bool noWeaponLoss = false;
 
-    public enum UpgradeType{speed, jump, dashing, health, dashingTime, newWeapon, upgradeWeapon, extraA, extraB, extraC}
-    private Dictionary<UpgradeType, float> currentMultipliers = new Dictionary<UpgradeType, float>();
+    public bool noBonusLoss = false;
+    public Dictionary<UpgradeType, float> savedUpgrades = new Dictionary<UpgradeType,float>();
+
+    private float normalVel = 0;
+    private float normalAcc = 0;
+    private Dictionary<UpgradeType, float> baseValues = new Dictionary<UpgradeType, float>();
+
+    public enum UpgradeType { speed, jump, dashing, health, dashingTime, newWeapon, upgradeWeapon, noWeaponLoss, noBonusLoss, killBoost, damageBoost }
+    public Dictionary<UpgradeType, float> currentMultipliers = new Dictionary<UpgradeType, float>();
     private float startMultiplier = 1.10f;
-    private List<UpgradeType> rareUpgrades = new List<UpgradeType>(){UpgradeType.extraA, UpgradeType.extraB, UpgradeType.extraC};
+    public List<UpgradeType> rareUpgrades = new List<UpgradeType>() { UpgradeType.noBonusLoss, UpgradeType.noWeaponLoss, UpgradeType.killBoost, UpgradeType.damageBoost };
     private List<UpgradeType> usedRareUpgrades = new List<UpgradeType>();
 
     private void Awake()
@@ -33,6 +43,13 @@ public class RandCards : MonoBehaviour
             if (type == UpgradeType.upgradeWeapon) continue;
             currentMultipliers[type] = startMultiplier;
         }
+
+        baseValues[UpgradeType.jump] = player.jumpHeight;
+        baseValues[UpgradeType.dashing] = player.dashForce;
+        baseValues[UpgradeType.health] = playerDmg.maxLifeTime;
+        baseValues[UpgradeType.dashingTime] = player.dashCooldownTime;
+        normalAcc = player.acceleration;
+        normalVel = player.maxVelocity;
     }
 
     public struct UpgradeData
@@ -99,7 +116,7 @@ public class RandCards : MonoBehaviour
                         break;
                     }
                 }
-                if(!found)
+                if (!found)
                 {
                     var pool = currentCommons.Count > 0 ? currentCommons : available;
                     randomType = pool[UnityEngine.Random.Range(0, pool.Count)];
@@ -124,6 +141,7 @@ public class RandCards : MonoBehaviour
 
                     ui = Icon.Find(x => x.type == (upgrade.isUpgrade ? UpgradeType.upgradeWeapon : UpgradeType.newWeapon));
                 }
+                
                 else
                 {
                     ui = Icon.Find(x => x.type == upgrade.type);
@@ -132,8 +150,7 @@ public class RandCards : MonoBehaviour
                 bonusScript.Setup(upgrade, this, ui);
             }
         }
-
-        }
+    }
     public void ApplyUpgrade(UpgradeData upgr)
     {
         float multiplierUpgrade = 0;
@@ -146,34 +163,45 @@ public class RandCards : MonoBehaviour
         switch (upgr.type)
         {
             case UpgradeType.speed:
-                player.acceleration *= (1 + multiplierUpgrade);
-                player.maxVelocity *= (1 + multiplierUpgrade);
+                float currentM = currentMultipliers[UpgradeType.speed];
+                player.acceleration = normalAcc * currentM;
+                player.maxVelocity = normalVel * currentM;
                 break;
             case UpgradeType.jump:
-                player.jumpHeight *= (1 + multiplierUpgrade);
+                float jumpM = currentMultipliers[UpgradeType.jump];
+                player.jumpHeight = baseValues[UpgradeType.jump] * jumpM;
                 break;
             case UpgradeType.dashing:
-                player.dashForce *= (1 + multiplierUpgrade);
+                float dashM = currentMultipliers[UpgradeType.dashing];
+                player.dashForce = baseValues[UpgradeType.dashing] * dashM;
                 break;
             case UpgradeType.health:
-                playerDmg.maxLifeTime *= (1 + multiplierUpgrade);
+                float healthM = currentMultipliers[UpgradeType.health];
+                playerDmg.maxLifeTime = baseValues[UpgradeType.health] * healthM;
                 break;
             case UpgradeType.dashingTime:
-                player.dashCooldownTime *= (1 + multiplierUpgrade);
+                float dashTimeM = currentMultipliers[UpgradeType.dashingTime];
+                player.dashCooldownTime = baseValues[UpgradeType.dashingTime] * dashTimeM;
                 break;
             case UpgradeType.newWeapon:
                 int family = upgr.weaponID / 3;
                 weaponProgress[family] = upgr.weaponID % 3;
                 curWeap.Equip(upgr.weaponID);
                 break;
-            case UpgradeType.extraA:
-                Debug.Log("Extra A");
+            case UpgradeType.noWeaponLoss:
+                noWeaponLoss = true;
                 break;
-            case UpgradeType.extraB:
-                Debug.Log("Extra B");
+            case UpgradeType.noBonusLoss:
+                noBonusLoss = true;
                 break;
-            case UpgradeType.extraC:
-                Debug.Log("Extra C");
+            case UpgradeType.damageBoost:
+                Debug.Log("damage boost");
+                break;
+            case UpgradeType.killBoost:
+                float boostLevel = 1.2f;
+                player.maxVelocity = normalVel * boostLevel;
+                player.acceleration = normalAcc * boostLevel;
+                Invoke("ReturnNormalSpeed", 1f);
                 break;
             default:
                 Debug.Log("Different option");
@@ -186,11 +214,11 @@ public class RandCards : MonoBehaviour
         }
 
         GetComponent<Cards>().CloseWin();
-        foreach (var b in Btn) 
-        { 
+        foreach (var b in Btn)
+        {
             if (b != null)
             {
-                Destroy(b.gameObject); 
+                Destroy(b.gameObject);
             }
         }
 
@@ -218,5 +246,31 @@ public class RandCards : MonoBehaviour
 
         int newId = drawnBaseId + weaponProgress[randomListIndex];
         return (newId, false);
+    }
+
+    void ReturnNormalSpeed()
+    {
+        player.maxVelocity = normalVel;
+        player.acceleration = normalAcc;
+    }
+
+    public void ReturnNormalStats()
+    {
+        player.maxVelocity = normalVel;
+        player.acceleration = normalAcc;
+        player.jumpHeight = baseValues[UpgradeType.jump];
+        player.dashForce = baseValues[UpgradeType.dashing];
+        playerDmg.maxLifeTime = baseValues[UpgradeType.health];
+        player.dashCooldownTime = baseValues[UpgradeType.dashingTime];
+    }
+
+    public void RestoreStats()
+    {
+        player.maxVelocity = normalVel * currentMultipliers[UpgradeType.speed];
+        player.acceleration = normalAcc * currentMultipliers[UpgradeType.speed];
+        player.jumpHeight = baseValues[UpgradeType.jump] * currentMultipliers[UpgradeType.jump];
+        player.dashForce = baseValues[UpgradeType.dashing] * currentMultipliers[UpgradeType.dashing];
+        playerDmg.maxLifeTime = baseValues[UpgradeType.health] * currentMultipliers[UpgradeType.health];
+        player.dashCooldownTime = baseValues[UpgradeType.dashingTime] * currentMultipliers[UpgradeType.dashingTime];
     }
 }

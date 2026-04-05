@@ -1,15 +1,19 @@
 using UnityEngine;
 using static RandCards;
 using static GameController;
+using System.Collections.Generic;
 
 public class Cards : MonoBehaviour
 {
+    public RandCards RandCards;
+    public GameController gameController;
     public GameObject CardPanel;
     public GameObject Player;
     public GameObject Camera;
     public GameObject weapon;
     [SerializeField] private GameObject ButtonOrg;
     [SerializeField] private Transform cardPanel;
+    private bool deathStatsHandled = false;
     GameObject[] Buttons = new GameObject[4];
 
     private void ShowCards()
@@ -49,7 +53,6 @@ public class Cards : MonoBehaviour
 
     void Start()
     {
-
         CardPanel.SetActive(false);
     }
     void Update()
@@ -61,6 +64,63 @@ public class Cards : MonoBehaviour
         else if (Input.GetKeyDown("t") && CardPanel.activeSelf == true)
         {
             CloseWin();
+        }
+
+        if (gameController.GetGameState() == GameState.DeathScreen)
+        {
+            SaveData();
+        }
+        else if (gameController.GetGameState() == GameState.Normal)
+        {
+            RestoreData();
+        }
+    }
+
+    void RestoreData()
+    {
+        if (deathStatsHandled)
+        {
+            if (RandCards.noWeaponLoss == true)
+            {
+                GetComponent<RandCards>().curWeap.Equip(RandCards.lastWeapID);
+                RandCards.noWeaponLoss = false;
+            }
+
+            if (RandCards.noBonusLoss == true)
+            {
+                if (RandCards.savedUpgrades.Count > 0)
+                {
+                    RandCards.currentMultipliers = new Dictionary<RandCards.UpgradeType, float>(RandCards.savedUpgrades);
+                    GetComponent<RandCards>().RestoreStats();
+                    RandCards.savedUpgrades.Clear();
+                    RandCards.noBonusLoss = false;
+                }
+            }
+            deathStatsHandled = false;
+        }
+        
+    }
+   void SaveData()
+    {
+        if (!deathStatsHandled)
+        {
+            if (RandCards.noWeaponLoss == true)
+            {
+                RandCards.lastWeapID = GetComponent<RandCards>().curWeap.currentWeapon;
+            }
+
+            if (RandCards.noBonusLoss == true)
+            {
+                if (RandCards.savedUpgrades.Count == 0)
+                {
+                    RandCards.savedUpgrades = new Dictionary<RandCards.UpgradeType, float>(RandCards.currentMultipliers);
+                }
+            }
+            else if (RandCards.noBonusLoss == false)
+            {
+                RandCards.ReturnNormalStats();
+            }
+            deathStatsHandled = true;
         }
     }
 }

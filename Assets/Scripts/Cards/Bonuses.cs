@@ -20,6 +20,7 @@ public class Bonuses : MonoBehaviour
     {
         data = newData;
         manager = m;
+        bool isRare = manager.rareUpgrades.Contains(data.type);
 
         if (ic != null)
         {
@@ -39,6 +40,10 @@ public class Bonuses : MonoBehaviour
             {
                 valueText.text = data.weaponName;
             }
+        }
+        else if (isRare) 
+        {
+            valueText.text = "";
         }
         else
         {
