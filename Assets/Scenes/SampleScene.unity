@@ -3113,6 +3113,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8457682739628333913, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
+      propertyPath: chargeObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

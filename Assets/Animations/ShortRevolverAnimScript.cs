@@ -7,19 +7,9 @@ public class ShortRevolverAnimScript : Actions
 {
     [SerializeField] AudioClip altReloadSound;
     [SerializeField] AudioClip emptyReloadSound;
-    [SerializeField] private ParticleSystem[] chargeObjects;
 
     override public IEnumerator Fire()
     {
-        int chance2 = Random.Range(0, 2);
-        if (chance2 < 1)
-        {
-            chargeObjects[0].Play();
-        }
-        else
-        {
-            chargeObjects[1].Play();
-        }
         anim.SetTrigger("TrFire");
         StartCoroutine(Flash(.1f));
         yield return new WaitForSeconds(fireSfxDelay);
