@@ -20,15 +20,18 @@ public class RandCards : MonoBehaviour
     public int lastWeapID;
     private List<int> weaponBases = new List<int> { 0, 3, 6 };
     private int[] weaponProgress = new int[] { 0, 0, 0 };
-    private string[] weaponNames = {"A","B","C"};
+    private string[] weaponNames = { "A", "B", "C" };
     public bool noWeaponLoss = false;
 
     public bool noBonusLoss = false;
-    public Dictionary<UpgradeType, float> savedUpgrades = new Dictionary<UpgradeType,float>();
+    public Dictionary<UpgradeType, float> savedUpgrades = new Dictionary<UpgradeType, float>();
 
     private float normalVel = 0;
     private float normalAcc = 0;
     private Dictionary<UpgradeType, float> baseValues = new Dictionary<UpgradeType, float>();
+
+    bool killBoostActive = false;
+    bool damageBoostActive = false;
 
     public enum UpgradeType { speed, jump, dashing, health, dashingTime, newWeapon, upgradeWeapon, noWeaponLoss, noBonusLoss, killBoost, damageBoost }
     public Dictionary<UpgradeType, float> currentMultipliers = new Dictionary<UpgradeType, float>();
@@ -141,7 +144,7 @@ public class RandCards : MonoBehaviour
 
                     ui = Icon.Find(x => x.type == (upgrade.isUpgrade ? UpgradeType.upgradeWeapon : UpgradeType.newWeapon));
                 }
-                
+
                 else
                 {
                     ui = Icon.Find(x => x.type == upgrade.type);
@@ -195,13 +198,10 @@ public class RandCards : MonoBehaviour
                 noBonusLoss = true;
                 break;
             case UpgradeType.damageBoost:
-                Debug.Log("damage boost");
+                damageBoostActive = true;
                 break;
             case UpgradeType.killBoost:
-                float boostLevel = 1.2f;
-                player.maxVelocity = normalVel * boostLevel;
-                player.acceleration = normalAcc * boostLevel;
-                Invoke("ReturnNormalSpeed", 1f);
+                killBoostActive = true;
                 break;
             default:
                 Debug.Log("Different option");
@@ -272,5 +272,24 @@ public class RandCards : MonoBehaviour
         player.dashForce = baseValues[UpgradeType.dashing] * currentMultipliers[UpgradeType.dashing];
         playerDmg.maxLifeTime = baseValues[UpgradeType.health] * currentMultipliers[UpgradeType.health];
         player.dashCooldownTime = baseValues[UpgradeType.dashingTime] * currentMultipliers[UpgradeType.dashingTime];
+    }
+
+    public void killBoost()
+    {
+        if (killBoostActive == true)
+        {
+            float boostLevel = 1.2f;
+            player.maxVelocity = normalVel * boostLevel;
+            player.acceleration = normalAcc * boostLevel;
+            Invoke("ReturnNormalSpeed", 1f);
+        }
+    }
+
+    public void damageBoost()
+    {
+        if (damageBoostActive == true && playerDmg.GetLifeTime() == 1f)
+        {
+            
+        }
     }
 }

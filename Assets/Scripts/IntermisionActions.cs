@@ -7,6 +7,7 @@ public class IntermisionActions : MonoBehaviour
     SwitchMusic jukebox;
 
     public bool endLevel = false;
+    private bool cardsTriggered = false;
     public GeneratorBehaviour levelGenerator;
 
     void Start()
@@ -18,8 +19,16 @@ public class IntermisionActions : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "MainCamera")
+        {
             StartCoroutine(jukebox.Switch(false));
-
+            if (gameController.level > 0 && !cardsTriggered) 
+            {
+                Cards cards = Object.FindAnyObjectByType<Cards>();
+                cards.StartCoroutine(cards.WaitAndShowCards());
+                cardsTriggered = true;
+            }      
+        }
+            
         if(other.gameObject.tag == "MainCamera")
             if(endLevel)
             {

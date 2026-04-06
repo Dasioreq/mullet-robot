@@ -1,7 +1,8 @@
-using UnityEngine;
-using static RandCards;
-using static GameController;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using static GameController;
+using static RandCards;
 
 public class Cards : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Cards : MonoBehaviour
     private bool deathStatsHandled = false;
     GameObject[] Buttons = new GameObject[4];
 
-    private void ShowCards()
+    public void ShowCards()
     {
         gameController.SetGameState(GameState.UpgradeSelection);
         Cursor.lockState = CursorLockMode.None;
@@ -49,6 +50,12 @@ public class Cards : MonoBehaviour
         Cursor.visible = false;
         CardPanel.SetActive(false);
         gameController.SetGameState(GameState.Normal);
+    }
+
+    public IEnumerator WaitAndShowCards()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ShowCards();
     }
 
     void Start()
