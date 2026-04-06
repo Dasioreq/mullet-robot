@@ -12,6 +12,7 @@ public class DoubleShotShotgunAnimScript : Actions
     [SerializeField] float nextReloadSfxDelay;
     [SerializeField] float nextReloadSfxDelay2;
     [SerializeField] float nextReloadSfxDelay3;
+    [SerializeField] private ParticleSystem[] chargeObjects;
     override public IEnumerator Fire()
     {
         anim.SetTrigger("TrFire");
@@ -25,6 +26,7 @@ public class DoubleShotShotgunAnimScript : Actions
         yield return new WaitForSeconds(nextReloadSfxDelay3);
         source.PlayOneShot(reloadSound4);
         yield return new WaitForSeconds(nextReloadSfxDelay);
+        chargeObjects[0].Play();
         int chance = Random.Range(0, 100);
         if (chance < 15)
         {
