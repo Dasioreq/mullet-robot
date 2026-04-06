@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,9 +9,14 @@ public class RobotDamage : EnemyDamage
     [SerializeField] GameObject[] explosionParticles;
     [SerializeField] AudioClip deadSound;
     protected AudioSource source;
+
+    [Header("Giblet settings")]
     [SerializeField] int maxGibs;
     [SerializeField] float minForce;
     [SerializeField] float maxForce;
+    [SerializeField] int gibLayer;
+    [SerializeField] ParticleSystem[] gibParticles;
+
     override protected void Start()
     {
         base.Start();
@@ -28,16 +34,16 @@ public class RobotDamage : EnemyDamage
 
     public IEnumerator Explode(Vector3 position)
     {
-        // foreach (var obj in explosionParticles)
-        // {
-        //     foreach(var p in explosionParticles)
-        //     {
-        //         foreach(ParticleSystem particle in p.GetComponentsInChildren<ParticleSystem>())
-        //         {
-        //             Instantiate(particle, position, Quaternion.LookRotation(transform.up));
-        //         }
-        //     }
-        // }
+        foreach (var obj in explosionParticles)
+        {
+            foreach(var p in explosionParticles)
+            {
+                foreach(ParticleSystem particle in p.GetComponentsInChildren<ParticleSystem>())
+                {
+                    Instantiate(particle, position, Quaternion.LookRotation(transform.up));
+                }
+            }
+        }
 
         SpawnGibs();
 
@@ -54,10 +60,14 @@ public class RobotDamage : EnemyDamage
 
     void SpawnGibs()
     {
-        var potentialGibs = GetComponentsInChildren<MeshRenderer>();
+        var potentialGibs = GetComponentsInChildren<MeshRenderer>().Where(r =>
+            r.bounds.size.sqrMagnitude > .2f).ToList();
         for(int i = 0; i < maxGibs; i++)
         {
-            GameObject theChosenOne = potentialGibs[Random.Range(0, potentialGibs.Length)].gameObject;
+            if(potentialGibs.Count <= 0)
+                return;
+            int index = Random.Range(0, potentialGibs.Count - 1);
+            GameObject theChosenOne = potentialGibs[index].gameObject; potentialGibs.RemoveAt(index);
             GameObject gib = Instantiate(theChosenOne, theChosenOne.transform.position, theChosenOne.transform.rotation);
             gib.transform.localScale = transform.lossyScale;
             var collider = gib.AddComponent<MeshCollider>();
@@ -65,14 +75,16 @@ public class RobotDamage : EnemyDamage
             collider.convex = true;
             var rb = collider.AddComponent<Rigidbody>();
             rb.linearVelocity = Random.onUnitSphere * Random.Range(minForce, maxForce);
-            // rb.isKinematic = true;
-            // rb.useGravity = false;
+            collider.excludeLayers |= 1 << gibLayer;
+            gib.layer = gibLayer;
             rb.angularVelocity = Random.insideUnitSphere;
             rb.linearDamping = 0;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
-            rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-            // var tc = gib.AddComponent<TerminalCancer>();
-            // tc = new TerminalCancer(10, true);
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            rb.GetComponent<Renderer>().material.SetFloat("_Cull", 0);
+            var tc = gib.AddComponent<TerminalCancer>().Init(Random.Range(5f, 10f), true);
+            var p = gibParticles[Random.Range(0, gibParticles.Length)];
+            GameObject particleEmitter = p? Instantiate(p.gameObject, gib.transform) : null;
             gib.transform.SetParent(null);
             gib.SetActive(true);
         }

@@ -39,7 +39,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     void Update()
     {
         if(damageFlashTimer > 0)
-            damageFlashTimer -= Time.unscaledDeltaTime;
+            damageFlashTimer = Mathf.Max(damageFlashTimer - Time.unscaledDeltaTime, 0);
 
         if(!weapon)
             FindWeapon();
@@ -113,7 +113,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     public void DamageWithEffect(float damage)
     {
         Damage(damage);
-        damageFlashTimer = 0.05f * damage;
+        damageFlashTimer += 0.05f * damage;
     }
 
     public float GetLifeTime()

@@ -11,7 +11,7 @@ public class Actions : MonoBehaviour
 
     protected Animator anim;
     protected AudioSource source;
-    protected ParticleSystem[] muzzleFlashes;
+    [SerializeField] protected ParticleSystem[] muzzleFlashes;
     protected Light[] muzzleFlashLights;
 
     void Start()
@@ -19,7 +19,6 @@ public class Actions : MonoBehaviour
         anim = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
 
-        muzzleFlashes = GetComponentsInChildren<ParticleSystem>();
         muzzleFlashLights = GetComponentsInChildren<Light>();
     }
 

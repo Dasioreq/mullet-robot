@@ -10,25 +10,32 @@ public class TerminalCancer : MonoBehaviour
     {
         timeTilDeath = time;
         this.destroy = destroy;
-        deathTimer = 0.0f;
+        deathTimer = time;
+    }
+
+    public TerminalCancer Init(float time, bool destroy)
+    {
+        timeTilDeath = time;
+        this.destroy = destroy;
+        deathTimer = time;
+        return this;
     }
 
     void Start()
     {
-        deathTimer = 0.0f;
+        deathTimer = timeTilDeath;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        deathTimer += Time.deltaTime;
-        if(deathTimer >= timeTilDeath)
+        if(deathTimer > 0)
+            deathTimer -= Time.deltaTime;
+        else
+        {
             if(destroy)
                 Destroy(gameObject);
             else
-            {
-                deathTimer = 0.0f;
                 gameObject.SetActive(false);
-            }
+        }
     }
 }

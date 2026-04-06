@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using static GameController;
 
@@ -14,6 +15,10 @@ using static GameController;
     [SerializeField] protected float spreadDeg;
     [SerializeField] public GameObject crosshairSprite;
     [SerializeField] bool automatic = false;
+    [SerializeField] bool canOverheat = false;
+    [SerializeField] float overheatTime = 0.0f;
+    float overheatTimer = 0.0f;
+    float overheat = 0.0f;
 
     [SerializeField] uint maxAmmo;
     protected uint ammo;
@@ -71,6 +76,12 @@ using static GameController;
                     {
                         Fire();
                     }
+                    else if(canOverheat)
+                    {
+                        overheatTimer = Mathf.Max(overheatTimer - Time.deltaTime, 0f);
+                    }
+                    if(overheatTime > 0)
+                        overheat = overheatTimer / overheatTime;
                 }
                 
                 if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
@@ -145,6 +156,11 @@ using static GameController;
                     scheduledBulletParticles.Add((direction, true));
                 }
             }
+        }
+
+        if(canOverheat)
+        {
+            overheatTimer = Mathf.Min(overheatTimer + fireCooldown, overheatTime);
         }
 
         ammo--;

@@ -4,11 +4,24 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     [SerializeField] Transform targetTransform;
+    [SerializeField] string targetTransformName;
+    [SerializeField] float range;
     [SerializeField] Transform rootTransform;
     [SerializeField] Transform boneTransform;
     [SerializeField] float maxAngle;
     [SerializeField] float aimSpeed;
     [SerializeField] Vector3 offset;
+
+    void Start()
+    {
+        if(!targetTransform)
+            targetTransform = GameObject.Find(targetTransformName).transform;
+    }
+
+    public float GetAngleFromTarget()
+    {
+        return Vector3.Angle(boneTransform.up, (targetTransform.position + offset) - boneTransform.position);
+    }
 
     void Update()
     {
