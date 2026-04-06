@@ -1257,7 +1257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f26673f21f12b4593f1c4016ba10e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Casings
-  casingPrefab: {fileID: 5743082219408062131, guid: d6f905615d75a1949a461dee6d8b8137, type: 3}
+  casingPrefab: {fileID: 8227158706705044227, guid: fe410917eac9c3547b435658156101e4, type: 3}
   casingPosition: {x: -0.18, y: -0.62, z: 0.5}
   forceVector: {x: -1.5, y: 0, z: 2}
   deviationAngles: {x: 15, y: 5, z: 5}

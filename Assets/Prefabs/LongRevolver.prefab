@@ -744,6 +744,8 @@ MonoBehaviour:
   muzzleFlashes: []
   altReloadSound: {fileID: 8300000, guid: e7fa2099f026e084b8f42dcaf74a8b11, type: 3}
   emptyReloadSound: {fileID: 8300000, guid: d3e6279dbf396cf48967463d24ad3b29, type: 3}
+  chargeObjects:
+  - {fileID: 0}
 --- !u!114 &1076700315094598762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,6 +884,8 @@ MonoBehaviour:
   maxAmmo: 6
   targetRenderer: {fileID: 0}
   chargeObjects: []
-  maxHoldTime: 2
   thresholds: []
-  isHolding: 0
+  canOverheat: 0
+  overheatTime: 0
+  timeToFastest: []
+  fastestFireCooldown: []
