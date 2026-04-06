@@ -1019,6 +1019,7 @@ MonoBehaviour:
   reloadSound: {fileID: 0}
   fireSfxDelay: 0
   reloadSfxDelay: 0
+  muzzleFlashes: []
   shotSound2: {fileID: 8300000, guid: f7605feba96934e418e3dba15d19eaa7, type: 3}
 --- !u!114 &3453740019533914994
 MonoBehaviour:
@@ -1055,8 +1056,15 @@ MonoBehaviour:
   projectileCount: 1
   spreadDeg: 2.5
   crosshairSprite: {fileID: 4033864290179105063, guid: 3d1b32ae299b414448968af64463d39e, type: 3}
-  automatic: 0
+  automatic: 1
   maxAmmo: 0
+  targetRenderer: {fileID: 0}
+  chargeObjects: []
+  thresholds: []
+  canOverheat: 0
+  overheatTime: 0
+  timeToFastest: []
+  fastestFireCooldown: []
 --- !u!114 &-6732934455139278345
 MonoBehaviour:
   m_ObjectHideFlags: 0

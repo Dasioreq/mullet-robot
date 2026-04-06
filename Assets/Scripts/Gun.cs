@@ -24,11 +24,15 @@ public class Gun : MonoBehaviour
     float overheat = 0.0f;
     bool OnPlay = false;
     private bool[] onPlayStates;
+    [SerializeField] float[] timeToFastest;
+    [SerializeField] float[] fastestFireCooldown;
+    private float fireCooldownNumber;
 
     private float cooldown = .0f;
 
     void Start()
     {
+        fireCooldownNumber = fireCooldown;
         ammo = maxAmmo;
         onPlayStates = new bool[chargeObjects.Length];
     }
@@ -58,6 +62,21 @@ public class Gun : MonoBehaviour
                     chargeObjects[i].Stop();
                     onPlayStates[i] = false;
                 }
+            }
+        }
+        if (canOverheat)
+        {
+            if (overheat >= timeToFastest[1])
+            {
+                fireCooldown = fastestFireCooldown[1];
+            }
+            else if (overheat >= timeToFastest[0])
+            {
+                fireCooldown = fastestFireCooldown[0];
+            }
+            else
+            {
+                fireCooldown = fireCooldownNumber;
             }
         }
         if (cooldown > 0)

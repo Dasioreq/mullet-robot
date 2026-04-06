@@ -1024,10 +1024,16 @@ MonoBehaviour:
   - {fileID: 7673944101343137997}
   - {fileID: 3888158735322206312}
   thresholds:
-  - 0.1
-  - 0.5
+  - 0.06
+  - 0.4
   canOverheat: 1
-  overheatTime: 7
+  overheatTime: 15
+  timeToFastest:
+  - 0.7
+  - 0.9
+  fastestFireCooldown:
+  - 0.13
+  - 0.16
 --- !u!114 &1761678354011926849
 MonoBehaviour:
   m_ObjectHideFlags: 0
