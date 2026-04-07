@@ -27,6 +27,7 @@ Material:
   m_ValidKeywords:
   - _ENVIRONMENTREFLECTIONS_OFF
   - _RECEIVE_SHADOWS_OFF
+  - _SPECULARHIGHLIGHTS_OFF
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -50,9 +51,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _EnvironmentReflections: 0
     - _GlossyReflections: 1
+    - _Metallic: 0
     - _ReceiveShadows: 0
-    - _SpecularHighlights: 1
+    - _SpecularHighlights: 0
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

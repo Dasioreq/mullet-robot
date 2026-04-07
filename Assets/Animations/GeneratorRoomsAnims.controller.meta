@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations/GeneratorRoomsAnims.controller.meta
 guid: c35e1bffe3d6a7d49b2969ef4d5f4340
 NativeFormatImporter:
+========
+guid: 64f5a89733766c341aa95e030d61b149
+PrefabImporter:
+>>>>>>>> robots:Assets/Effects/ContinuousOil.prefab.meta
   externalObjects: {}
   mainObjectFileID: 9100000
   userData: 

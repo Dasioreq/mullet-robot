@@ -8,6 +8,10 @@ public class TurretAI : EnemyAI
     float attackTime;
     [SerializeField] float attackAngle;
     float attackTimer = 0;
+    [SerializeField] ProjectylesAmmo bullet;
+    [SerializeField] Transform aimingBone;
+    [SerializeField] Vector3 bulletOffset;
+    [SerializeField] float spreadAngle;
 
     protected override void Start()
     {
@@ -40,5 +44,6 @@ public class TurretAI : EnemyAI
     public override void Attack()
     {
         base.Attack();
+        Instantiate(bullet.gameObject, aimingBone.position + aimingBone.rotation * bulletOffset, Quaternion.LookRotation(Quaternion.AngleAxis(Random.Range(0f, 180f), aimingBone.transform.up) * Quaternion.AngleAxis(Random.Range(-spreadAngle, spreadAngle), aimingBone.transform.right) * aimingBone.transform.up));
     }
 }

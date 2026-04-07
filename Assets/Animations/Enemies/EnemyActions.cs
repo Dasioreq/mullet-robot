@@ -14,7 +14,7 @@ public class EnemyActions : MonoBehaviour
     protected ParticleSystem[] muzzleFlashes;
     protected Light[] muzzleFlashLights;
 
-    void Start()
+    protected virtual void Start()
     {
         anim = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
@@ -30,16 +30,19 @@ public class EnemyActions : MonoBehaviour
     {
         foreach(var flash in muzzleFlashes)
         {
-            flash.Play();
+            if(flash)
+                flash.Play();
         }
         foreach(var light in muzzleFlashLights)
         {
-            light.enabled = true;
+            if(light)
+                light.enabled = true;
         }
         yield return new WaitForSeconds(time);
         foreach(var light in muzzleFlashLights)
         {
-            light.enabled = false;
+            if(light)
+                light.enabled = false;
         }
     }
 }
