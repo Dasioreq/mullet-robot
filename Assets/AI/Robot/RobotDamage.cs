@@ -82,7 +82,7 @@ public class RobotDamage : EnemyDamage
             rb.interpolation = RigidbodyInterpolation.Interpolate;
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.GetComponent<Renderer>().material.SetFloat("_Cull", 0);
-            var tc = gib.AddComponent<TerminalCancer>().Init(Random.Range(5f, 10f), true);
+            var tc = gib.AddComponent<TerminalCancer>().Init(Random.Range(5f, 10f));
             var p = gibParticles[Random.Range(0, gibParticles.Length)];
             GameObject particleEmitter = p? Instantiate(p.gameObject, gib.transform) : null;
             gib.transform.SetParent(null);
