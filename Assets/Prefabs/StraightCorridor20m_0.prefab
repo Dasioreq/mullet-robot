@@ -50,7 +50,7 @@ Light:
   m_InnerSpotAngle: 174.53354
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -304,7 +304,7 @@ Light:
   m_InnerSpotAngle: 174.53354
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -558,7 +558,7 @@ Light:
   m_InnerSpotAngle: 174.53354
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -685,7 +685,7 @@ Light:
   m_InnerSpotAngle: 174.53354
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1277,7 +1277,7 @@ Light:
   m_InnerSpotAngle: 174.53354
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1404,7 +1404,7 @@ Light:
   m_InnerSpotAngle: 174.53354
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1821,16 +1821,16 @@ MonoBehaviour:
   m_RendererInfo:
   - renderer: {fileID: 1905529625974531870}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.26344734, y: 0.26410314, z: 0.44152147, w: 0.23140404}
+    lightmapOffsetScale: {x: 0.26344734, y: 0.26410314, z: 0.5059746, w: 0.3134353}
   - renderer: {fileID: 8059922552805505513}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.26149952, y: 0.2628238, z: 0.71444726, w: 0.42604527}
+    lightmapOffsetScale: {x: 0.26149952, y: 0.2628238, z: 0.71737695, w: 0.7776078}
   - renderer: {fileID: 9102126844365912089}
     lightmapIndex: 1
     lightmapOffsetScale: {x: 1.1327132, y: 1.1317902, z: -0.06754225, w: -0.06748681}
   m_Lightmaps:
   - {fileID: 2800000, guid: 75e02aa0dd064eb41a4f5adc39fdffef, type: 3}
-  - {fileID: 2800000, guid: 3bdd0faf64a1cf74bb7aa80cc69e596e, type: 3}
+  - {fileID: 2800000, guid: 3ea077e4e9b6b7748894684c0bc1e834, type: 3}
   m_LightmapsDir:
   - {fileID: 0}
   - {fileID: 0}
