@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -3322697107870075596, guid: e0222adc3ec999c4086a804b0f2e7de8, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: -2921192361157628815, guid: e0222adc3ec999c4086a804b0f2e7de8, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -141,6 +145,7 @@ MonoBehaviour:
   reloadSound: {fileID: 0}
   fireSfxDelay: 0
   reloadSfxDelay: 0
+  muzzleFlashes: []
 --- !u!82 &7872003377865730973
 AudioSource:
   m_ObjectHideFlags: 0

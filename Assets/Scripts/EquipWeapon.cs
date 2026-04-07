@@ -4,7 +4,7 @@ using UnityEngine;
 public class EquipWeapon : MonoBehaviour
 {
     [SerializeField] List<GameObject> gunPrefabs;
-    [SerializeField] GameObject gunHolder;
+    [SerializeField] public GameObject gunHolder;
     [SerializeField] Camera cam;
     [SerializeField] Cards cardPanelScript;
     [SerializeField] GameObject crosshairCanvas;
@@ -21,6 +21,7 @@ public class EquipWeapon : MonoBehaviour
         Destroy(gunHolder.GetComponentInChildren<Gun>().gameObject);
         
         var equippedGun = Instantiate(gunPrefabs[index], gunHolder.transform);
+        Debug.Log(equippedGun);
         equippedGun.GetComponent<ViewmodelSway>().player = gameObject;
         equippedGun.GetComponent<Gun>().cam = cam;
 

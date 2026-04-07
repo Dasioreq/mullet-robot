@@ -1,19 +1,22 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using static GameController;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] private float gunDamage;
+    [SerializeField] protected float gunDamage;
     [SerializeField] public Camera cam;
-    [SerializeField] private float fireCooldown;
-    [SerializeField] private float reloadCooldown;
-    [SerializeField] private uint projectileCount = 1;
-    [SerializeField] private float spreadDeg;
+    [SerializeField] protected float fireCooldown;
+    [SerializeField] protected float reloadCooldown;
+    [SerializeField] protected uint projectileCount = 1;
+    [SerializeField] protected float spreadDeg;
     [SerializeField] public GameObject crosshairSprite;
     [SerializeField] bool automatic = false;
     [SerializeField] uint maxAmmo;
-    uint ammo;
+    protected uint ammo;
     bool reloading = false;
     [SerializeField] private Renderer targetRenderer;
     [SerializeField] private ParticleSystem[] chargeObjects;
@@ -28,16 +31,28 @@ public class Gun : MonoBehaviour
     [SerializeField] float[] fastestFireCooldown;
     private float fireCooldownNumber;
 
-    private float cooldown = .0f;
+    protected float cooldown = .0f;
+
+    List<EmitBulletParticle> bulletParticleEmitters = new List<EmitBulletParticle>();
+
+    List<(Vector3 v, bool useDirection)> scheduledBulletParticles = new List<(Vector3 v, bool useDirection)>();
 
     void Start()
     {
         fireCooldownNumber = fireCooldown;
         ammo = maxAmmo;
         onPlayStates = new bool[chargeObjects.Length];
+
+        foreach(var emitter in GetComponentsInChildren<ParticleSystem>())
+        {
+            if(emitter.gameObject.TryGetComponent<EmitBulletParticle>(out EmitBulletParticle bulletPart))
+            {
+                bulletParticleEmitters.Add(bulletPart);
+            }
+        }
     }
 
-    private void Update()
+    protected void Update()
     {
         if (targetRenderer != null)
         {
@@ -91,31 +106,32 @@ public class Gun : MonoBehaviour
                 reloading = false;
             }
 
-            if (!automatic)
-            {
-                if (Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
+            if(gameController.GetGameState() == GameState.Normal)
+                if(!automatic)
                 {
-                    Fire();
+                    if (Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
+                    {
+                        Fire();
+                    }
+                    else if (Input.GetMouseButtonDown(0) && ammo == 0 && maxAmmo != 0)
+                    {
+                        EmptyReload();
+                    }
                 }
-                else if (Input.GetMouseButtonDown(0) && ammo == 0 && maxAmmo != 0)
+                else
                 {
-                    EmptyReload();
+                    if (Input.GetMouseButton(0) && (ammo > 0 || maxAmmo == 0))
+                    {
+                        Fire();
+                    }
+                    else if (canOverheat)
+                    {
+                        overheatTimer = Mathf.Max(overheatTimer - Time.deltaTime, 0f);
+                    }
+                    if (overheatTime > 0)
+                        overheat = overheatTimer / overheatTime;
+                    
                 }
-            }
-            else
-            {
-                if (Input.GetMouseButton(0) && (ammo > 0 || maxAmmo == 0))
-                {
-                    Fire();
-                }
-                else if (canOverheat)
-                {
-                    overheatTimer = Mathf.Max(overheatTimer - Time.deltaTime, 0f);
-                }
-                if (overheatTime > 0)
-                    overheat = overheatTimer / overheatTime;
-                
-            }
 
             if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
             {
@@ -124,12 +140,35 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void Fire()
+    void LateUpdate()
+    {
+        foreach(var scheduled in scheduledBulletParticles)
+        {
+            foreach(var emitter in bulletParticleEmitters)
+            {
+                if(scheduled.useDirection)
+                    emitter.EmitDirection(scheduled.v);
+                else
+                    emitter.Emit(scheduled.v);
+            }
+        }
+
+        scheduledBulletParticles.Clear();
+    }
+
+    protected virtual void Fire()
     {
         RaycastHit hit;
         Vector3 origin = cam.transform.position;
 
-        for (int i = 0; i < projectileCount; i++)
+        var gunActions = GetComponentsInChildren<Actions>();
+
+        foreach(Actions action in gunActions)
+        {
+            StartCoroutine(action.Fire());
+        }
+
+        for(int i = 0; i < projectileCount; i++)
         {
             Vector3 direction = cam.transform.forward;
 
@@ -138,8 +177,11 @@ public class Gun : MonoBehaviour
 
             direction = spreadRoll * (spreadYaw * direction);
 
-            if (Physics.Raycast(origin, direction, out hit, Mathf.Infinity, ~(1 << LayerMask.NameToLayer("Bounds"))))
+            Vector3? hitPos = null;
+
+            if(Physics.Raycast(origin, direction, out hit, Mathf.Infinity, ~(1 << LayerMask.NameToLayer("Bounds"))))
             {
+                hitPos = hit.point;
                 var obj = hit.transform.gameObject;
                 if (obj)
                 {
@@ -150,13 +192,18 @@ public class Gun : MonoBehaviour
                     }
                 }
             }
-        }
 
-        var gunActions = GetComponentsInChildren<Actions>();
-
-        foreach (Actions action in gunActions)
-        {
-            StartCoroutine(action.Fire());
+            foreach(var emitter in bulletParticleEmitters)
+            {
+                if(hitPos != null)
+                {
+                    scheduledBulletParticles.Add((hitPos ?? Vector3.zero, false));
+                }
+                else
+                {
+                    scheduledBulletParticles.Add((direction, true));
+                }
+            }
         }
 
         if (canOverheat)

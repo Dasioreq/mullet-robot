@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using static GameController;
 
 public class MovementHandler : MonoBehaviour
 {
@@ -54,15 +55,23 @@ public class MovementHandler : MonoBehaviour
         Timers();
         StateMachine();
 
+        GroundCast();
+        Drag();
+        LimitVelocity();
+
+        if(gameController.GetGameState() != GameState.DeathScreen)
+            StickToGround();
+
+        if(gameController.GetGameState() != GameState.Normal)
+        {
+            direction = Vector3.zero;
+            return;            
+        }
+
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
 
         direction = (orientation.forward * vertical + orientation.right * horizontal).normalized;
-
-        GroundCast();
-        Drag();
-        LimitVelocity();
-        StickToGround();
 
         if(Input.GetKeyDown("space") && grounded)
             Jump();

@@ -9,6 +9,13 @@ public class GeneratorBehaviour : MonoBehaviour
     [SerializeField] private Room origin;
     [SerializeField] private LayerMask roomMask;
 
+    [Header("Light culling")]
+    [SerializeField] float LightCullingDistance;
+    [SerializeField] LayerMask lightLayer;
+    private CullingGroup cullingGroup;
+    List<Light> levelLights = new List<Light>();
+    BoundingSphere[] boundingSpheres;
+
     Vector3 position;
     Vector3 direction;
 
@@ -16,10 +23,31 @@ public class GeneratorBehaviour : MonoBehaviour
 
     List<int> indices = new List<int>();
 
-    List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)> generatedRooms;
+    List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)> generatedRooms = new List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)>();
+    List<GameObject> enemies = new List<GameObject>();
 
-    void Init()
+    public IEnumerator Generate(int roomNumber)
     {
+        if(cullingGroup != null)
+        {
+            cullingGroup.Dispose();
+            cullingGroup = null;
+        }
+        
+        levelLights = new List<Light>();
+
+        foreach(var room in generatedRooms)
+        {
+            if(room.instance)
+                Destroy(room.instance);
+        }
+
+        foreach(var enemy in enemies)
+        {
+            if(enemy)
+                Destroy(enemy);
+        }
+
         position = new Vector3(0, 0, -7.5f);
         direction = origin.exitDirection;
 
@@ -36,10 +64,8 @@ public class GeneratorBehaviour : MonoBehaviour
         }
 
         generatedRooms = new List<(GameObject, Vector3, Vector3, int, List<int>)>{(originInstance, Vector3.zero, origin.exitDirection, -1, new List<int>(indices))};
-    }
+        enemies.Clear();
 
-    IEnumerator Generate(uint roomNumber)
-    {
         for(int roomIndex = 1; roomIndex <= roomNumber; roomIndex++)
         {
             var lastRoom = generatedRooms[roomIndex - 1];
@@ -61,9 +87,19 @@ public class GeneratorBehaviour : MonoBehaviour
                 }
             }
 
-            int i = availibleIndices[UnityEngine.Random.Range(0, availibleIndices.Count)];
-            
-            Room r = rooms[i];
+            Room r;
+            int i;
+
+            if(roomIndex == roomNumber)
+            {
+                r = origin;
+                i = -1;
+            }
+            else
+            {
+                i = availibleIndices[UnityEngine.Random.Range(0, availibleIndices.Count)];
+                r = rooms[i];
+            }
 
             GameObject instance = r.CreateInstance(position, direction);
 
@@ -71,7 +107,7 @@ public class GeneratorBehaviour : MonoBehaviour
             {
                 Destroy(instance);
 
-                availibleIndices.RemoveAll(el => el == i);
+                availibleIndices.RemoveAll(el => el == i || roomIndex == roomNumber);
                 roomIndex--;
             }
             else
@@ -87,15 +123,80 @@ public class GeneratorBehaviour : MonoBehaviour
             yield return null;
         }
 
+        generatedRooms.Last().instance.GetComponent<IntermisionActions>().levelGenerator = this;
+        generatedRooms.Last().instance.GetComponent<IntermisionActions>().endLevel = true;
+
         foreach(var room in generatedRooms)
         {
-            Room.SpawnEnemies(room.instance);
+            enemies.AddRange(Room.SpawnEnemies(room.instance));
+
+            foreach(var light in room.instance.GetComponentsInChildren<Light>())
+            {
+                if((lightLayer.value & (1 << light.gameObject.layer)) != 0)
+                {
+                    levelLights.Add(light);
+                    light.enabled = false;
+                }
+            }
+        }
+
+        InitializeCullingGroup();
+    }
+
+    void InitializeCullingGroup()
+    {
+        Light[] lights = levelLights.ToArray();
+        boundingSpheres = new BoundingSphere[lights.Length];
+
+        foreach(var (light, i) in lights.Select((value, i) => (value, i)))
+        {
+            boundingSpheres[i] = new BoundingSphere(light.transform.position, light.range);
+        }
+
+        cullingGroup = new CullingGroup();
+        cullingGroup.targetCamera = Camera.main;
+        cullingGroup.SetBoundingSpheres(boundingSpheres);
+        cullingGroup.SetBoundingSphereCount(lights.Length);
+        cullingGroup.SetBoundingDistances(new float[] {LightCullingDistance});
+        cullingGroup.SetDistanceReferencePoint(Camera.main.transform);
+
+        cullingGroup.onStateChanged = OnStateChanged;
+
+        foreach(var (light, i) in lights.Select((value, i) => (value, i)))
+        {
+            UpdateLightState(i);
+        }
+    }
+
+    void OnStateChanged(CullingGroupEvent ev)
+    {
+        UpdateLightState(ev.index);
+    }
+
+    void UpdateLightState(int index)
+    {
+        bool inFrustum = cullingGroup.IsVisible(index);
+        bool inDistance = cullingGroup.GetDistance(index) == 0; 
+
+        levelLights[index].enabled = inFrustum && inDistance;
+    }
+
+    private void OnDestroy()
+    {
+        if(cullingGroup != null)
+        {
+            cullingGroup.Dispose();
+            cullingGroup = null;
         }
     }
 
     void Awake()
     {
-        Init();
-        StartCoroutine(Generate(20));
+        // StartCoroutine(Generate(10));
+    }
+
+    public void Regenerate()
+    {
+        
     }
 }
