@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4552358617521595453}
   - component: {fileID: 8239376273156100967}
   - component: {fileID: -9047315560335984532}
-  - component: {fileID: 3116257076250424825}
   - component: {fileID: 6329250663944015688}
   m_Layer: 0
   m_Name: Capsule
@@ -120,25 +119,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &3116257076250424825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8200055393665133639}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ce346b0c1f9384c8c901ef653743c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectylesAmmo
-  speed: 5
-  gravityMultiplier: 0.5
-  lifetime: 5
-  damage: 10
-  collisionLayers:
-    serializedVersion: 2
-    m_Bits: 73
 --- !u!114 &6329250663944015688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,11 +131,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac84b3a958a79f54dbb8c9c38e40a365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrenadeProjectile
-  speed: 5
-  gravityMultiplier: 0.5
+  speed: 4
+  gravityMultiplier: 0.8
   lifetime: 5
   damage: 50
   collisionLayers:
     serializedVersion: 2
     m_Bits: 73
-  explosionRadius: 1
+  explosionRadius: 1.5
+  explosionParticle: {fileID: 304808682864885327, guid: ce8d1e83b6f9f0e4c847ebda8b8e7a87, type: 3}
+  explotion: {fileID: 8300000, guid: 3f0052a75925a5b459c8dcb689fc9911, type: 3}
+  Group: {fileID: -8460749196958340834, guid: d4746fe7b88b67f4198d2a9e130a6229, type: 2}

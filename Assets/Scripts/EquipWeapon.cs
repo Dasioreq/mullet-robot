@@ -21,6 +21,7 @@ public class EquipWeapon : MonoBehaviour
         Destroy(gunHolder.GetComponentInChildren<Gun>().gameObject);
         
         var equippedGun = Instantiate(gunPrefabs[index], gunHolder.transform);
+        Debug.Log(equippedGun);
         equippedGun.GetComponent<ViewmodelSway>().player = gameObject;
         equippedGun.GetComponent<Gun>().cam = cam;
 

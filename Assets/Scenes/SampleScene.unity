@@ -442,8 +442,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f280a1e34451c6540935ff301dc63821, type: 2}
+  m_sharedMaterial: {fileID: 836375940570850290, guid: f280a1e34451c6540935ff301dc63821, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3377,6 +3377,14 @@ PrefabInstance:
     - target: {fileID: 6712540210344893078, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
       propertyPath: m_Name
       value: ShortRevolver
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712540210344893078, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457682739628333913, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
+      propertyPath: chargeObjects.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

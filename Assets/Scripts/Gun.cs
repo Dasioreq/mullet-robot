@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using static GameController;
 
-    public class Gun : MonoBehaviour
+public class Gun : MonoBehaviour
 {
     [SerializeField] protected float gunDamage;
     [SerializeField] public Camera cam;
@@ -15,14 +16,22 @@ using static GameController;
     [SerializeField] protected float spreadDeg;
     [SerializeField] public GameObject crosshairSprite;
     [SerializeField] bool automatic = false;
-    [SerializeField] bool canOverheat = false;
-    [SerializeField] float overheatTime = 0.0f;
-    float overheatTimer = 0.0f;
-    float overheat = 0.0f;
 
     [SerializeField] uint maxAmmo;
     protected uint ammo;
     bool reloading = false;
+    [SerializeField] private Renderer targetRenderer;
+    [SerializeField] private ParticleSystem[] chargeObjects;
+    [SerializeField] private float[] thresholds;
+    [SerializeField] bool canOverheat = false;
+    [SerializeField] float overheatTime = 0.0f;
+    float overheatTimer = 0.0f;
+    float overheat = 0.0f;
+    bool OnPlay = false;
+    private bool[] onPlayStates;
+    [SerializeField] float[] timeToFastest;
+    [SerializeField] float[] fastestFireCooldown;
+    private float fireCooldownNumber;
 
     protected float cooldown = .0f;
 
@@ -32,7 +41,9 @@ using static GameController;
 
     void Start()
     {
+        fireCooldownNumber = fireCooldown;
         ammo = maxAmmo;
+        onPlayStates = new bool[chargeObjects.Length];
 
         foreach(var emitter in GetComponentsInChildren<ParticleSystem>())
         {
@@ -45,20 +56,59 @@ using static GameController;
 
     protected void Update()
     {
-        if(cooldown > 0)
+        if (targetRenderer != null)
+        {
+            Color c = targetRenderer.material.GetColor("_BaseColor");
+            c.a = overheat; 
+            targetRenderer.material.SetColor("_BaseColor", c);
+        }
+        for (int i = 0; i < chargeObjects.Length; i++)
+        {
+            if (overheat >= thresholds[i])
+            {
+                if (!onPlayStates[i])
+                {
+                    chargeObjects[i].Play();
+                    onPlayStates[i] = true;
+                }
+            }
+            else
+            {
+                if (onPlayStates[i])
+                {
+                    chargeObjects[i].Stop();
+                    onPlayStates[i] = false;
+                }
+            }
+        }
+        if (canOverheat)
+        {
+            if (overheat >= timeToFastest[1])
+            {
+                fireCooldown = fastestFireCooldown[1];
+            }
+            else if (overheat >= timeToFastest[0])
+            {
+                fireCooldown = fastestFireCooldown[0];
+            }
+            else
+            {
+                fireCooldown = fireCooldownNumber;
+            }
+        }
+        if (cooldown > 0)
         {
             cooldown -= Time.deltaTime;
         }
         else
         {
-            if(reloading)
+            if (reloading)
             {
                 ammo = maxAmmo;
                 reloading = false;
             }
 
             if(gameController.GetGameState() == GameState.Normal)
-            {
                 if(!automatic)
                 {
                     if (Input.GetMouseButtonDown(0) && (ammo > 0 || maxAmmo == 0))
@@ -76,18 +126,18 @@ using static GameController;
                     {
                         Fire();
                     }
-                    else if(canOverheat)
+                    else if (canOverheat)
                     {
                         overheatTimer = Mathf.Max(overheatTimer - Time.deltaTime, 0f);
                     }
-                    if(overheatTime > 0)
+                    if (overheatTime > 0)
                         overheat = overheatTimer / overheatTime;
+                    
                 }
-                
-                if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
-                {
-                    Reload();
-                }
+
+            if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
+            {
+                Reload();
             }
         }
     }
@@ -135,10 +185,10 @@ using static GameController;
             {
                 hitPos = hit.point;
                 var obj = hit.transform.gameObject;
-                if(obj)
+                if (obj)
                 {
                     IHittable hittable = obj.GetComponentInParent<IHittable>();
-                    if(hittable != null)
+                    if (hittable != null)
                     {
                         hittable.OnHit(hit, gunDamage);
                     }
@@ -158,7 +208,7 @@ using static GameController;
             }
         }
 
-        if(canOverheat)
+        if (canOverheat)
         {
             overheatTimer = Mathf.Min(overheatTimer + fireCooldown, overheatTime);
         }
@@ -174,7 +224,7 @@ using static GameController;
 
         var gunActions = GetComponentsInChildren<Actions>();
 
-        foreach(Actions action in gunActions)
+        foreach (Actions action in gunActions)
         {
             StartCoroutine(action.Reload());
         }
