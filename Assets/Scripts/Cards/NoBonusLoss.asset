@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c18069a7c1987b4b9a236f6e78a8de3, type: 3}
-  m_Name: Dash
+  m_Name: NoBonusLoss
   m_EditorClassIdentifier: Assembly-CSharp::Icons
-  type: 2
-  displayName: Dashing
-  icon: {fileID: 21300000, guid: 7dcef274d69b3164db0bed5588182d2c, type: 3}
+  type: 8
+  displayName: No Bonus Loss
+  icon: {fileID: 21300000, guid: d9143d5c2caad4440ae966655df90d21, type: 3}
   themeColor: {r: 1, g: 1, b: 1, a: 1}

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Icons
   type: 4
   displayName: Dashing Time
-  icon: {fileID: 21300000, guid: 517685251dbe542469e8fd78f1b2eb77, type: 3}
+  icon: {fileID: 21300000, guid: 4c3ca871ab1964542813dcdb014bd039, type: 3}
   themeColor: {r: 1, g: 1, b: 1, a: 1}
