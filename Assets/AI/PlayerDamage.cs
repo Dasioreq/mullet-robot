@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Diagnostics;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -13,6 +15,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     [SerializeField] Camera[] camerasToBeDisabled;
     [SerializeField] Volume cameraVolume;
     [SerializeField] GameObject deathScreen;
+    [SerializeField] AudioMixer mixer;
     GameObject weapon;
     Vector3 baseWeaponPosition;
     Quaternion baseWeaponRotation;
@@ -20,7 +23,9 @@ public class PlayerDamage : MonoBehaviour, IDamagable
 
     float damageFlashTimer = 0;
 
-    public void Destroy() {}
+    float previousMusicVolume;
+
+    public void Destroy() { }
 
     void FindWeapon()
     {
@@ -44,13 +49,13 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         if(!weapon)
             FindWeapon();
 
-        if(gameController.GetGameState() == GameState.Normal)
+        if (gameController.GetGameState() == GameState.Normal)
         {
-            if(lifeTime <= 1.0f)
+            if (lifeTime <= 1.0f)
             {
                 Damage(Time.deltaTime * 0.5f);
             }
-            else if(lifeTime <= 2.0f)
+            else if (lifeTime <= 2.0f)
             {
                 Damage(Time.deltaTime * 0.75f);
             }
@@ -59,9 +64,9 @@ public class PlayerDamage : MonoBehaviour, IDamagable
                 Damage(Time.deltaTime);
             }
         }
-        else if(gameController.GetGameState() == GameState.DeathScreen)
+        else if (gameController.GetGameState() == GameState.DeathScreen)
         {
-            if(Input.anyKeyDown)
+            if (Input.anyKeyDown)
             {
                 Respawn();
                 CloseDeathScreen();
@@ -74,17 +79,17 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     virtual public void Damage(float damage)
     {
         lifeTime -= damage;
-        if(lifeTime <= 0)
+        if (lifeTime <= 0)
             StartCoroutine(Destroy(Camera.main.transform.rotation, 1));
-        
-        foreach(var comp in cameraVolume.profile.components)
+
+        foreach (var comp in cameraVolume.profile.components)
         {
-            if(comp is ChromaticAberration)
+            if (comp is ChromaticAberration)
                 ((ChromaticAberration)comp).intensity.value = (lifeTime <= 5)
                     ? 1 - lifeTime / 5
                     : 0f;
-            
-            if(comp is FilmGrain)
+
+            if (comp is FilmGrain)
                 ((FilmGrain)comp).intensity.value = (lifeTime <= 5)
                     ? 1 - lifeTime / 5
                     : 0f;
@@ -126,17 +131,17 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         return maxLifeTime;
     }
 
-    virtual public IEnumerator Destroy(Quaternion baseCameraRotation, float time) 
+    virtual public IEnumerator Destroy(Quaternion baseCameraRotation, float time)
     {
         gameController.SetGameState(GameState.DeathScreen);
         StartCoroutine(MoveWeapon(.5f, true));
 
         float elapsed = 0;
-        while(elapsed < time)
+        while (elapsed < time)
         {
-            foreach(var comp in cameraVolume.profile.components)
+            foreach (var comp in cameraVolume.profile.components)
             {
-                if(comp is AnalogGlitchVolume)
+                if (comp is AnalogGlitchVolume)
                 {
                     float intensity = (elapsed + .5f * time) / time;
 
@@ -151,10 +156,10 @@ public class PlayerDamage : MonoBehaviour, IDamagable
             float t = elapsed / time;
             Camera.main.transform.localPosition = Vector3.Lerp(new Vector3(0, .75f, 0), new Vector3(0, .75f, 0) + new Vector3(0, -1f, -.25f), t * t * (3f - 2f * t));
             Camera.main.transform.localRotation = Quaternion.Lerp(baseCameraRotation, baseCameraRotation * Quaternion.Euler(Vector3.up * -30) * Quaternion.Euler(Vector3.right * -60), t * t * (3f - 2f * t));
-            
-            if(gameController.GetGameState() == GameState.DeathScreen)
+
+            if (gameController.GetGameState() == GameState.DeathScreen)
             {
-                if(Input.anyKeyDown) // Restart
+                if (Input.anyKeyDown) // Restart
                 {
                     Camera.main.transform.localPosition = new Vector3(0, .75f, 0);
                     yield break;
@@ -169,20 +174,22 @@ public class PlayerDamage : MonoBehaviour, IDamagable
 
     public void OpenDeathScreen()
     {
-        foreach(var cam in camerasToBeDisabled)
+        foreach (var cam in camerasToBeDisabled)
             cam.enabled = false;
 
         deathScreen.SetActive(true);
+        mixer.GetFloat("MusicVolume", out previousMusicVolume);
+        mixer.SetFloat("MusicVolume", -80);
     }
 
     IEnumerator MoveWeapon(float time, bool away)
     {
         float elapsed = 0;
-        if(away)
+        if (away)
         {
-            while(elapsed < time)
+            while (elapsed < time)
             {
-                if(Input.anyKeyDown) // Restart
+                if (Input.anyKeyDown) // Restart
                 {
                     yield break;
                 }
@@ -196,7 +203,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         }
         else
         {
-            while(elapsed < time)
+            while (elapsed < time)
             {
                 elapsed += Time.unscaledDeltaTime;
                 float t = elapsed / time;
@@ -209,10 +216,11 @@ public class PlayerDamage : MonoBehaviour, IDamagable
 
     public void CloseDeathScreen()
     {
-        foreach(var cam in camerasToBeDisabled)
+        foreach (var cam in camerasToBeDisabled)
             cam.enabled = true;
 
         deathScreen.SetActive(false);
+        mixer.SetFloat("MusicVolume", previousMusicVolume);
     }
 
     public void Respawn()
