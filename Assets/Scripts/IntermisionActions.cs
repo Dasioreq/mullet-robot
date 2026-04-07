@@ -65,6 +65,7 @@ public class IntermisionActions : MonoBehaviour
             player.transform.position = Quaternion.Inverse(transform.rotation) * (player.transform.position - transform.position) + new Vector3(0, 0, -7.5f);
             gameController.level++;
             player.GetComponent<Rigidbody>().linearVelocity = Quaternion.Inverse(transform.rotation) * player.GetComponent<Rigidbody>().linearVelocity;
+            player.GetComponent<Rigidbody>().MovePosition(Quaternion.Inverse(transform.rotation) * (player.transform.position - transform.position) + new Vector3(0, 0, -7.5f));
         }
 
         other.gameObject.GetComponent<CameraContoller>().SetRotation(Quaternion.Inverse(transform.rotation) * other.transform.rotation);
