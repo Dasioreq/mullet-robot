@@ -1454,7 +1454,7 @@ MonoBehaviour:
   crosshairSprite: {fileID: 4033864290179105063, guid: 3d1b32ae299b414448968af64463d39e, type: 3}
   automatic: 1
   maxAmmo: 0
-  projectilePrefab: {fileID: 8200055393665133639, guid: b60b0c05546bca24487d61f45206d9ad, type: 3}
+  projectilePrefab: {fileID: 4925491617990949436, guid: 450cba9f20764a14ab6bd7136a0fb8e9, type: 3}
   firePoint: {fileID: 8500507725661397730}
 --- !u!4 &9158288385668589782 stripped
 Transform:
