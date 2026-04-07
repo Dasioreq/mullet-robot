@@ -20,7 +20,7 @@ public class RandCards : MonoBehaviour
     public int lastWeapID;
     private List<int> weaponBases = new List<int> { 0, 3, 6 };
     private int[] weaponProgress = new int[] { 0, 0, 0 };
-    private string[] weaponNames = { "A", "B", "C" };
+    private string[] weaponNames = { "Revolver", "Double-Barrel", "Ironfang" }; // Notatka od mergera: boze ale edgy nazwa
     public bool noWeaponLoss = false;
 
     public bool noBonusLoss = false;
@@ -79,10 +79,10 @@ public class RandCards : MonoBehaviour
 
         if (spawnedButtons.Length >= 4)
         {
-            spawnedButtons[0].transform.localPosition = new Vector3(600f, 0f, 0f);
-            spawnedButtons[1].transform.localPosition = new Vector3(200f, 0f, 0f);
-            spawnedButtons[2].transform.localPosition = new Vector3(-200f, 0f, 0f);
-            spawnedButtons[3].transform.localPosition = new Vector3(-600f, 0f, 0f);
+            spawnedButtons[0].transform.localPosition = new Vector3(720f, 0f, 0f);
+            spawnedButtons[1].transform.localPosition = new Vector3(240f, 0f, 0f);
+            spawnedButtons[2].transform.localPosition = new Vector3(-240f, 0f, 0f);
+            spawnedButtons[3].transform.localPosition = new Vector3(-720f, 0f, 0f);
         }
 
         var values = Enum.GetValues(typeof(UpgradeType));

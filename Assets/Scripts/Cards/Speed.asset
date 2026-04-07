@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Icons
   type: 0
   displayName: Speed
-  icon: {fileID: 21300000, guid: df62b035f4a05944b83bdf0379b6bc00, type: 3}
+  icon: {fileID: 21300000, guid: 60f68966c8d5e924db7a1ac30b8570ff, type: 3}
   themeColor: {r: 1, g: 1, b: 1, a: 1}
