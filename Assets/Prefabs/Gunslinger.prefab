@@ -2934,6 +2934,7 @@ MonoBehaviour:
   ricochets: []
   Group: {fileID: 0}
   maxHealth: 100
+  restoredLifetime: 3
   explosionParticles:
   - {fileID: 2787617783886624441, guid: 0d6436d9f21b2434d91441ce834b5474, type: 3}
   - {fileID: 942827086087318643, guid: 878b1960fd4f18b48a0141aaa7180176, type: 3}

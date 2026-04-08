@@ -49,19 +49,28 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         if(!weapon)
             FindWeapon();
 
+        if(gameController.GetGameState() == GameState.UpgradeSelection || gameController.GetGameState() == GameState.Normal)
+            if(gameController.intermission)
+            {
+                Heal(Time.deltaTime * (maxLifeTime * .5f));
+            }
+
         if (gameController.GetGameState() == GameState.Normal)
         {
-            if (lifeTime <= 1.0f)
+            if(!gameController.intermission)
             {
-                Damage(Time.deltaTime * 0.5f);
-            }
-            else if (lifeTime <= 2.0f)
-            {
-                Damage(Time.deltaTime * 0.75f);
-            }
-            else
-            {
-                Damage(Time.deltaTime);
+                if (lifeTime <= 1.0f)
+                {
+                    Damage(Time.deltaTime * 0.5f);
+                }
+                else if (lifeTime <= 2.0f)
+                {
+                    Damage(Time.deltaTime * 0.75f);
+                }
+                else
+                {
+                    Damage(Time.deltaTime);
+                }
             }
         }
         else if (gameController.GetGameState() == GameState.DeathScreen)
@@ -72,16 +81,19 @@ public class PlayerDamage : MonoBehaviour, IDamagable
                 CloseDeathScreen();
             }
         }
+
+        UpdateFX();
     }
 
     virtual public void OnHit(RaycastHit hit, float damage) {}
 
-    virtual public void Damage(float damage)
+    public void Heal(float lifetimeRestore)
     {
-        lifeTime -= damage;
-        if (lifeTime <= 0)
-            StartCoroutine(Destroy(Camera.main.transform.rotation, 1));
+        lifeTime = Mathf.Min(lifeTime + lifetimeRestore, maxLifeTime);
+    }
 
+    public void UpdateFX()
+    {
         foreach (var comp in cameraVolume.profile.components)
         {
             if (comp is ChromaticAberration)
@@ -113,6 +125,13 @@ public class PlayerDamage : MonoBehaviour, IDamagable
                 }
             }
         }
+    }
+
+    virtual public void Damage(float damage)
+    {
+        lifeTime -= damage;
+        if (lifeTime <= 0)
+            StartCoroutine(Destroy(Camera.main.transform.rotation, 1));
     }
 
     public void DamageWithEffect(float damage)

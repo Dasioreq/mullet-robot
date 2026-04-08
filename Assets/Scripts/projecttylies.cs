@@ -22,8 +22,7 @@ public class Projecttylies : Gun
             direction = spreadRoll * (spreadYaw * direction);
 
             GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.LookRotation(direction));
-
-            ProjectylesAmmo p = proj.GetComponent<ProjectylesAmmo>();
+            proj.GetComponent<ProjectylesAmmo>().damage *= damageMultiplier;
         }
 
         var gunActions = GetComponentsInChildren<Actions>();

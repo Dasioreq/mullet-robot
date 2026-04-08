@@ -1,4 +1,5 @@
 using UnityEngine;
+using static GameController;
 
 public interface IDamagable : IHittable
 {
@@ -9,6 +10,7 @@ public interface IDamagable : IHittable
 public class EnemyDamage : HitParticles, IDamagable
 {
     [SerializeField] float maxHealth;
+    [SerializeField] float restoredLifetime;
     float health;
     protected bool destroyed = false;
 
@@ -34,5 +36,6 @@ public class EnemyDamage : HitParticles, IDamagable
     virtual public void Destroy()
     {
         destroyed = true;
+        gameController.OnPlayerKillEnemy(restoredLifetime);
     }
 }

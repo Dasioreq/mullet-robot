@@ -9,6 +9,7 @@ using static GameController;
 public class Gun : MonoBehaviour
 {
     [SerializeField] protected float gunDamage;
+    public float damageMultiplier = 1f;
     [SerializeField] public Camera cam;
     [SerializeField] protected float fireCooldown;
     [SerializeField] protected float reloadCooldown;
@@ -190,7 +191,7 @@ public class Gun : MonoBehaviour
                     IHittable hittable = obj.GetComponentInParent<IHittable>();
                     if (hittable != null)
                     {
-                        hittable.OnHit(hit, gunDamage);
+                        hittable.OnHit(hit, gunDamage * damageMultiplier);
                     }
                 }
             }

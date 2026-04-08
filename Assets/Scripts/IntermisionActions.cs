@@ -21,19 +21,21 @@ public class IntermisionActions : MonoBehaviour
     {
         if(!endLevel)
             if(other.gameObject.tag == "MainCamera")
-        {
-                StartCoroutine(jukebox.Switch(false));
-            if (gameController.level > 0 && !cardsTriggered) 
             {
-                Cards cards = Object.FindAnyObjectByType<Cards>();
-                cards.StartCoroutine(cards.WaitAndShowCards());
-                cardsTriggered = true;
-            }      
-        }
+                gameController.intermission = true;
+                StartCoroutine(jukebox.Switch(false));
+                if (gameController.level > 0 && !cardsTriggered) 
+                {
+                    Cards cards = Object.FindAnyObjectByType<Cards>();
+                    cards.StartCoroutine(cards.WaitAndShowCards());
+                    cardsTriggered = true;
+                }      
+            }
             
         if(other.gameObject.tag == "MainCamera")
             if(endLevel)
             {
+                gameController.intermission = true;
                 StartCoroutine(RegenerateLevel(other, 1f));
             }
     }
@@ -47,7 +49,10 @@ public class IntermisionActions : MonoBehaviour
     {
         if(!endLevel)
             if(other.gameObject.tag == "MainCamera")
+            {
                 StartCoroutine(jukebox.Switch(true));
+                gameController.intermission = false;
+            }
     }
 
     IEnumerator RegenerateLevel(Collider other, float time)
@@ -74,7 +79,7 @@ public class IntermisionActions : MonoBehaviour
             player.transform.position = Quaternion.Inverse(transform.rotation) * (player.transform.position - transform.position) + new Vector3(0, 0, -7.5f);
             gameController.level++;
             player.GetComponent<Rigidbody>().linearVelocity = Quaternion.Inverse(transform.rotation) * player.GetComponent<Rigidbody>().linearVelocity;
-            player.GetComponent<Rigidbody>().MovePosition(Quaternion.Inverse(transform.rotation) * (player.transform.position - transform.position) + new Vector3(0, 0, -7.5f));
+            Physics.SyncTransforms();
         }
 
         other.gameObject.GetComponent<CameraContoller>().SetRotation(Quaternion.Inverse(transform.rotation) * other.transform.rotation);
