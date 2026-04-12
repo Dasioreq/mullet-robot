@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -16,6 +18,12 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     [SerializeField] Volume cameraVolume;
     [SerializeField] GameObject deathScreen;
     [SerializeField] AudioMixer mixer;
+    [SerializeField] private TMP_Text text1Number;
+    [SerializeField] private TMP_Text text2Number;
+    [SerializeField] private TextAnimation text1Effect;
+    [SerializeField] private TextAnimation text2Effect;
+    [SerializeField] private TextAnimation number1Effect;
+    [SerializeField] private TextAnimation number2Effect;
     GameObject weapon;
     Vector3 baseWeaponPosition;
     Quaternion baseWeaponRotation;
@@ -24,6 +32,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     float damageFlashTimer = 0;
 
     float previousMusicVolume;
+    float previousSfx;
 
     public void Destroy() { }
 
@@ -196,9 +205,17 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         foreach (var cam in camerasToBeDisabled)
             cam.enabled = false;
 
+        text1Number.text = Convert.ToString(gameController.level);
+        text2Number.text = Convert.ToString(gameController.record);
         deathScreen.SetActive(true);
+        text1Effect.StartTyping();
+        text2Effect.StartTyping();
+        number1Effect.StartTyping(gameController.level.ToString());
+        number2Effect.StartTyping(gameController.record.ToString());
         mixer.GetFloat("MusicVolume", out previousMusicVolume);
         mixer.SetFloat("MusicVolume", -80);
+        mixer.GetFloat("Sfx", out previousSfx);
+        mixer.SetFloat("Sfx", -80);
     }
 
     IEnumerator MoveWeapon(float time, bool away)
@@ -240,6 +257,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
 
         deathScreen.SetActive(false);
         mixer.SetFloat("MusicVolume", previousMusicVolume);
+        mixer.SetFloat("Sfx", previousSfx);
     }
 
     public void Respawn()

@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     public GameObject playerCamera;
     public GeneratorBehaviour levelGenerator;
     public bool intermission;
-
+    public int record = 0;
     public void StartGame()
     {
         level = 0;
