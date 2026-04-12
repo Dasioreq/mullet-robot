@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource), typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class EnemyActions : MonoBehaviour
 {
     [SerializeField] protected AudioClip attackSound;

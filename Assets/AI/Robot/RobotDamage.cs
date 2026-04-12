@@ -70,6 +70,10 @@ public class RobotDamage : EnemyDamage
             GameObject theChosenOne = potentialGibs[index].gameObject; potentialGibs.RemoveAt(index);
             GameObject gib = Instantiate(theChosenOne, theChosenOne.transform.position, theChosenOne.transform.rotation);
             gib.transform.localScale = transform.lossyScale;
+            foreach(var c in gib.GetComponents<Collider>())
+            {
+                Destroy(c);
+            }
             var collider = gib.AddComponent<MeshCollider>();
             collider.sharedMesh = gib.GetComponent<MeshFilter>().mesh;
             collider.convex = true;

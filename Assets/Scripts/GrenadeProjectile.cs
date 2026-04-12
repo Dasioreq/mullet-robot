@@ -8,6 +8,7 @@ public class GrenadeProjectile : ProjectylesAmmo
     [SerializeField] GameObject explosionParticle;
     [SerializeField] AudioClip explotion;
     [SerializeField] AudioMixerGroup Group;
+    
     protected override void OnHit(RaycastHit hit)
     {
         Instantiate(explosionParticle, hit.point, Quaternion.identity);
@@ -26,7 +27,6 @@ public class GrenadeProjectile : ProjectylesAmmo
             foreach (var script in damageScripts)
             {
                 script.Damage(damage);
-                Debug.Log(script.gameObject);
             }
         }
     }
