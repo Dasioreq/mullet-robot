@@ -16,8 +16,18 @@ public class RifleMagAnimScript : Actions
     [SerializeField] float nextReloadSfxDelay;
     [SerializeField] float nextReloadSfxDelay2;
     [SerializeField] float nextReloadSfxDelay3;
+    [SerializeField] private ParticleSystem[] chargeObjects;
     override public IEnumerator Fire()
     {
+        int chance2 = Random.Range(0, 2);
+        if (chance2 < 1)
+        {
+            chargeObjects[0].Play();
+        }
+        else
+        {
+            chargeObjects[1].Play();
+        }
         anim.SetTrigger("TrFire");
         StartCoroutine(Flash(.1f));
 

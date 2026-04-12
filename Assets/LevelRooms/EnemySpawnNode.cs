@@ -7,7 +7,7 @@ public class EnemySpawnNode : MonoBehaviour
 
     public GameObject Spawn()
     {
-        int index = Random.Range(0, possibleEnemies.Length - 1);
+        int index = Random.Range(0, possibleEnemies.Length);
 
         return Instantiate(possibleEnemies[index], transform.position, transform.rotation);
     }

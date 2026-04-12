@@ -15,6 +15,8 @@ public class TurretDamage : EnemyDamage
 
     override public void Destroy()
     {
+        if(destroyed)
+            return;
         base.Destroy();
         var yawBone = transform.Find("Root/Yaw").gameObject;
         StartCoroutine(Explode(yawBone.transform.position));

@@ -9,8 +9,11 @@ public class SingleShotShotgunAnimScript : Actions
     [SerializeField] AudioClip reloadSound3;
     [SerializeField] AudioClip altReloadSound;
     [SerializeField] float nextReloadSfxDelay;
-    [SerializeField] float nextReloadSfxDelay2;
+    [SerializeField] float nextReloadSfxDelay3;
+    [SerializeField] float nextReloadSfxDelay4;
+    [SerializeField] float nextReloadSfxDelay5;
     [SerializeField] AudioClip emptyReloadSound;
+    [SerializeField] private ParticleSystem[] chargeObjects;
     override public IEnumerator Fire()
     {
         anim.SetTrigger("TrFire");
@@ -23,10 +26,29 @@ public class SingleShotShotgunAnimScript : Actions
 
     public override IEnumerator Reload()
     {
+        int chance2 = Random.Range(0, 2);
+        if (chance2 < 1)
+        {
+            chargeObjects[0].Play();
+        }
+        else
+        {
+            chargeObjects[1].Play();
+        }
         anim.SetTrigger("TrReload");
         yield return new WaitForSeconds(reloadSfxDelay);
         source.PlayOneShot(reloadSound);
-        yield return new WaitForSeconds(nextReloadSfxDelay2);
+        yield return new WaitForSeconds(nextReloadSfxDelay5);
+        chargeObjects[0].Play();
+        chargeObjects[1].Play();
+        yield return new WaitForSeconds(nextReloadSfxDelay3);
+        chargeObjects[2].Play();
+        chargeObjects[3].Play();
+        yield return new WaitForSeconds(nextReloadSfxDelay4);
+        chargeObjects[0].Stop();
+        chargeObjects[1].Stop();
+        chargeObjects[2].Stop();
+        chargeObjects[3].Stop();
         source.PlayOneShot(reloadSound3);
         yield return new WaitForSeconds(nextReloadSfxDelay);
         int chance = Random.Range(0, 100);

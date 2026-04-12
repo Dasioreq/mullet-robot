@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyActions))]
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] float damage;
-    EnemyActions enemyActions;
+    [SerializeField] protected float damage;
+    protected EnemyActions enemyActions;
 
     protected virtual void Start()
     {
