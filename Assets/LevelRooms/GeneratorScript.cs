@@ -23,7 +23,7 @@ public class GeneratorBehaviour : MonoBehaviour
 
     List<int> indices = new List<int>();
 
-    List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)> generatedRooms = new List<(GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)>();
+    List<(Room data, GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)> generatedRooms = new List<(Room data, GameObject instance, Vector3 position, Vector3 direction, int index, List<int> possibleIndices)>();
     List<GameObject> enemies = new List<GameObject>();
 
     public IEnumerator Generate(int roomNumber)
@@ -63,7 +63,7 @@ public class GeneratorBehaviour : MonoBehaviour
             }
         }
 
-        generatedRooms = new List<(GameObject, Vector3, Vector3, int, List<int>)>{(originInstance, Vector3.zero, origin.exitDirection, -1, new List<int>(indices))};
+        generatedRooms = new List<(Room data, GameObject, Vector3, Vector3, int, List<int>)>{(origin, originInstance, Vector3.zero, origin.exitDirection, -1, new List<int>(indices))};
         enemies.Clear();
 
         for(int roomIndex = 1; roomIndex <= roomNumber; roomIndex++)
@@ -112,7 +112,7 @@ public class GeneratorBehaviour : MonoBehaviour
             }
             else
             {
-                generatedRooms.Add((instance, position, direction, i, new List<int>(indices)));
+                generatedRooms.Add((r, instance, position, direction, i, new List<int>(indices)));
 
                 float angle = Vector3.SignedAngle(Vector3.forward, direction, Vector3.up);
                 Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.up);
@@ -128,7 +128,7 @@ public class GeneratorBehaviour : MonoBehaviour
 
         foreach(var room in generatedRooms)
         {
-            enemies.AddRange(Room.SpawnEnemies(room.instance));
+            enemies.AddRange(room.data.SpawnEnemies(room.instance));
 
             foreach(var light in room.instance.GetComponentsInChildren<Light>())
             {
@@ -141,6 +141,13 @@ public class GeneratorBehaviour : MonoBehaviour
         }
 
         InitializeCullingGroup();
+
+        foreach(var anim in generatedRooms[0].instance.GetComponentsInChildren<Animator>())
+            anim.SetTrigger("TrEnterOpen");
+        foreach(var anim in generatedRooms.Last().instance.GetComponentsInChildren<Animator>())
+            anim.SetTrigger("TrExitOpen");
+
+        generatedRooms[0].instance.GetComponent<IntermisionActions>().ManualMusicSwitch();
     }
 
     void InitializeCullingGroup()

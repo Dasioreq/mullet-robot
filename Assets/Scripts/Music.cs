@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using Unity.Mathematics;
+
 using static UnityEngine.Rendering.DebugUI;
 
 public class MusicVolumeController : MonoBehaviour
@@ -18,6 +19,7 @@ public class MusicVolumeController : MonoBehaviour
     }
     public void Update()
     {
+
         UpdateVolumeFromSlider(musicSlider.value);
     }
 

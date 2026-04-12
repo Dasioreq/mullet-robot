@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Icons
   type: 1
   displayName: Jump
-  icon: {fileID: 21300000, guid: 9f23202117a83c14bbb8ab1c41be337c, type: 3}
+  icon: {fileID: 21300000, guid: 15ec7ff1ab775744280693a6dd701a5c, type: 3}
   themeColor: {r: 1, g: 1, b: 1, a: 1}
