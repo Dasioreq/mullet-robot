@@ -29,7 +29,7 @@ public class Bonuses : MonoBehaviour
             iconImage.color = ic.themeColor;
         }
 
-        if (data.type == RandCards.UpgradeType.newWeapon)
+        if (data.type == RandCards.UpgradeType.newWeapon || data.type == RandCards.UpgradeType.upgradeWeapon)
         {
             if (data.isUpgrade)
             {

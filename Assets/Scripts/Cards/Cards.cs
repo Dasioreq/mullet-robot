@@ -12,9 +12,11 @@ public class Cards : MonoBehaviour
     public GameObject Player;
     public GameObject Camera;
     public GameObject weapon;
+    public PlayerDamage playerDmg;
     [SerializeField] private GameObject ButtonOrg;
     [SerializeField] private Transform cardPanel;
     private bool deathStatsHandled = false;
+    bool damageBoostUsed = false;
     GameObject[] Buttons = new GameObject[4];
 
     public void ShowCards()
@@ -78,8 +80,17 @@ public class Cards : MonoBehaviour
             CloseWin();
         }
 
+        if(playerDmg.GetLifeTime() <= 1f && !damageBoostUsed)
+        {
+            RandCards.DamageBoost();
+            damageBoostUsed = true;
+        }
+
         if (gameController.GetGameState() == GameState.DeathScreen)
         {
+            RandCards.killBoostActive = false;
+            RandCards.damageBoostActive = false;
+            RandCards.usedRareUpgrades.Clear();
             SaveData();
         }
         else if (gameController.GetGameState() == GameState.Normal)
@@ -119,6 +130,10 @@ public class Cards : MonoBehaviour
             if (RandCards.noWeaponLoss == true)
             {
                 RandCards.lastWeapID = GetComponent<RandCards>().curWeap.currentWeapon;
+            }
+            else if(RandCards.noWeaponLoss == false)
+            {
+                RandCards.ResetAllWeapons();
             }
 
             if (RandCards.noBonusLoss == true)

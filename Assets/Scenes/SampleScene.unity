@@ -1133,6 +1133,8 @@ MonoBehaviour:
   player: {fileID: 470769254}
   playerCamera: {fileID: 1065840836}
   levelGenerator: {fileID: 1198223603}
+  RandCards: {fileID: 933511617}
+  intermission: 0
   gameState: 0
 --- !u!4 &891872186
 Transform:
@@ -1185,6 +1187,7 @@ MonoBehaviour:
   Player: {fileID: 470769254}
   Camera: {fileID: 1065840836}
   weapon: {fileID: 693276721}
+  playerDmg: {fileID: 470769260}
   ButtonOrg: {fileID: 3858510886950610588, guid: 935beffc09fdeae439bc85d0dc64d2f3, type: 3}
   cardPanel: {fileID: 1005373331}
 --- !u!4 &933511616
@@ -1231,8 +1234,10 @@ MonoBehaviour:
   player: {fileID: 470769258}
   playerDmg: {fileID: 470769260}
   gameController: {fileID: 891872185}
+  gun: {fileID: 1818197643}
   curWeap: {fileID: 470769259}
   lastWeapID: 0
+  weaponProgress: 000000000000000000000000
   noWeaponLoss: 0
   noBonusLoss: 0
   rareUpgrades: 0800000007000000090000000a000000
@@ -2547,6 +2552,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6227470501188616236, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
   m_PrefabInstance: {fileID: 6032092968712640004}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1818197643 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3755263233045266313, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
+  m_PrefabInstance: {fileID: 6032092968712640004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693276721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934ba63736f580c4493380cdfc4828d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::gun
 --- !u!1 &1927565050
 GameObject:
   m_ObjectHideFlags: 0
