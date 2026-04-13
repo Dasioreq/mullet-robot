@@ -1133,6 +1133,7 @@ MonoBehaviour:
   player: {fileID: 470769254}
   playerCamera: {fileID: 1065840836}
   levelGenerator: {fileID: 1198223603}
+  intermission: 0
   gameState: 0
 --- !u!4 &891872186
 Transform:
@@ -1222,12 +1223,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc73938e4d86af94db64a0d96d8c4a43, type: 2}
   - {fileID: 11400000, guid: bd8537d96a04ff7488938b27fc240a2b, type: 2}
   - {fileID: 11400000, guid: 08f073c61cdb32f499506c05885e1728, type: 2}
-  - {fileID: 11400000, guid: 442b4372a17eb994c9581ab8ea6ed578, type: 2}
-  - {fileID: 11400000, guid: 2728754ee27f51542874d6dd9b53dbc9, type: 2}
   - {fileID: 11400000, guid: e5e0b0743099d8e408cb3e2fa52cd49d, type: 2}
   - {fileID: 11400000, guid: 7ac8ecd56da52fe4a8f238a7f97bbc33, type: 2}
   - {fileID: 11400000, guid: 9e76e8e579986f64489b07810ede261f, type: 2}
   - {fileID: 11400000, guid: 69d9920ee631e6e47a4f053830f6f19a, type: 2}
+  - {fileID: 11400000, guid: 189f84325eb67064d9ce7ae2ed46b89a, type: 2}
+  - {fileID: 11400000, guid: 77f7a74ef01729f489f805190e91b447, type: 2}
+  - {fileID: 11400000, guid: f09d0874374de1542a850c627f80c717, type: 2}
+  - {fileID: 11400000, guid: 4fa6d9fe12dfdb44186b9110ecc0b274, type: 2}
+  - {fileID: 11400000, guid: 022db839acb66f74999c0da7391b2b93, type: 2}
+  - {fileID: 11400000, guid: 1947134d7d70e3443ac9b20a43ad3d4f, type: 2}
+  - {fileID: 11400000, guid: 5c4b7fb1525afcf408f7d8b56129890e, type: 2}
+  - {fileID: 11400000, guid: 07baf5003be2d7d4e9f28bb6348be0e8, type: 2}
+  - {fileID: 11400000, guid: a74bb9e697d31c944bcfc7d07f517ae7, type: 2}
   player: {fileID: 470769258}
   playerDmg: {fileID: 470769260}
   gameController: {fileID: 891872185}

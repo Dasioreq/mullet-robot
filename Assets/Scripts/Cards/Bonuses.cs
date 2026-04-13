@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +11,7 @@ public class Bonuses : MonoBehaviour
     public Image iconImage;
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI valueText;
+    public Icons[] weaponIcons;
 
     public void OnClick()
     {
@@ -30,16 +31,11 @@ public class Bonuses : MonoBehaviour
         }
 
         if (data.type == RandCards.UpgradeType.newWeapon)
-        {
-            if (data.isUpgrade)
-            {
-                int level = (data.weaponID % 3) + 1;
-                valueText.text = $"LVL {level}";
-            }
-            else
-            {
-                valueText.text = data.weaponName;
-            }
+        {    
+            iconImage.preserveAspect = true;
+            titleText.text = weaponIcons[data.weaponID].displayName;
+            iconImage.sprite = weaponIcons[data.weaponID].icon;
+            valueText.text = "";
         }
         else if (isRare) 
         {
