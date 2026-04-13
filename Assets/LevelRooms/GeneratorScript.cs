@@ -28,6 +28,13 @@ public class GeneratorBehaviour : MonoBehaviour
 
     public IEnumerator Generate(int roomNumber)
     {
+        position = new Vector3(0, 0, -7.5f);
+        direction = origin.exitDirection;
+
+        originInstance = origin.CreateInstance(position, direction);
+
+        position += origin.exit;
+
         if(cullingGroup != null)
         {
             cullingGroup.Dispose();
@@ -47,13 +54,6 @@ public class GeneratorBehaviour : MonoBehaviour
             if(enemy)
                 Destroy(enemy);
         }
-
-        position = new Vector3(0, 0, -7.5f);
-        direction = origin.exitDirection;
-
-        originInstance = origin.CreateInstance(position, direction);
-
-        position += origin.exit;
 
         for(int i = 0; i < rooms.Count; i++)
         {
