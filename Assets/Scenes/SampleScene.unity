@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3bebdbdbc28014ba05508d01ceb028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDamage
-  maxLifeTime: 10
+  maxLifeTime: 500
   camerasToBeDisabled:
   - {fileID: 22148914}
   - {fileID: 2087628327}
@@ -1929,6 +1929,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 888c37aeb9c1b5a45a6e8a89b6a7a7f0, type: 2}
   - {fileID: 11400000, guid: cbcd811e706060847b6791dc1008a177, type: 2}
   - {fileID: 11400000, guid: f1fcf11ecd007694d8212445256f3fc5, type: 2}
+  - {fileID: 11400000, guid: 1604dc7b6c2e87547a22bb2a3040a618, type: 2}
   origin: {fileID: 11400000, guid: defb54384d1b5f84c94bf23bd6c8fe32, type: 2}
   roomMask:
     serializedVersion: 2

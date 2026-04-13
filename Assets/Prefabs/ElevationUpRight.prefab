@@ -567,15 +567,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a1ae0776a5924694e8a94da3555d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 348.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a1ae0776a5924694e8a94da3555d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0000039408296
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a1ae0776a5924694e8a94da3555d4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 132.93402
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a1ae0776a5924694e8a94da3555d4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -856,37 +856,37 @@ MonoBehaviour:
   m_RendererInfo:
   - renderer: {fileID: 8395504129739780245}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 1.0592798, y: 1.0587649, z: -0.027819037, w: 0.30818918}
+    lightmapOffsetScale: {x: 1.0592798, y: 1.0587649, z: -0.0209831, w: 0.3101423}
   - renderer: {fileID: 7429041548453276228}
-    lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.9734781, y: 0.97432053, z: -0.088345736, w: -0.033879638}
+    lightmapIndex: 0
+    lightmapOffsetScale: {x: 0.9734781, y: 0.97432053, z: -0.25533792, w: 0.0745188}
   - renderer: {fileID: 574865507010582033}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.9734782, y: 0.97432035, z: -0.24264267, w: -0.25555933}
+    lightmapOffsetScale: {x: 0.9734782, y: 0.97432035, z: 0.041537017, w: -0.01532495}
   - renderer: {fileID: 7025317478911782185}
-    lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.5069617, y: 0.5065095, z: 0.4986238, w: 0.50940335}
+    lightmapIndex: 2
+    lightmapOffsetScale: {x: 0.5069617, y: 0.5065095, z: 0.4068269, w: 0.123661175}
   - renderer: {fileID: 4870177261495436026}
     lightmapIndex: 2
-    lightmapOffsetScale: {x: 0.50542647, y: 0.50577366, z: 0.5065632, w: 0.48212045}
+    lightmapOffsetScale: {x: 0.50542647, y: 0.50577366, z: 0.31906322, w: 0.45965952}
   - renderer: {fileID: 7643566022714732027}
-    lightmapIndex: 3
+    lightmapIndex: 1
     lightmapOffsetScale: {x: 1.273737, y: 1.2733626, z: -0.17382114, w: -0.17376992}
   - renderer: {fileID: 3467015041731922450}
-    lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.25230125, y: 0.25325269, z: 0.47341397, w: 0.22708555}
+    lightmapIndex: 3
+    lightmapOffsetScale: {x: 0.25230125, y: 0.25325269, z: 0.47341397, w: 0.005405862}
   - renderer: {fileID: 2837970112019237910}
-    lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.25394222, y: 0.25257623, z: 0.46812642, w: 0.7047914}
+    lightmapIndex: 3
+    lightmapOffsetScale: {x: 0.25394222, y: 0.25257623, z: 0.51109517, w: -0.045208547}
   - renderer: {fileID: 1420723306658000176}
     lightmapIndex: 4
     lightmapOffsetScale: {x: 1.2738925, y: 1.2751815, z: -0.22249755, w: -0.22272319}
   m_Lightmaps:
   - {fileID: 2800000, guid: 3ea077e4e9b6b7748894684c0bc1e834, type: 3}
+  - {fileID: 2800000, guid: 0427ed179c701ec409a39bf59ab0e43e, type: 3}
+  - {fileID: 2800000, guid: 5b10d1680ef6a034392b190b616290d1, type: 3}
   - {fileID: 2800000, guid: 75e02aa0dd064eb41a4f5adc39fdffef, type: 3}
-  - {fileID: 2800000, guid: 89c4b6954a49a7142afeda6bcb1fffc4, type: 3}
-  - {fileID: 2800000, guid: 06f3fd1caae975945a1d482453dd494f, type: 3}
-  - {fileID: 2800000, guid: b849820d7debc974b84f2a4638bad89e, type: 3}
+  - {fileID: 2800000, guid: 2cd9050272e5058488e395026cbabdd8, type: 3}
   m_LightmapsDir:
   - {fileID: 0}
   - {fileID: 0}

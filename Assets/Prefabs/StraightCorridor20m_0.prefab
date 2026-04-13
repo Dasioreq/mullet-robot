@@ -776,7 +776,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 0
 --- !u!4 &2065548321510241086
 Transform:
@@ -1919,10 +1919,10 @@ MonoBehaviour:
   m_RendererInfo:
   - renderer: {fileID: 1905529625974531870}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.26344734, y: 0.26410314, z: 0.5059746, w: 0.3134353}
+    lightmapOffsetScale: {x: 0.26344734, y: 0.26410314, z: 0.020623043, w: -0.05961159}
   - renderer: {fileID: 8059922552805505513}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.26149952, y: 0.2628238, z: 0.71737695, w: 0.7776078}
+    lightmapOffsetScale: {x: 0.26149952, y: 0.2628238, z: 0.39511132, w: -0.044657856}
   - renderer: {fileID: 9102126844365912089}
     lightmapIndex: 1
     lightmapOffsetScale: {x: 1.1327132, y: 1.1317902, z: -0.06754225, w: -0.06748681}
