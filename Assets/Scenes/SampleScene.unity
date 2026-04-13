@@ -1133,6 +1133,7 @@ MonoBehaviour:
   player: {fileID: 470769254}
   playerCamera: {fileID: 1065840836}
   levelGenerator: {fileID: 1198223603}
+  intermission: 0
   gameState: 0
 --- !u!4 &891872186
 Transform:

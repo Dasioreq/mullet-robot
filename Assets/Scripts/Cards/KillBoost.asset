@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: KillBoost
   m_EditorClassIdentifier: Assembly-CSharp::Icons
   type: 9
-  displayName: Kill Boost
-  icon: {fileID: 21300000, guid: d9143d5c2caad4440ae966655df90d21, type: 3}
+  displayName: Speed Boost
+  icon: {fileID: 21300000, guid: ea8eeb35b791703448e113678d4a6dfd, type: 3}
   themeColor: {r: 1, g: 1, b: 1, a: 1}
