@@ -19,6 +19,9 @@ public class Cards : MonoBehaviour
     bool damageBoostUsed = false;
     GameObject[] Buttons = new GameObject[4];
 
+    private bool savedKillBoost = false;
+    private bool savedDamageBoost = false;
+
     public void ShowCards()
     {
         gameController.SetGameState(GameState.UpgradeSelection);
@@ -111,10 +114,19 @@ public class Cards : MonoBehaviour
         {
             if (RandCards.savedUpgrades.Count > 0)
             {
+                RandCards.currentMultipliers.Clear();
                 RandCards.currentMultipliers = new Dictionary<RandCards.UpgradeType, float>(RandCards.savedUpgrades);
                 GetComponent<RandCards>().RestoreStats();
                 RandCards.savedUpgrades.Clear();
                 RandCards.noBonusLoss = false;
+            }
+            if(savedKillBoost == true)
+            {
+                RandCards.killBoostActive = true;
+            }
+            if (savedDamageBoost == true)
+            {
+                RandCards.damageBoostActive = true;
             }
         }
         deathStatsHandled = false;     
@@ -135,6 +147,14 @@ public class Cards : MonoBehaviour
             if (RandCards.savedUpgrades.Count == 0)
             {
                 RandCards.savedUpgrades = new Dictionary<RandCards.UpgradeType, float>(RandCards.currentMultipliers);
+            }
+            if (RandCards.killBoostActive == true)
+            {
+                savedKillBoost = true;
+            }
+            if (RandCards.damageBoostActive == true)
+            {
+                savedDamageBoost = true;
             }
         }
         else if (RandCards.noBonusLoss == false)

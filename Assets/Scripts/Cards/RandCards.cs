@@ -297,8 +297,8 @@ public class RandCards : MonoBehaviour
         if (killBoostActive == true)
         {
             float boostLevel = 1.2f;
-            player.maxVelocity = normalVel * boostLevel;
-            player.acceleration = normalAcc * boostLevel;
+            player.maxVelocity = player.maxVelocity * boostLevel;
+            player.acceleration = player.acceleration * boostLevel;
             Invoke("ReturnNormalSpeed", 1f);
         }
         
@@ -308,7 +308,7 @@ public class RandCards : MonoBehaviour
     {
         if (damageBoostActive == true)
         {
-            gun.damageMultiplier = 5f;
+            curWeap.gunHolder.GetComponentInChildren<Gun>().damageMultiplier = 1.2f;
         }    
     }
 }
