@@ -86,14 +86,14 @@ public class Cards : MonoBehaviour
             damageBoostUsed = true;
         }
 
-        if (gameController.GetGameState() == GameState.DeathScreen)
+        if (gameController.GetGameState() == GameState.DeathScreen && !deathStatsHandled)
         {
             RandCards.killBoostActive = false;
             RandCards.damageBoostActive = false;
             RandCards.usedRareUpgrades.Clear();
             SaveData();
         }
-        else if (gameController.GetGameState() == GameState.Normal)
+        else if (gameController.GetGameState() == GameState.Normal && deathStatsHandled)
         {
             RestoreData();
         }
@@ -101,53 +101,46 @@ public class Cards : MonoBehaviour
 
     void RestoreData()
     {
-        if (deathStatsHandled)
+        if (RandCards.noWeaponLoss == true)
         {
-            if (RandCards.noWeaponLoss == true)
-            {
-                GetComponent<RandCards>().curWeap.Equip(RandCards.lastWeapID);
-                RandCards.noWeaponLoss = false;
-            }
-
-            if (RandCards.noBonusLoss == true)
-            {
-                if (RandCards.savedUpgrades.Count > 0)
-                {
-                    RandCards.currentMultipliers = new Dictionary<RandCards.UpgradeType, float>(RandCards.savedUpgrades);
-                    GetComponent<RandCards>().RestoreStats();
-                    RandCards.savedUpgrades.Clear();
-                    RandCards.noBonusLoss = false;
-                }
-            }
-            deathStatsHandled = false;
+            GetComponent<RandCards>().curWeap.Equip(RandCards.lastWeapID);
+            RandCards.noWeaponLoss = false;
         }
-        
+
+        if (RandCards.noBonusLoss == true)
+        {
+            if (RandCards.savedUpgrades.Count > 0)
+            {
+                RandCards.currentMultipliers = new Dictionary<RandCards.UpgradeType, float>(RandCards.savedUpgrades);
+                GetComponent<RandCards>().RestoreStats();
+                RandCards.savedUpgrades.Clear();
+                RandCards.noBonusLoss = false;
+            }
+        }
+        deathStatsHandled = false;     
     }
    void SaveData()
     {
-        if (!deathStatsHandled)
+        if (RandCards.noWeaponLoss == true)
         {
-            if (RandCards.noWeaponLoss == true)
-            {
-                RandCards.lastWeapID = GetComponent<RandCards>().curWeap.currentWeapon;
-            }
-            else if(RandCards.noWeaponLoss == false)
-            {
-                RandCards.ResetAllWeapons();
-            }
-
-            if (RandCards.noBonusLoss == true)
-            {
-                if (RandCards.savedUpgrades.Count == 0)
-                {
-                    RandCards.savedUpgrades = new Dictionary<RandCards.UpgradeType, float>(RandCards.currentMultipliers);
-                }
-            }
-            else if (RandCards.noBonusLoss == false)
-            {
-                RandCards.ReturnNormalStats();
-            }
-            deathStatsHandled = true;
+            RandCards.lastWeapID = GetComponent<RandCards>().curWeap.currentWeapon;
         }
+        else if(RandCards.noWeaponLoss == false)
+        {
+            RandCards.ResetAllWeapons();
+        }
+
+        if (RandCards.noBonusLoss == true)
+        {
+            if (RandCards.savedUpgrades.Count == 0)
+            {
+                RandCards.savedUpgrades = new Dictionary<RandCards.UpgradeType, float>(RandCards.currentMultipliers);
+            }
+        }
+        else if (RandCards.noBonusLoss == false)
+        {
+            RandCards.ReturnNormalStats();
+        }
+        deathStatsHandled = true;  
     }
 }

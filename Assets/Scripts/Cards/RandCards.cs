@@ -70,18 +70,15 @@ public class RandCards : MonoBehaviour
         bool isMaxLevel = (currentID + 1) % 3 == 0;
         var available = Enum.GetValues(typeof(UpgradeType))
         .Cast<UpgradeType>()
-        .Where(t =>
-            currentMultipliers.ContainsKey(t) &&
-            currentMultipliers[t] < 1.5f &&
-            !usedRareUpgrades.Contains(t) &&
-            (t != UpgradeType.upgradeWeapon || !isMaxLevel) &&
-            (t != UpgradeType.newWeapon || true)
-        ).ToList();
+        .Where(t => t != UpgradeType.upgradeWeapon)
+        .Where(t => t == UpgradeType.newWeapon || 
+        (currentMultipliers.ContainsKey(t) && 
+        currentMultipliers[t] < 1.5f &&!usedRareUpgrades.Contains(t))).ToList();
+
 
         if (available.Count == 0)
         {
             GetComponent<Cards>().CloseWin();
-            Debug.Log("It's over");
             foreach (var btn in spawnedButtons) if (btn != null) Destroy(btn);
             return;
         }
@@ -154,7 +151,7 @@ public class RandCards : MonoBehaviour
 
                     ui = Icon.Find(x => x.type == (upgrade.isUpgrade ? UpgradeType.upgradeWeapon : UpgradeType.newWeapon));
                 }
-
+                
                 else
                 {
                     ui = Icon.Find(x => x.type == upgrade.type);
@@ -299,7 +296,7 @@ public class RandCards : MonoBehaviour
     {
         if (killBoostActive == true)
         {
-            float boostLevel = 5.0f;
+            float boostLevel = 1.2f;
             player.maxVelocity = normalVel * boostLevel;
             player.acceleration = normalAcc * boostLevel;
             Invoke("ReturnNormalSpeed", 1f);
