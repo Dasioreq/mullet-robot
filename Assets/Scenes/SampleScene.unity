@@ -1923,13 +1923,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GeneratorBehavour
   rooms:
+  - {fileID: 11400000, guid: c22d84be03d36ee42be4d851f0a60afd, type: 2}
+  - {fileID: 11400000, guid: f73c01737d283904eb8889c8ad72127d, type: 2}
+  - {fileID: 11400000, guid: 1604dc7b6c2e87547a22bb2a3040a618, type: 2}
+  - {fileID: 11400000, guid: f1fcf11ecd007694d8212445256f3fc5, type: 2}
   - {fileID: 11400000, guid: 14d21f06f5e8a2f49af0c58d22682e85, type: 2}
   - {fileID: 11400000, guid: 749ef6357da9d94458133ef52a9c6510, type: 2}
   - {fileID: 11400000, guid: 4cf801a68057549468a900216a4d4f35, type: 2}
   - {fileID: 11400000, guid: 888c37aeb9c1b5a45a6e8a89b6a7a7f0, type: 2}
   - {fileID: 11400000, guid: cbcd811e706060847b6791dc1008a177, type: 2}
-  - {fileID: 11400000, guid: f1fcf11ecd007694d8212445256f3fc5, type: 2}
-  - {fileID: 11400000, guid: 1604dc7b6c2e87547a22bb2a3040a618, type: 2}
   origin: {fileID: 11400000, guid: defb54384d1b5f84c94bf23bd6c8fe32, type: 2}
   roomMask:
     serializedVersion: 2

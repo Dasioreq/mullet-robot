@@ -16,5 +16,5 @@ MonoBehaviour:
   exitDirection: {x: 1, y: 0, z: 0}
   prefab: {fileID: 9096427109787537711, guid: 8dd61de41200cc647a6776bdeab06ac6, type: 3}
   weight: 1
-  minEnemies: 0
-  maxEnemies: 0
+  minEnemies: 3
+  maxEnemies: 6

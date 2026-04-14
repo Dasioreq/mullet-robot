@@ -6516,7 +6516,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -6568,7 +6568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6567d8e17fe8a1346a19eaf33644b23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotAnims
-  attackSound: {fileID: 8300000, guid: 0196be5d5bc29ca438128a6e38cd9ed9, type: 3}
+  attackSound: {fileID: 8300000, guid: 4d45ee5a2593ea54d83064aa90377f5c, type: 3}
   moveSound: {fileID: 0}
   attackSfxDelay: 0
   moveSfxDelay: 0

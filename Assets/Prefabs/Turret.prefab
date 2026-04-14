@@ -225,7 +225,7 @@ MonoBehaviour:
   playerPosition: {fileID: 0}
   yawSpeed: 90
   pitchSpeed: 180
-  range: 15
+  range: 30
 --- !u!114 &9086722395721147150
 MonoBehaviour:
   m_ObjectHideFlags: 0
