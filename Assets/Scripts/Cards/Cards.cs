@@ -124,9 +124,9 @@ public class Cards : MonoBehaviour
             {
                 RandCards.damageBoostActive = true;
             }
+            RandCards.noBonusLoss = false;
         }
-
-            deathStatsHandled = false;     
+        deathStatsHandled = false;     
     }
    void SaveData()
     {
@@ -149,7 +149,7 @@ public class Cards : MonoBehaviour
             {
                 savedDamageBoost = true;
             }
-            RandCards.noBonusLoss = false;
+            deathStatsHandled = true;
         }
     }
 }
