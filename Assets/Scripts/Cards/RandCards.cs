@@ -24,7 +24,6 @@ public class RandCards : MonoBehaviour
     public bool noWeaponLoss = false;
 
     public bool noBonusLoss = false;
-    public Dictionary<UpgradeType, float> savedUpgrades = new Dictionary<UpgradeType, float>();
 
     private float normalVel = 0;
     private float normalAcc = 0;
@@ -32,6 +31,7 @@ public class RandCards : MonoBehaviour
 
     public bool killBoostActive = false;
     public bool damageBoostActive = false;
+    public bool damageBoostUsed = false;
 
     public enum UpgradeType { speed, jump, dashing, health, dashingTime, newWeapon, upgradeWeapon, noWeaponLoss, noBonusLoss, killBoost, damageBoost }
     public Dictionary<UpgradeType, float> currentMultipliers = new Dictionary<UpgradeType, float>();
@@ -255,8 +255,9 @@ public class RandCards : MonoBehaviour
 
     void ReturnNormalSpeed()
     {
-        player.maxVelocity = normalVel;
-        player.acceleration = normalAcc;
+        float currentM = currentMultipliers[UpgradeType.speed];
+        player.maxVelocity = normalVel * currentM;
+        player.acceleration = normalAcc * currentM;
     }
 
     public void ReturnNormalStats()

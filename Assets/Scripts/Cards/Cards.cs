@@ -16,7 +16,6 @@ public class Cards : MonoBehaviour
     [SerializeField] private GameObject ButtonOrg;
     [SerializeField] private Transform cardPanel;
     private bool deathStatsHandled = false;
-    bool damageBoostUsed = false;
     GameObject[] Buttons = new GameObject[4];
 
     private bool savedKillBoost = false;
@@ -83,16 +82,17 @@ public class Cards : MonoBehaviour
             CloseWin();
         }
 
-        if(playerDmg.GetLifeTime() <= 1f && !damageBoostUsed)
+        if(playerDmg.GetLifeTime() <= 1f && !RandCards.damageBoostUsed)
         {
             RandCards.DamageBoost();
-            damageBoostUsed = true;
+            RandCards.damageBoostUsed = true;
         }
 
         if (gameController.GetGameState() == GameState.DeathScreen && !deathStatsHandled)
         {
             RandCards.killBoostActive = false;
             RandCards.damageBoostActive = false;
+            RandCards.damageBoostUsed = false;
             RandCards.usedRareUpgrades.Clear();
             SaveData();
         }
@@ -109,18 +109,14 @@ public class Cards : MonoBehaviour
             GetComponent<RandCards>().curWeap.Equip(RandCards.lastWeapID);
             RandCards.noWeaponLoss = false;
         }
-
-        if (RandCards.noBonusLoss == true)
+        if (RandCards.noBonusLoss == false)
         {
-            if (RandCards.savedUpgrades.Count > 0)
-            {
-                RandCards.currentMultipliers.Clear();
-                RandCards.currentMultipliers = new Dictionary<RandCards.UpgradeType, float>(RandCards.savedUpgrades);
-                GetComponent<RandCards>().RestoreStats();
-                RandCards.savedUpgrades.Clear();
-                RandCards.noBonusLoss = false;
-            }
-            if(savedKillBoost == true)
+            RandCards.ReturnNormalStats();
+
+        }
+        else if (RandCards.noBonusLoss == true)
+        {
+            if (savedKillBoost == true)
             {
                 RandCards.killBoostActive = true;
             }
@@ -129,7 +125,8 @@ public class Cards : MonoBehaviour
                 RandCards.damageBoostActive = true;
             }
         }
-        deathStatsHandled = false;     
+
+            deathStatsHandled = false;     
     }
    void SaveData()
     {
@@ -144,10 +141,6 @@ public class Cards : MonoBehaviour
 
         if (RandCards.noBonusLoss == true)
         {
-            if (RandCards.savedUpgrades.Count == 0)
-            {
-                RandCards.savedUpgrades = new Dictionary<RandCards.UpgradeType, float>(RandCards.currentMultipliers);
-            }
             if (RandCards.killBoostActive == true)
             {
                 savedKillBoost = true;
@@ -156,11 +149,7 @@ public class Cards : MonoBehaviour
             {
                 savedDamageBoost = true;
             }
+            RandCards.noBonusLoss = false;
         }
-        else if (RandCards.noBonusLoss == false)
-        {
-            RandCards.ReturnNormalStats();
-        }
-        deathStatsHandled = true;  
     }
 }
