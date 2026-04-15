@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+/// @class GrenadeProjectile
+/// @brief Inherits from \ref ProjectylesAmmo; used by the Grenade Launcher
 public class GrenadeProjectile : ProjectylesAmmo
 {
     [SerializeField] float explosionRadius;
@@ -9,6 +11,7 @@ public class GrenadeProjectile : ProjectylesAmmo
     [SerializeField] AudioClip explotion;
     [SerializeField] AudioMixerGroup Group;
     
+    /// @brief Implements dealing damage to each enemy in a given radius
     protected override void OnHit(RaycastHit hit)
     {
         Instantiate(explosionParticle, hit.point, Quaternion.identity);

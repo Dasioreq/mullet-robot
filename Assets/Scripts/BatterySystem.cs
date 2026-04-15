@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/**
+* @class SmoothFollowWithOffset
+* @brief Script for world-space UI elements to make them lag behind the player
+*/
 public class SmoothFollowWithOffset : MonoBehaviour
 {
     [SerializeField] Rigidbody playerRb;

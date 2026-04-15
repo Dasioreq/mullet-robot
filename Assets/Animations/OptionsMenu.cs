@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using static GameController;
 
+/// @brief handles the use of the options menu
 public class OptionsMenu : MonoBehaviour
 {
     Animator animator;

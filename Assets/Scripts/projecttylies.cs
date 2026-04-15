@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
-using System;
 
-
-
+/// @class Projecttylies 
+/// @brief Inherits form \ref Gun; Implements shooting projectiles instead of hitscans; Pronounced `Pruh-ject-uh-lees`
 public class Projecttylies : Gun
 {
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
 
+    /// @brief Instantiated a given ProjectylesAmmo Prefab with a give position, rotation and velocity
     protected override void Fire()
     {
         Vector3 origin = cam.transform.position;

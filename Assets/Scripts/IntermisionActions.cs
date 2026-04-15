@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using static GameController;
 
+/// @class IntermisionActions
+/// @brief Handles what happens when the player enters/exits the Intermission/Generator %Room
 public class IntermisionActions : MonoBehaviour
 {
     Rigidbody rb;
@@ -17,7 +19,8 @@ public class IntermisionActions : MonoBehaviour
         jukebox = GameObject.FindWithTag("Music").GetComponent<SwitchMusic>();
     }
 
-    void OnTriggerEnter(Collider other)
+    /// @brief Plays the intermission music, regenerates the player's Lifetime and if the room is the level switch trigger - calls \ref IntermisionActions::RegenerateLevel
+    public void OnTriggerEnter(Collider other)
     {
         if(!endLevel)
             if(other.gameObject.tag == "MainCamera")
@@ -44,12 +47,14 @@ public class IntermisionActions : MonoBehaviour
             }
     }
 
+    /// @brief A manual switch for the music
     public void ManualMusicSwitch()
     {
         StartCoroutine(jukebox.Switch(false));
     }
 
-    void OnTriggerExit(Collider other)
+    /// @brief Picks a random combat music track
+    public void OnTriggerExit(Collider other)
     {
         if(!endLevel)
             if(other.gameObject.tag == "MainCamera")
@@ -59,7 +64,8 @@ public class IntermisionActions : MonoBehaviour
             }
     }
 
-    IEnumerator RegenerateLevel(Collider other, float time)
+    /// @brief A coroutine that plays the room's door closing animation, repositions the player for a seamless transition and calls to the \ref GameController to regenerate the level (GeneratorBehaviour::Generate) 
+    public IEnumerator RegenerateLevel(Collider other, float time)
     {
         foreach(var anim in GetComponentsInChildren<Animator>())
         {

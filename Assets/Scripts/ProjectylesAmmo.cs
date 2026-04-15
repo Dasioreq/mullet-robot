@@ -1,5 +1,7 @@
 using UnityEngine;
 
+/// @class ProjectylesAmmo
+/// @brief Base class for projectiles afected by gravity and other external forces
 public class ProjectylesAmmo : MonoBehaviour
 {
     [Header("Projectile Settings")]
@@ -22,7 +24,7 @@ public class ProjectylesAmmo : MonoBehaviour
         previousFramePosition = transform.position;
     }
 
-    public void FixedUpdate()
+    void FixedUpdate()
     {
         rb.AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
     }
@@ -33,7 +35,8 @@ public class ProjectylesAmmo : MonoBehaviour
         previousFramePosition = transform.position;
     }
 
-    void CheckForCollision()
+    /// @brief Performs a Linecast collision check
+    public void CheckForCollision()
     {
         RaycastHit hit;
         if(Physics.Linecast(previousFramePosition, transform.position, out hit, collisionLayers) || Physics.Linecast(transform.position, previousFramePosition, out hit, collisionLayers))
@@ -43,6 +46,7 @@ public class ProjectylesAmmo : MonoBehaviour
         }
     }
 
+    /// @brief Called when a collision occurs
     protected virtual void OnHit(RaycastHit hit)
     {
         IHittable hittable;

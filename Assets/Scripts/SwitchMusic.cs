@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
+/// @class SwitchMusic
+/// @brief Script for switching between intermission and combat music
 public class SwitchMusic : MonoBehaviour
 {
     AudioSource mainAS;
@@ -24,6 +26,10 @@ public class SwitchMusic : MonoBehaviour
             mainAS.outputAudioMixerGroup = musicMixerGroup; 
     }
 
+    /// @brief Transitions between the intermission music track and one, randomly selected combat track.
+    /// To create a fade-in-out effect, a second, temporary AudioSource is created and its volume gets linearly interpolated to 0
+    /// 
+    /// @param intermission whether to switch to or from the intermission track
     public IEnumerator Switch(bool intermission)
     {
         if(switchState == intermission)

@@ -2,7 +2,12 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using Mono.Cecil.Cil; // SEA SALT! I NEED YOU SEA SALT!!!
 
+/// @class GeneratorBehaviour
+/// @brief Script for generating the level from pre-defined rooms
+/// 
+/// It implements a backtracking algorithm, where, if there't an intersection between a generated room an a new, to-be-generated one, it tries regenerating the new one until there's no collision, and if that fails - it backtracks to the previous one and regenerates that, repeating until a given number of rooms is achieved
 public class GeneratorBehaviour : MonoBehaviour
 {
     [SerializeField] private List<Room> rooms;
@@ -123,8 +128,14 @@ public class GeneratorBehaviour : MonoBehaviour
             yield return null;
         }
 
-        generatedRooms.Last().instance.GetComponent<IntermisionActions>().levelGenerator = this;
-        generatedRooms.Last().instance.GetComponent<IntermisionActions>().endLevel = true;
+        if(generatedRooms.Last().instance is var inst && inst != null)
+        {
+            if(inst.GetComponent<IntermisionActions>() is var ia && ia != null)
+            {
+                ia.levelGenerator = this;
+                ia.endLevel = true;
+            }
+        }
 
         foreach(var room in generatedRooms)
         {
@@ -195,15 +206,5 @@ public class GeneratorBehaviour : MonoBehaviour
             cullingGroup.Dispose();
             cullingGroup = null;
         }
-    }
-
-    void Awake()
-    {
-        // StartCoroutine(Generate(10));
-    }
-
-    public void Regenerate()
-    {
-        
     }
 }

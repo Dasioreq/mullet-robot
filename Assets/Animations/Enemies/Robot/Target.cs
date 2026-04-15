@@ -1,10 +1,7 @@
 using System;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.InputSystem.XR;
 
+/// @brief Script for having IK targets with constraints, like lagging behind and locked axes
 public class Target : MonoBehaviour
 {
     [SerializeField] Transform targetTransform;

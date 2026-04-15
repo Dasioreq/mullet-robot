@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Net.NetworkInformation;
-using Unity.VisualScripting;
 using UnityEngine;
 
+/// @enum GameState
+/// @brief Defines the states the game might be in, eg. the options menu, the death screen etc.
 public enum GameState
 {
     Normal,
@@ -11,6 +11,10 @@ public enum GameState
     DeathScreen
 }
 
+/// @class GameController
+/// @brief A Singleton, global controller for the game
+/// 
+/// Stores a static reference to one of itself, able to be accessed
 public class GameController : MonoBehaviour
 {   
     public static GameController gameController { get; private set; }

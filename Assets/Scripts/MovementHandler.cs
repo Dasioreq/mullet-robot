@@ -3,6 +3,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static GameController;
 
+/// @class MovementHandler
+/// @brief Handles player movement
+/// 
+/// Script for calculating the player's linear velocity and drag on the fly, counteracting unwanted forces (screw gravity) and applying forces for jumps and dashes.
 public class MovementHandler : MonoBehaviour
 {
     [SerializeField] private Transform orientation;

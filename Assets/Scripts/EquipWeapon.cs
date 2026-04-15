@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// @class EquipWeapon
+/// @brief Script handilng changing the player's weapon
 public class EquipWeapon : MonoBehaviour
 {
     [SerializeField] List<GameObject> gunPrefabs;
@@ -11,6 +13,8 @@ public class EquipWeapon : MonoBehaviour
     public int currentWeapon = -1;
     GameObject crosshair = null;
 
+    /// @brief Instantiates the weapon prefab based on a given ID, fills in missing Component references and changes the UI Crosshair to the weapons's
+    /// @param index The weapon ID
     public void Equip(int index)
     {
         if(index >= gunPrefabs.Count || index == currentWeapon)

@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/**
+* @class CameraAnimation
+* @brief Helper script for the main menu camera to smoothly sway around
+*/
 public class CameraAnimation : MonoBehaviour
 {
     public float swayAmountX = 0.05f;

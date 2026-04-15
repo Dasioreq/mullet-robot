@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Audio;
 
+/// @class MassAudioAssigner
+/// @brief A helper class for assigning AudioMixerGroups to all prefabs
 public class MassAudioAssigner : EditorWindow
 {
     [MenuItem("Tools/Audio/Assign Master Group to Project Prefabs")]

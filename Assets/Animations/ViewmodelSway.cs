@@ -2,6 +2,7 @@ using UnityEngine;
 
 enum UpdateMode { Scaled, Unscaled }
 
+/// @brief Adds a subtle breathing and swaying animation to the player viewmodel and UI Battery
 public class ViewmodelSway : MonoBehaviour
 {
     [SerializeField] UpdateMode updateMode = UpdateMode.Scaled;

@@ -1,8 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 
+/// @class EnemyProjectile
+/// @brief Inherits from \ref ProjectylesAmmo; Used by enemies
 public class EnemyProjectile : ProjectylesAmmo
 {
+    /// @brief Implements dealing damage to the player and spawning hit praticles on impact with a collider implementing \ref IHitImpact
     protected override void OnHit(RaycastHit hit)
     {
         PlayerDamage dmg;
@@ -16,6 +18,6 @@ public class EnemyProjectile : ProjectylesAmmo
         if(hp = hit.collider.gameObject.GetComponentInParent<HitParticles>())
             hp.OnHit(hit, damage * 5);
 
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

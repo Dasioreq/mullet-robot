@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// @brief handles spawning of casing prefabs at a given position and rotation
 public class Casings : MonoBehaviour
 {
     [SerializeField] GameObject casingPrefab;
@@ -7,6 +8,7 @@ public class Casings : MonoBehaviour
     [SerializeField] Vector3 forceVector;
     [SerializeField] Vector3 deviationAngles;
 
+    /// @brief Instantiates the casign prefab at a given position and rotation and with a random deviation
     public void SpawnCasing(Transform parent, Quaternion rotation)
     {
         var casing = Instantiate(casingPrefab, parent.position + rotation * casingPosition, rotation, parent);

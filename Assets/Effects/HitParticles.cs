@@ -1,17 +1,24 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using static Unity.VisualScripting.Member;
 
+/// @interface IHittable
+/// @brief Defines what happens when an implementing class gets hit with a hitscan
 public interface IHittable
 {
+    /// @brief Defines what happens when hit with a certain amount of damage
     public virtual void OnHit(RaycastHit hit, float damage){}
 }
 
+/// @interface IHitImpact
+/// @brief Inherits from \ref IHittable; Adds hit particles on impact
 public interface IHitImpact: IHittable
 {
+    /// #brief Spawns particles depending on the hit position/damage
     public void SpawnParticles(RaycastHit hit, float damage);
 }
 
+/// @class HitParticles
+/// @brief Implements IHitImpact; Adds basic, reusable logic for the hit particles
 public class HitParticles : MonoBehaviour, IHitImpact
 {
     [SerializeField] GameObject[] particles;
@@ -47,6 +54,9 @@ public class HitParticles : MonoBehaviour, IHitImpact
                 }
             }
     }
+
+    /// @brief A helper function similar to AudioSource.PlayClipAtPoint(), but with added volume control
+    /// Instantiates a temporary GameObject whose sole purpose in life is to play the AudioClip and die. Poetic.
     public static void PlayClipAtPoint
 (AudioClip clip, Vector3 position, float volume = 1.0f, AudioMixerGroup group = null)
     {

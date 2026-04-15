@@ -1,16 +1,15 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Diagnostics;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using URPGlitch;
 using static GameController;
 
+/// @class PlayerDamage
+/// @brief Implements \ref IDamagable; Implements the Player's unique mechanic of losing health over time and their respawning
 public class PlayerDamage : MonoBehaviour, IDamagable
 {
     [SerializeField] public float maxLifeTime;
@@ -85,7 +84,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         }
         else if (gameController.GetGameState() == GameState.DeathScreen)
         {
-            if (Input.anyKeyDown)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Respawn();
                 CloseDeathScreen();
@@ -97,11 +96,13 @@ public class PlayerDamage : MonoBehaviour, IDamagable
 
     virtual public void OnHit(RaycastHit hit, float damage) {}
 
+    /// @brief Heals the player a given amount, accounting for their max health
     public void Heal(float lifetimeRestore)
     {
         lifeTime = Mathf.Min(lifeTime + lifetimeRestore, maxLifeTime);
     }
 
+    /// @brief Updates post-processing effects for the player's camera based on their remaining health
     public void UpdateFX()
     {
         foreach (var comp in cameraVolume.profile.components)
@@ -137,6 +138,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         }
     }
 
+    /// @brief Reduces the player's health; used exclusively for the DOT mechanic
     virtual public void Damage(float damage)
     {
         lifeTime -= damage;
@@ -144,6 +146,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
             StartCoroutine(Destroy(Camera.main.transform.rotation, 1));
     }
 
+    /// @brief Same as \ref Damage, but also adds a screenspace effect when damaged
     public void DamageWithEffect(float damage)
     {
         Damage(damage);
@@ -160,6 +163,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         return maxLifeTime;
     }
 
+    /// @brief Plays the player's death sequence and calls \ref PlayerDamage.OpenDeathScreen
     virtual public IEnumerator Destroy(Quaternion baseCameraRotation, float time)
     {
         gameController.SetGameState(GameState.DeathScreen);
@@ -188,7 +192,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
 
             if (gameController.GetGameState() == GameState.DeathScreen)
             {
-                if (Input.anyKeyDown) // Restart
+                if (Input.GetKeyDown(KeyCode.Space)) // Restart
                 {
                     Camera.main.transform.localPosition = new Vector3(0, .75f, 0);
                     yield break;
@@ -201,6 +205,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         OpenDeathScreen();
     }
 
+    /// @brief Opens the death screen overlay
     public void OpenDeathScreen()
     {
         foreach (var cam in camerasToBeDisabled)
@@ -226,7 +231,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         {
             while (elapsed < time)
             {
-                if (Input.anyKeyDown) // Restart
+                if (Input.GetKeyDown(KeyCode.Space)) // Restart
                 {
                     yield break;
                 }
@@ -251,6 +256,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         }
     }
 
+    /// @brief Closes the death screen overlay
     public void CloseDeathScreen()
     {
         foreach (var cam in camerasToBeDisabled)
@@ -261,6 +267,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         mixer.SetFloat("Sfx", previousSfx);
     }
 
+    /// @brief Resets the player's health-related stats and calls \ref GameController.StartGame and 'ref Cards.RestoreData to restore their position, upgrades, weapon etc.
     public void Respawn()
     {
         lifeTime = maxLifeTime;

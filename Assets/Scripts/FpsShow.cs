@@ -1,11 +1,10 @@
 using TMPro;
-using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine;
-using UnityEditor;
-using static UnityEngine.Rendering.DebugUI;
 using Unity.Mathematics;
 
+/// @class FpsShow
+/// @brief Script for calculating the FPS
 public class FpsShow : MonoBehaviour
 {
     public TMP_Text text;
@@ -18,6 +17,8 @@ public class FpsShow : MonoBehaviour
             text.alignment = TextAlignmentOptions.Right;
         }
     }
+
+    /// @brief Coroutine that calculates the FPS every second
     public  IEnumerator fps()
     {
         while(true)

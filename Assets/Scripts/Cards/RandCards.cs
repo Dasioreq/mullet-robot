@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using System.Linq;
-using static RandCards;
-using static UnityEngine.Analytics.IAnalytic;
-using Unity.VisualScripting;
 
+/// @class RandCards
+/// @brief Script for randomly picking player upgrades and applying them
 public class RandCards : MonoBehaviour
 {
-
     public Bonuses[] Btn;
     public List<Icons> Icon;
     public MovementHandler player;
@@ -55,6 +52,8 @@ public class RandCards : MonoBehaviour
         normalVel = player.maxVelocity;
     }
 
+    /// @struct
+    /// @brief The properties of an upgrade
     public struct UpgradeData
     {
         public UpgradeType type;
@@ -63,6 +62,8 @@ public class RandCards : MonoBehaviour
         public string weaponName;
         public bool isUpgrade;
     }
+
+    /// @brief Generates the upgrades
     public void RCards(GameObject[] spawnedButtons)
     {
 
@@ -161,6 +162,8 @@ public class RandCards : MonoBehaviour
             }
         }
     }
+
+    /// @brief Applies a given upgrade to the player
     public void ApplyUpgrade(UpgradeData upgr)
     {
         float multiplierUpgrade = 0;
@@ -230,6 +233,8 @@ public class RandCards : MonoBehaviour
         }
 
     }
+
+    /// @brief Generates a weapon upgrade, accounting for its level
     public (int finalId, bool isUpgrade) RandNewWeapon()
     {
         int randomListIndex = UnityEngine.Random.Range(0, weaponBases.Count);
@@ -255,12 +260,14 @@ public class RandCards : MonoBehaviour
         return (newId, false);
     }
 
+
     void ReturnNormalSpeed()
     {
         player.maxVelocity = normalVel * speedMult;
         player.acceleration = normalAcc * speedMult;
     }
 
+    /// @brief Resets the player's upgrades
     public void ReturnNormalStats()
     {
         foreach (UpgradeType type in Enum.GetValues(typeof(UpgradeType)))
@@ -275,16 +282,7 @@ public class RandCards : MonoBehaviour
         player.dashCooldownTime = baseValues[UpgradeType.dashingTime];
     }
 
-    public void RestoreStats()
-    {
-        player.maxVelocity = normalVel * currentMultipliers[UpgradeType.speed];
-        player.acceleration = normalAcc * currentMultipliers[UpgradeType.speed];
-        player.jumpHeight = baseValues[UpgradeType.jump] * currentMultipliers[UpgradeType.jump];
-        player.dashForce = baseValues[UpgradeType.dashing] * currentMultipliers[UpgradeType.dashing];
-        playerDmg.maxLifeTime = baseValues[UpgradeType.health] * currentMultipliers[UpgradeType.health];
-        player.dashCooldownTime = baseValues[UpgradeType.dashingTime] * currentMultipliers[UpgradeType.dashingTime];
-    }
-
+    /// @brief Resets the player's weapons
     public void ResetAllWeapons()
     {
         for (int i = 0; i < weaponProgress.Length; i++) { weaponProgress[i] = 0; }
@@ -294,6 +292,7 @@ public class RandCards : MonoBehaviour
         }
     }
 
+    /// @brief Applies the Speed Boost upgradeto the player
     public void KillBoost()
     {
         if (killBoostActive == true)
@@ -306,6 +305,7 @@ public class RandCards : MonoBehaviour
         
     }
 
+    /// @brief Applies the Damage Boost upgrade to the player
     public void DamageBoost()
     {
         if (damageBoostActive == true)

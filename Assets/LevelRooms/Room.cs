@@ -3,6 +3,8 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/// @class Room
+/// @brief A template ScriptableObject for defining Rooms for the level generator
 [CreateAssetMenu(fileName = "Room", menuName = "Scriptable Objects/Room")]
 public class Room : ScriptableObject
 {
@@ -13,6 +15,7 @@ public class Room : ScriptableObject
     [SerializeField] int minEnemies;
     [SerializeField] int maxEnemies;
 
+    /// @brief Instantiates the room prefab at a give position and direction
     public GameObject CreateInstance(Vector3 position, Vector3 direction)
     {
         var instance = Instantiate(prefab, position, Quaternion.LookRotation(direction));
@@ -20,6 +23,7 @@ public class Room : ScriptableObject
         return instance;
     }
 
+    /// @brief Performs an intersection check between one instance and an array of previously generated instances
     public static bool isColliding(GameObject instantiated, GameObject[] existingRooms)
     {
         var boundingBox = instantiated.transform.Find("Bounds").GetComponent<Collider>().bounds;
@@ -38,6 +42,8 @@ public class Room : ScriptableObject
         return false;
     }
 
+    /// @brief Returns and array of enemy Instances to be spawned in the level
+    /// The enemies are defiend in the room's prefab's hierarchy, being children of one "EnemySpawnNodes" with the \ref EnemySpawnNode Component
     public GameObject[] SpawnEnemies(GameObject instance)
     {
         var nodeParent = instance.transform.Find("EnemySpawnNodes");

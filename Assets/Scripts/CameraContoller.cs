@@ -1,6 +1,10 @@
 using UnityEngine;
 using static GameController;
 
+///
+/// @class CameraController
+/// @brief Script for controlling the player's camera with their mouse and modify the rotation from outside sources
+/// 
 public class CameraContoller : MonoBehaviour
 {
     [SerializeField] private Transform player;
@@ -38,6 +42,8 @@ public class CameraContoller : MonoBehaviour
         player.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
+    /// @brief Sets the camera rotation to face a given Quaternion, accounting for Gimbal Lock
+    /// @param rotation The desired new rotation
     public void SetRotation(Quaternion rotation)
     {
         transform.rotation = rotation;

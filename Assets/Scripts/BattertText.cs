@@ -1,6 +1,10 @@
 using UnityEngine;
 using TMPro;
 
+/**
+* @class BattertText
+* @brief Helper script that sets the UI Battery text to the player's remaining Lifetime
+*/
 public class BattertText : MonoBehaviour
 {
     [SerializeField] private PlayerDamage player;

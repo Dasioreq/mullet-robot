@@ -4,8 +4,8 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using Unity.Mathematics;
 
-using static UnityEngine.Rendering.DebugUI;
-
+/// @class MusicVolumeController
+/// @brief A controller for the Music AudioMixerGroup
 public class MusicVolumeController : MonoBehaviour
 {
     [SerializeField] private AudioMixer mixer;
@@ -23,6 +23,7 @@ public class MusicVolumeController : MonoBehaviour
         UpdateVolumeFromSlider(musicSlider.value);
     }
 
+    /// @brief updates the Group volume based on the value of the options menu slider
     public void UpdateVolumeFromSlider(float percent)
     {
         float value = Mathf.Max(percent / 100f, 0.0001f);
