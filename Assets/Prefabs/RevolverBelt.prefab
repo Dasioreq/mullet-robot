@@ -146,6 +146,8 @@ MonoBehaviour:
   fireSfxDelay: 0
   reloadSfxDelay: 0
   muzzleFlashes: []
+  chargeObjects: []
+  smokeTimey: 0
 --- !u!82 &7872003377865730973
 AudioSource:
   m_ObjectHideFlags: 0
