@@ -22,7 +22,7 @@ public class RandCards : MonoBehaviour
     public int[] weaponProgress = new int[] { 0, 0, 0 };
     private string[] weaponNames = { "Revolver", "Double-Barrel", "Ironfang" }; // Notatka od mergera: boze ale edgy nazwa
     public bool noWeaponLoss = false;
-
+    private float speedMult;
     public bool noBonusLoss = false;
 
     private float normalVel = 0;
@@ -170,6 +170,7 @@ public class RandCards : MonoBehaviour
                 float currentM = currentMultipliers[UpgradeType.speed];
                 player.acceleration = normalAcc * currentM;
                 player.maxVelocity = normalVel * currentM;
+                speedMult = currentM;
                 break;
             case UpgradeType.jump:
                 float jumpM = currentMultipliers[UpgradeType.jump];
@@ -256,9 +257,8 @@ public class RandCards : MonoBehaviour
 
     void ReturnNormalSpeed()
     {
-        float currentM = currentMultipliers[UpgradeType.speed];
-        player.maxVelocity = normalVel * currentM;
-        player.acceleration = normalAcc * currentM;
+        player.maxVelocity = normalVel * speedMult;
+        player.acceleration = normalAcc * speedMult;
     }
 
     public void ReturnNormalStats()
