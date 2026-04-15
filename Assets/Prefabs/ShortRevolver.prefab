@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934ba63736f580c4493380cdfc4828d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gun
-  gunDamage: 40
+  gunDamage: 50
   damageMultiplier: 1
   cam: {fileID: 0}
   fireCooldown: 0.2

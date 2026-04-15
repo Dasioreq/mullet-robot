@@ -1296,13 +1296,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934ba63736f580c4493380cdfc4828d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun
-  gunDamage: 18
+  gunDamage: 25
   damageMultiplier: 1
   cam: {fileID: 0}
   fireCooldown: 0.09
   reloadCooldown: 1.65
   projectileCount: 1
-  spreadDeg: 5
+  spreadDeg: 2.5
   crosshairSprite: {fileID: 2032129976270723174, guid: 88e62caf32758de4e945c805e968ad11, type: 3}
   automatic: 1
   maxAmmo: 0
