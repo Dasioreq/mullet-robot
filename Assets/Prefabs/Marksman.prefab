@@ -10075,7 +10075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotAi
   damage: 0.5
-  attackCooldown: 0.15
+  attackCooldown: 0.2
   reloadCooldown: 3
   magSize: 20
   bullet: {fileID: 6671228237490761316, guid: 3e486d2f9cdd21c4ba737b8c1264d867, type: 3}

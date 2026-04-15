@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -43,23 +44,28 @@ public class Room : ScriptableObject
         List<GameObject> enemies = new List<GameObject>();
         if(nodeParent)
         {
-            var nodes = nodeParent.GetComponentsInChildren<EnemySpawnNode>();
+            var nodes = nodeParent.GetComponentsInChildren<EnemySpawnNode>().ToList();
 
-            int max = Mathf.Min(maxEnemies, nodes.Length);
+            int max = Mathf.Min(maxEnemies, nodes.Count);
 
             do
             {
+                var usedNodes = new List<EnemySpawnNode>();
+
                 foreach(var node in nodes)
                 {
                     if(Random.Range(0.0f, 1.0f) <= node.chance || node.chance == 1f)
                     {
                         enemies.Add(node.Spawn());
+                        usedNodes.Add(node);
                         if(enemies.Count >= max)
                             return enemies.ToArray();
                     }
                 }
+
+                nodes.RemoveAll(el => usedNodes.Contains(el));
             }
-            while(enemies.Count < minEnemies);
+            while(enemies.Count < minEnemies && nodes.Count > 0);
         }
         return enemies.ToArray();
     }

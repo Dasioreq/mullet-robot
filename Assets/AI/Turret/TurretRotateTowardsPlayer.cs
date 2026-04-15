@@ -5,6 +5,7 @@ public class TurretRotateTowardsPlayer : MonoBehaviour
     [SerializeField] Transform playerPosition;
     [SerializeField] float yawSpeed, pitchSpeed;
     [SerializeField] float range;
+    [SerializeField] LayerMask LOSLayers;
 
     private Quaternion baseYaw, basePitch;
     private Transform yawBone, pitchBone;
@@ -25,9 +26,10 @@ public class TurretRotateTowardsPlayer : MonoBehaviour
 
     public float advanceTowardsPlayer()
     {
+
         float distance = (playerPosition.position - transform.position).magnitude;
 
-        if(distance <= range)
+        if(distance <= range && !LOSCheck())
         {
             Vector3 yawDirection = playerPosition.position - yawBone.position;
 
@@ -94,5 +96,10 @@ public class TurretRotateTowardsPlayer : MonoBehaviour
 
             return 180;
         }
+    }
+
+    bool LOSCheck()
+    {
+        return Physics.Linecast(pitchBone.position, playerPosition.position, LOSLayers) || Physics.Linecast(playerPosition.position, pitchBone.position, LOSLayers);
     }
 }

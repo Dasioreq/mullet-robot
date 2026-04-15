@@ -2106,6 +2106,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 14c2d5c0559aac2428f9487f6b74c56b, type: 3}
   - {fileID: 8300000, guid: 5d7a003d263607d4997bad25638dde86, type: 3}
   - {fileID: 8300000, guid: 88f29de2f0a32a244be06477a2264b89, type: 3}
+  - {fileID: 8300000, guid: e39d97456a394e849bce66fed2e5e8f9, type: 3}
   musicMixerGroup: {fileID: -5655567641495495015, guid: d4746fe7b88b67f4198d2a9e130a6229, type: 2}
 --- !u!114 &1229256573 stripped
 MonoBehaviour:

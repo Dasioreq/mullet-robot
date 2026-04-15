@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee273579987baa4ebf04221a8c1c613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotAi
-  damage: 0.41666666
+  damage: 0.25
   attackCooldown: 1
   reloadCooldown: 2
   magSize: 2

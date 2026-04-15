@@ -176,9 +176,6 @@ PrefabInstance:
       addedObject: {fileID: 4055397285168238578}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04372605cd187eb4989059011c7095fa, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9086722395721147150}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04372605cd187eb4989059011c7095fa, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2005916177030976280}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04372605cd187eb4989059011c7095fa, type: 3}
       insertIndex: -1
@@ -226,18 +223,9 @@ MonoBehaviour:
   yawSpeed: 90
   pitchSpeed: 180
   range: 30
---- !u!114 &9086722395721147150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877713570929065151}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3198a46a509b8c449e95b00a644419c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OverrideSunColor
+  LOSLayers:
+    serializedVersion: 2
+    m_Bits: 320
 --- !u!114 &2005916177030976280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +243,7 @@ MonoBehaviour:
   - {fileID: 4914974483878241075, guid: 47d0cbef942de9447993cd435a8c0c81, type: 3}
   ricochets: []
   Group: {fileID: 0}
-  maxHealth: 15
+  maxHealth: 50
   restoredLifetime: 1
   explosionParticles:
   - {fileID: 942827086087318643, guid: 878b1960fd4f18b48a0141aaa7180176, type: 3}
@@ -411,8 +399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabe7ff36060ff040aa0e90084fa35b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurretAI
-  damage: 1
-  rps: 4
+  damage: 2
+  rps: 2
   attackAngle: 30
   bullet: {fileID: 6671228237490761316, guid: 3e486d2f9cdd21c4ba737b8c1264d867, type: 3}
   aimingBone: {fileID: 5091055615395350353}
