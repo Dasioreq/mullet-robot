@@ -197,6 +197,7 @@ public class RandCards : MonoBehaviour
                 break;
             case UpgradeType.noBonusLoss:
                 noBonusLoss = true;
+                Debug.Log("test");
                 break;
             case UpgradeType.damageBoost:
                 damageBoostActive = true;

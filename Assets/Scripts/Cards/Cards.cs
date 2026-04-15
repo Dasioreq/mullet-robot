@@ -102,17 +102,22 @@ public class Cards : MonoBehaviour
         }
     }
 
-    void RestoreData()
+    public void RestoreData()
     {
         if (RandCards.noWeaponLoss == true)
         {
+            RandCards.lastWeapID = GetComponent<RandCards>().curWeap.currentWeapon;
             GetComponent<RandCards>().curWeap.Equip(RandCards.lastWeapID);
             RandCards.noWeaponLoss = false;
+        }
+        else
+        {
+            GetComponent<RandCards>().curWeap.Equip(0);
+            RandCards.ResetAllWeapons();
         }
         if (RandCards.noBonusLoss == false)
         {
             RandCards.ReturnNormalStats();
-
         }
         else if (RandCards.noBonusLoss == true)
         {
@@ -126,19 +131,11 @@ public class Cards : MonoBehaviour
             }
             RandCards.noBonusLoss = false;
         }
-        deathStatsHandled = false;     
+
+            deathStatsHandled = false;     
     }
    void SaveData()
     {
-        if (RandCards.noWeaponLoss == true)
-        {
-            RandCards.lastWeapID = GetComponent<RandCards>().curWeap.currentWeapon;
-        }
-        else if(RandCards.noWeaponLoss == false)
-        {
-            RandCards.ResetAllWeapons();
-        }
-
         if (RandCards.noBonusLoss == true)
         {
             if (RandCards.killBoostActive == true)
@@ -149,7 +146,6 @@ public class Cards : MonoBehaviour
             {
                 savedDamageBoost = true;
             }
-            deathStatsHandled = true;
         }
     }
 }

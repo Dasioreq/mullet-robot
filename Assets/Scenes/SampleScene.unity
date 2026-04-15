@@ -811,6 +811,7 @@ MonoBehaviour:
   cameraVolume: {fileID: 2071770632}
   deathScreen: {fileID: 1790795602}
   mixer: {fileID: 24100000, guid: d4746fe7b88b67f4198d2a9e130a6229, type: 2}
+  cards: {fileID: 933511615}
 --- !u!1 &472848258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,7 +1241,11 @@ MonoBehaviour:
   weaponProgress: 000000000000000000000000
   noWeaponLoss: 0
   noBonusLoss: 0
+  killBoostActive: 0
+  damageBoostActive: 0
+  damageBoostUsed: 0
   rareUpgrades: 0800000007000000090000000a000000
+  usedRareUpgrades: 
 --- !u!1 &1005373327
 GameObject:
   m_ObjectHideFlags: 0
