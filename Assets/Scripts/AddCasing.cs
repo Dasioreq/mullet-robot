@@ -1,10 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 
+/**
+*   @class AddCasing
+*   @brief Script for lengthening an ammo belt of a weapon
+*
+*   This class simulates flailing casings being added to the outer side of a firearm with every shot. 
+*   Adding links to the ArticulationBody joint chain regenerates the simulation, so instead, every link starts off INVISIBLE and with every call to \ref AddCasing::AddLink the next link in line becomes visible, until finally breaking Under the Pressure and creating a clone that detaches and falls off.
+*/
 public class AddCasing : MonoBehaviour
 {
     [SerializeField] GameObject casingPrefab;
@@ -14,6 +16,7 @@ public class AddCasing : MonoBehaviour
     private ArticulationBody ab;
     private Transform currentLink;
 
+    /// @brief Initializes the ArticulationBody joint chain and Component references
     void Start()
     {
         ab = GetComponent<ArticulationBody>();
@@ -27,8 +30,6 @@ public class AddCasing : MonoBehaviour
             ArticulationBody casingAb = casing.AddComponent<ArticulationBody>();
             casingAb.jointType = ArticulationJointType.SphericalJoint;
             casingAb.mass = 5;
-            // casingAb.linearDamping = .5f;
-            // casingAb.angularDamping = .5f;
 
             casingAb.twistLock = ArticulationDofLock.LimitedMotion;
             var xDrive = casingAb.xDrive;
@@ -57,6 +58,7 @@ public class AddCasing : MonoBehaviour
         currentLink = gameObject.transform;
     }
 
+    /// @brief Adds a link to the chain
     public void AddLink()
     {
         if(currentLink.childCount == 0)
@@ -70,7 +72,6 @@ public class AddCasing : MonoBehaviour
             while(i.childCount > 0)
             {
                 i = i.GetChild(0);
-                // i.transform.localPosition *= 100;
             }
 
             i = currentLink;

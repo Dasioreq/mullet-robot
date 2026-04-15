@@ -1,8 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/**
+* @class BackflipMenu
+* @brief Script for playing the backfip animation it the main menu
+*/
 public class BackflipMenu : MonoBehaviour
 {
     [SerializeField] Animator animator;
@@ -13,6 +16,8 @@ public class BackflipMenu : MonoBehaviour
     {
         myButton.onClick.AddListener(ButtonAction);
     }
+
+    /// @brief Helper function called on Button press
     public void ButtonAction()
     {
         if (backlipping == false)
@@ -20,6 +25,8 @@ public class BackflipMenu : MonoBehaviour
             StartCoroutine(Backflip());
         }     
     }
+
+    /// @brief plays the animation
     public IEnumerator Backflip()
     {
         animator.SetTrigger("TrBACKFLIP");
@@ -27,5 +34,4 @@ public class BackflipMenu : MonoBehaviour
         yield return new WaitForSeconds(time);
         backlipping=false;
     }
-
 }

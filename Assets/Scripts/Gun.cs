@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using static GameController;
 
+/// @class Gun
+/// @brief Base class for the basic firearms, uses basic raycasting for the hit calculations
 public class Gun : MonoBehaviour
 {
     [SerializeField] protected float gunDamage;
@@ -159,6 +157,7 @@ public class Gun : MonoBehaviour
         scheduledBulletParticles.Clear();
     }
 
+    /// @brief Casts the bullet hitscans from the player's camera with a random spread and runs \ref Actions::Fire 
     protected virtual void Fire()
     {
         RaycastHit hit;
@@ -219,6 +218,7 @@ public class Gun : MonoBehaviour
         cooldown = fireCooldown;
     }
 
+    /// @brief Reloads the weapon and runs \ref Actions::Reload
     void Reload()
     {
         reloading = true;
@@ -232,6 +232,8 @@ public class Gun : MonoBehaviour
 
         cooldown = reloadCooldown;
     }
+
+    /// @brief Reloads the weapon and runs \ref Actions::EmptyReload
     void EmptyReload()
     {
         reloading = true;

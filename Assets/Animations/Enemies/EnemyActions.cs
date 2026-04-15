@@ -1,6 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
+/**
+*   @brief Base class for all visual and auditory enemy effects (eg. animations, sfx etc.)
+*
+*   This class is the base that all enemy anim-scripts inherit from.
+*   It features base methods for attackingm, moving and playing muzzle flash particle systems.
+*/
 [RequireComponent(typeof(AudioSource))]
 public class EnemyActions : MonoBehaviour
 {
@@ -23,9 +29,12 @@ public class EnemyActions : MonoBehaviour
         muzzleFlashLights = GetComponentsInChildren<Light>();
     }
 
+    /// @brief Defines what an attack looks/sounds like
     virtual public IEnumerator Attack(){yield break;}
+    /// @brief Defines what movement looks/sounds like
     virtual public IEnumerator Move(){yield break;}
 
+    /// @brief Plays the muzzle flash effects
     public IEnumerator Flash(float time)
     {
         foreach(var flash in muzzleFlashes)

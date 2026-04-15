@@ -32,6 +32,7 @@ public class RobotDamage : EnemyDamage
         Destroy(GetComponent<EnemyAI>());
     }
 
+    /// @brief Plays explosion particles, sounds and vfx
     public IEnumerator Explode(Vector3 position)
     {
         foreach (var obj in explosionParticles)
@@ -58,7 +59,10 @@ public class RobotDamage : EnemyDamage
         yield break;
     }
 
-    void SpawnGibs()
+    /// @brief Spawns giblets
+    /// 
+    /// Iterates over every child element with a MeshRenderer Component and checking if they exceed a defined minimum size threshold, then picks from those at random, adds necessary components and applies a semi-random force to them, simulating an explosion. 
+    public void SpawnGibs()
     {
         var potentialGibs = GetComponentsInChildren<MeshRenderer>().Where(r =>
             r.bounds.size.sqrMagnitude > .2f).ToList();

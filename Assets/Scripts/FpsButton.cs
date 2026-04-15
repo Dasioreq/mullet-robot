@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// @class FovSlaider
+/// @brief Script for toggling the FPS counter with a button in the options menu
 public class FPSController : MonoBehaviour
 {
     public GameObject fpsObject;      
@@ -19,6 +21,7 @@ public class FPSController : MonoBehaviour
         fpsButton.onClick.AddListener(ToggleFPS);
     }
 
+    /// @brief Toggles the FPS counter overlay
     public void ToggleFPS()
     {
         if (fpsObject != null)

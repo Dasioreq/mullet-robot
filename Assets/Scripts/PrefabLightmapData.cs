@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEditor;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
+/// @brief Not ours, idc ¯\_(ツ)_/¯
 [ExecuteAlways]
 public class PrefabLightmapData : MonoBehaviour
 {

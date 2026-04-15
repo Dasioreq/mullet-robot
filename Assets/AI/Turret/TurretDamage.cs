@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using static Unity.VisualScripting.Member;
 
 public class TurretDamage : EnemyDamage
 {
@@ -24,6 +23,7 @@ public class TurretDamage : EnemyDamage
         Destroy(GetComponent<TurretAI>());
     }
 
+    /// @brief Plays explosion particles, sounds and vfx
     public IEnumerator Explode(Vector3 position)
     {
         foreach (var obj in explosionParticles)

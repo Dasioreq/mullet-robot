@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static RandCards;
 
+/// @class Bonuses
+/// @brief Helper script for upgrade buttons
 public class Bonuses : MonoBehaviour
 {
     public RandCards.UpgradeData data;
@@ -13,10 +13,12 @@ public class Bonuses : MonoBehaviour
     public TextMeshProUGUI valueText;
     public Icons[] weaponIcons;
 
+    /// @brief You are NOT gonna believe what it does
     public void OnClick()
     {
         manager.ApplyUpgrade(data);
     }
+    /// @brief Sets the icon, text etc. to the upgrade card
     public void Setup(RandCards.UpgradeData newData, RandCards m, Icons ic)
     {
         data = newData;

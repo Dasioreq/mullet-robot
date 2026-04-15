@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
+/// @class Icons
+/// @brief Template for upgrade icons
 [CreateAssetMenu(fileName = "Icons", menuName = "Scriptable Objects/Icons")]
 public class Icons : ScriptableObject
 {

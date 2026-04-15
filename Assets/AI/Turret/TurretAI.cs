@@ -1,5 +1,7 @@
 using UnityEngine;
 
+/// @class TurretAI
+/// @brief Inherits from \ref EnemyAI, adding a condition to shoot when a certain angle away from the target (player)
 [RequireComponent(typeof(TurretRotateTowardsPlayer))]
 public class TurretAI : EnemyAI
 {

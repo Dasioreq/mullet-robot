@@ -2,6 +2,8 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+/// @class TextAnimation
+/// @brief Performs a typing aniamtion on a Text component
 public class TextAnimation : MonoBehaviour
 {
     [Header("References")]

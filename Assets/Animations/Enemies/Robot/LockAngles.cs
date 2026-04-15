@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// @brief Script for locking rotation axes of an object, because the built-in Unity Constraints are straight dog water
 public class LockAngles : MonoBehaviour
 {
     [SerializeField] bool lockX;

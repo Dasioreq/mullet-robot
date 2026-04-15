@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// @class DamageColor
+/// @brief Script for setting the UI Battery fill color and percentage based on the player's remaining Lifetime
 public class DamageColor : MonoBehaviour
 {
-
     [SerializeField] private PlayerDamage player;
     [SerializeField] private Image batteryFill;
 

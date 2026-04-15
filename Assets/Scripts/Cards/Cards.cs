@@ -4,6 +4,8 @@ using UnityEngine;
 using static GameController;
 using static RandCards;
 
+/// @class Cards
+/// @brief Handles Upgrade card rendering and player input
 public class Cards : MonoBehaviour
 {
     public RandCards RandCards;
@@ -21,6 +23,7 @@ public class Cards : MonoBehaviour
     private bool savedKillBoost = false;
     private bool savedDamageBoost = false;
 
+    /// @brief Opens the upgrade panel
     public void ShowCards()
     {
         gameController.SetGameState(GameState.UpgradeSelection);
@@ -48,6 +51,7 @@ public class Cards : MonoBehaviour
         }
     }
 
+    /// @brief Closes the upgrade panel
     public void CloseWin()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -102,6 +106,7 @@ public class Cards : MonoBehaviour
         }
     }
 
+    /// @brief Called after the player respawns; Restores their weapons and upgrades based on whether or not they have No Weapon Loss or No Bonus Loss active
     public void RestoreData()
     {
         if (RandCards.noWeaponLoss == true)
@@ -134,7 +139,9 @@ public class Cards : MonoBehaviour
 
             deathStatsHandled = false;     
     }
-   void SaveData()
+
+    /// @brief Saves the player's upgrade data for future reuse
+    void SaveData()
     {
         if (RandCards.noBonusLoss == true)
         {

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using Unity.Mathematics;
 using static UnityEngine.Rendering.DebugUI;
 
+/// @class MasterVolumeController
+/// @brief A controller for the SFX AudioMixerGroup
 public class MasterVolumeController : MonoBehaviour
 {
     [SerializeField] private AudioMixer mixer;
@@ -16,11 +18,12 @@ public class MasterVolumeController : MonoBehaviour
     {
         MasterSlider.onValueChanged.AddListener(UpdateVolumeFromSlider);
     }
-    public void Update()
+    void Update()
     {
         UpdateVolumeFromSlider(MasterSlider.value);
     }
 
+    /// @brief updates the Group volume based on the value of the options menu slider
     public void UpdateVolumeFromSlider(float percent)
     {
         float value = Mathf.Max(percent / 100f, 0.0001f);

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// @brief Script for the Turret to constantly turn towards the player.
 public class TurretRotateTowardsPlayer : MonoBehaviour
 {
     [SerializeField] Transform playerPosition;
@@ -24,6 +25,7 @@ public class TurretRotateTowardsPlayer : MonoBehaviour
         }
     }
 
+    /// @brief Advances its pitch and yaw to point as close to the player as possible
     public float advanceTowardsPlayer()
     {
 

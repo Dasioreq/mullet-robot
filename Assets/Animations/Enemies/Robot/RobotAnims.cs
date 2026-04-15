@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
-using UnityEngine.Rendering;
 
+/// @brief Adds movement to basic Robots with turning animations
 public class RobotAnims : EnemyActions
 {
     [Serializable]
@@ -81,7 +77,10 @@ public class RobotAnims : EnemyActions
         }
     }
 
-    IEnumerator TryTurning(float checkDelay)
+    /// @brief Handles turning towards the player
+    /// 
+    /// If the angle between itself and the target exceeds some given margin, it plays the animation for turning 90 degrees.
+    public IEnumerator TryTurning(float checkDelay)
     {
         checking = true;
         float elapsed = 0;
@@ -108,6 +107,9 @@ public class RobotAnims : EnemyActions
         checking = false;
     }
 
+    /// @brief Corrects the rotation
+    /// 
+    /// Tries to make the enemy point closer towards the target, by over/undershooting the rotation with a given max overshoot angle.
     IEnumerator CorrectRotation(float deltaAngle, float time)
     {
         float overshoot;
