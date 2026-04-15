@@ -1671,8 +1671,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   gunDamage: 0
+  damageMultiplier: 1
   cam: {fileID: 0}
-  fireCooldown: 0.3
+  fireCooldown: 0.6
   reloadCooldown: 0
   projectileCount: 1
   spreadDeg: 0

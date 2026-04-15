@@ -44,6 +44,9 @@ public class CameraContoller : MonoBehaviour
         player.rotation = rotation;
 
         xRotation = rotation.eulerAngles.x;
+        if (xRotation > 180) xRotation -= 360;
+        
         yRotation = rotation.eulerAngles.y;
+        if (yRotation > 180) yRotation -= 360;
     }
 }

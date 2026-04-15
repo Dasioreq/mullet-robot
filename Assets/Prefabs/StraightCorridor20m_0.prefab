@@ -776,8 +776,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
 --- !u!4 &2065548321510241086
 Transform:
   m_ObjectHideFlags: 0
@@ -1689,6 +1689,7 @@ MonoBehaviour:
   possibleEnemies:
   - {fileID: 5363282477367805906, guid: e8b513d384a68e84c8b4c2ba7d6656b4, type: 3}
   - {fileID: 1650682618000374355, guid: 7d8b1646c658a8147ab2365c16240f2b, type: 3}
+  - {fileID: 1420044918479624156, guid: c79549d6dd9c9ad4682fce5ee7e9c4c2, type: 3}
   chance: 0.75
 --- !u!1 &7184682168344175790
 GameObject:
@@ -1918,20 +1919,23 @@ MonoBehaviour:
   m_RendererInfo:
   - renderer: {fileID: 1905529625974531870}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.26344734, y: 0.26410314, z: 0.5059746, w: 0.3134353}
+    lightmapOffsetScale: {x: 0.26344734, y: 0.26410314, z: 0.44445115, w: -0.062541276}
   - renderer: {fileID: 8059922552805505513}
-    lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.26149952, y: 0.2628238, z: 0.71737695, w: 0.7776078}
-  - renderer: {fileID: 9102126844365912089}
     lightmapIndex: 1
+    lightmapOffsetScale: {x: 0.26149952, y: 0.2628238, z: 0.7662051, w: 0.73170936}
+  - renderer: {fileID: 9102126844365912089}
+    lightmapIndex: 2
     lightmapOffsetScale: {x: 1.1327132, y: 1.1317902, z: -0.06754225, w: -0.06748681}
   m_Lightmaps:
   - {fileID: 2800000, guid: 75e02aa0dd064eb41a4f5adc39fdffef, type: 3}
-  - {fileID: 2800000, guid: 3ea077e4e9b6b7748894684c0bc1e834, type: 3}
+  - {fileID: 2800000, guid: c589169b019a2eb44af49acdbb5be040, type: 3}
+  - {fileID: 2800000, guid: d8c843c773db21447ae561e8e32c17db, type: 3}
   m_LightmapsDir:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   m_ShadowMasks:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   m_LightInfo:

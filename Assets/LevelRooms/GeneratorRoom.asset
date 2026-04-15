@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7efb295ac293a194abeb95bafd964371, type: 3}
   m_Name: GeneratorRoom
   m_EditorClassIdentifier: Assembly-CSharp::Room
-  exit: {x: 0, y: 0, z: 17.1381}
+  exit: {x: 0, y: 0, z: 17.1213}
   exitDirection: {x: 0, y: 0, z: 1}
   prefab: {fileID: 6238291040296468484, guid: fd244dafda27de047ae60703bf28c86a, type: 3}
   weight: 1
+  minEnemies: 0
+  maxEnemies: 0

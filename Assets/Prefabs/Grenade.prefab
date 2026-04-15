@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c2c5ab1f2baa74446aaa7618def2cbdc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.4
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c2c5ab1f2baa74446aaa7618def2cbdc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.4
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c2c5ab1f2baa74446aaa7618def2cbdc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.4
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c2c5ab1f2baa74446aaa7618def2cbdc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -125,7 +125,7 @@ MonoBehaviour:
   damage: 50
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 73
+    m_Bits: 72
   explosionRadius: 1.5
   explosionParticle: {fileID: 304808682864885327, guid: ce8d1e83b6f9f0e4c847ebda8b8e7a87, type: 3}
   explotion: {fileID: 8300000, guid: 3f0052a75925a5b459c8dcb689fc9911, type: 3}

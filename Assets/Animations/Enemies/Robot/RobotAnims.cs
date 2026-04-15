@@ -1,22 +1,42 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Rendering;
 
 public class RobotAnims : EnemyActions
 {
+    [Serializable]
+    class WeightedConstraint
+    {
+        public UnityEngine.Object constraintObject;
+        [HideInInspector] public IRigConstraint Constraint => constraintObject as IRigConstraint;
+        public AnimationCurve rigWeightOverTurn = AnimationCurve.Constant(0f, 1f, 1f);
+
+        public void Evaluate(float t)
+        {
+            if(Constraint != null)
+                Constraint.weight = rigWeightOverTurn.Evaluate(t);
+        }
+    }
+
     public Transform target;
+    [SerializeField] Animator customAnimator;
     [SerializeField] public float range;
     [SerializeField] float marginAngle;
     [SerializeField] float maxOvershoot;
     [SerializeField] public Target aimingTarget;
     [SerializeField] LayerMask LOSLayers;
+    [SerializeField] float turnTime = .75f;
+    [SerializeField] WeightedConstraint[] weightedConstraints;
     bool checking = false;
     bool targeted = true;
 
-    Rig rig;
+    [SerializeField] Rig rig;
 
     float angleFromPlayer = 180;
     public float Angle {get {return angleFromPlayer;}}
@@ -24,9 +44,13 @@ public class RobotAnims : EnemyActions
     protected override void Start()
     {
         base.Start();
+        if(customAnimator)
+            anim = customAnimator;
         if(!target)
             target = GameObject.FindWithTag("Player").transform;
-        rig = GetComponentInChildren<Rig>();
+        if(!rig)
+            rig = GetComponentInChildren<Rig>();
+        GetComponent<RigBuilder>().Build();
     }
 
     void Update()
@@ -41,7 +65,7 @@ public class RobotAnims : EnemyActions
             }
 
             if(!checking)
-                StartCoroutine(TryTurning(.75f));
+                StartCoroutine(TryTurning(turnTime));
 
             angleFromPlayer = aimingTarget.GetAngleFromTarget();
         }
@@ -74,12 +98,12 @@ public class RobotAnims : EnemyActions
         if(angle >= marginAngle)
         {
             anim.SetTrigger("TrTurnRight90");
-            StartCoroutine(CorrectRotation(angle - 90, .75f));
+            StartCoroutine(CorrectRotation(angle - 90, turnTime));
         }
         else if(angle <= -marginAngle)
         {
             anim.SetTrigger("TrTurnLeft90");
-            StartCoroutine(CorrectRotation(angle + 90, .75f));
+            StartCoroutine(CorrectRotation(angle + 90, turnTime));
         }
         checking = false;
     }
@@ -97,10 +121,20 @@ public class RobotAnims : EnemyActions
         while(elapsed < time)
         {
             var t = elapsed / time;
+
+            foreach(var c in weightedConstraints)
+            {
+                c.Evaluate(t);
+            }
             
             transform.Rotate(Vector3.up, (overshoot / time) * Time.deltaTime, Space.World);
             elapsed += Time.deltaTime;
             yield return null;
+        }
+
+        foreach(var c in weightedConstraints)
+        {
+            c.Constraint.weight = 1;
         }
     }
 

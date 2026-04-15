@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Room
   exit: {x: 0, y: 8, z: 65}
   exitDirection: {x: 0, y: 0, z: 1}
-  prefab: {fileID: 6328034721242432435, guid: 03b39590a1a7e77449e477382c80ef11, type: 3}
-  weight: 1
+  prefab: {fileID: 6840895291935420701, guid: 03b39590a1a7e77449e477382c80ef11, type: 3}
+  weight: 4
+  minEnemies: 8
+  maxEnemies: 14
