@@ -1,6 +1,6 @@
 name: Deploy Doxygen
 on:
-  workflow-dispatch
+  workflow_dispatch
 
 permissions:
   contents: write
