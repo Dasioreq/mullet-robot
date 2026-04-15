@@ -20,6 +20,7 @@ public class PlayerDamage : MonoBehaviour, IDamagable
     Vector3 baseWeaponPosition;
     Quaternion baseWeaponRotation;
     float lifeTime;
+    [SerializeField] Cards cards;
 
     float damageFlashTimer = 0;
 
@@ -248,6 +249,6 @@ public class PlayerDamage : MonoBehaviour, IDamagable
         weapon.transform.localPosition = baseWeaponPosition;
         weapon.transform.localRotation = baseWeaponRotation;
         gameController.StartGame();
-        GetComponent<EquipWeapon>().Equip(0);
+        cards.RestoreData();
     }
 }

@@ -12,10 +12,14 @@ public class Cards : MonoBehaviour
     public GameObject Player;
     public GameObject Camera;
     public GameObject weapon;
+    public PlayerDamage playerDmg;
     [SerializeField] private GameObject ButtonOrg;
     [SerializeField] private Transform cardPanel;
     private bool deathStatsHandled = false;
     GameObject[] Buttons = new GameObject[4];
+
+    private bool savedKillBoost = false;
+    private bool savedDamageBoost = false;
 
     public void ShowCards()
     {
@@ -78,61 +82,70 @@ public class Cards : MonoBehaviour
             CloseWin();
         }
 
-        if (gameController.GetGameState() == GameState.DeathScreen)
+        if(playerDmg.GetLifeTime() <= 1f && !RandCards.damageBoostUsed)
         {
+            RandCards.DamageBoost();
+            RandCards.damageBoostUsed = true;
+        }
+
+        if (gameController.GetGameState() == GameState.DeathScreen && !deathStatsHandled)
+        {
+            RandCards.killBoostActive = false;
+            RandCards.damageBoostActive = false;
+            RandCards.damageBoostUsed = false;
+            RandCards.usedRareUpgrades.Clear();
             SaveData();
         }
-        else if (gameController.GetGameState() == GameState.Normal)
+        else if (gameController.GetGameState() == GameState.Normal && deathStatsHandled)
         {
             RestoreData();
         }
     }
 
-    void RestoreData()
+    public void RestoreData()
     {
-        if (deathStatsHandled)
+        if (RandCards.noWeaponLoss == true)
         {
-            if (RandCards.noWeaponLoss == true)
-            {
-                GetComponent<RandCards>().curWeap.Equip(RandCards.lastWeapID);
-                RandCards.noWeaponLoss = false;
-            }
-
-            if (RandCards.noBonusLoss == true)
-            {
-                if (RandCards.savedUpgrades.Count > 0)
-                {
-                    RandCards.currentMultipliers = new Dictionary<RandCards.UpgradeType, float>(RandCards.savedUpgrades);
-                    GetComponent<RandCards>().RestoreStats();
-                    RandCards.savedUpgrades.Clear();
-                    RandCards.noBonusLoss = false;
-                }
-            }
-            deathStatsHandled = false;
+            RandCards.lastWeapID = GetComponent<RandCards>().curWeap.currentWeapon;
+            GetComponent<RandCards>().curWeap.Equip(RandCards.lastWeapID);
+            RandCards.noWeaponLoss = false;
         }
-        
+        else
+        {
+            GetComponent<RandCards>().curWeap.Equip(0);
+            RandCards.ResetAllWeapons();
+        }
+        if (RandCards.noBonusLoss == false)
+        {
+            RandCards.ReturnNormalStats();
+        }
+        else if (RandCards.noBonusLoss == true)
+        {
+            if (savedKillBoost == true)
+            {
+                RandCards.killBoostActive = true;
+            }
+            if (savedDamageBoost == true)
+            {
+                RandCards.damageBoostActive = true;
+            }
+            RandCards.noBonusLoss = false;
+        }
+
+            deathStatsHandled = false;     
     }
    void SaveData()
     {
-        if (!deathStatsHandled)
+        if (RandCards.noBonusLoss == true)
         {
-            if (RandCards.noWeaponLoss == true)
+            if (RandCards.killBoostActive == true)
             {
-                RandCards.lastWeapID = GetComponent<RandCards>().curWeap.currentWeapon;
+                savedKillBoost = true;
             }
-
-            if (RandCards.noBonusLoss == true)
+            if (RandCards.damageBoostActive == true)
             {
-                if (RandCards.savedUpgrades.Count == 0)
-                {
-                    RandCards.savedUpgrades = new Dictionary<RandCards.UpgradeType, float>(RandCards.currentMultipliers);
-                }
+                savedDamageBoost = true;
             }
-            else if (RandCards.noBonusLoss == false)
-            {
-                RandCards.ReturnNormalStats();
-            }
-            deathStatsHandled = true;
         }
     }
 }

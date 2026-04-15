@@ -811,6 +811,7 @@ MonoBehaviour:
   cameraVolume: {fileID: 2071770632}
   deathScreen: {fileID: 1790795602}
   mixer: {fileID: 24100000, guid: d4746fe7b88b67f4198d2a9e130a6229, type: 2}
+  cards: {fileID: 933511615}
 --- !u!1 &472848258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1134,8 @@ MonoBehaviour:
   player: {fileID: 470769254}
   playerCamera: {fileID: 1065840836}
   levelGenerator: {fileID: 1198223603}
+  RandCards: {fileID: 933511617}
+  intermission: 0
   gameState: 0
 --- !u!4 &891872186
 Transform:
@@ -1185,6 +1188,7 @@ MonoBehaviour:
   Player: {fileID: 470769254}
   Camera: {fileID: 1065840836}
   weapon: {fileID: 693276721}
+  playerDmg: {fileID: 470769260}
   ButtonOrg: {fileID: 3858510886950610588, guid: 935beffc09fdeae439bc85d0dc64d2f3, type: 3}
   cardPanel: {fileID: 1005373331}
 --- !u!4 &933511616
@@ -1222,20 +1226,33 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc73938e4d86af94db64a0d96d8c4a43, type: 2}
   - {fileID: 11400000, guid: bd8537d96a04ff7488938b27fc240a2b, type: 2}
   - {fileID: 11400000, guid: 08f073c61cdb32f499506c05885e1728, type: 2}
-  - {fileID: 11400000, guid: 442b4372a17eb994c9581ab8ea6ed578, type: 2}
-  - {fileID: 11400000, guid: 2728754ee27f51542874d6dd9b53dbc9, type: 2}
   - {fileID: 11400000, guid: e5e0b0743099d8e408cb3e2fa52cd49d, type: 2}
   - {fileID: 11400000, guid: 7ac8ecd56da52fe4a8f238a7f97bbc33, type: 2}
   - {fileID: 11400000, guid: 9e76e8e579986f64489b07810ede261f, type: 2}
   - {fileID: 11400000, guid: 69d9920ee631e6e47a4f053830f6f19a, type: 2}
+  - {fileID: 11400000, guid: 189f84325eb67064d9ce7ae2ed46b89a, type: 2}
+  - {fileID: 11400000, guid: 77f7a74ef01729f489f805190e91b447, type: 2}
+  - {fileID: 11400000, guid: f09d0874374de1542a850c627f80c717, type: 2}
+  - {fileID: 11400000, guid: 4fa6d9fe12dfdb44186b9110ecc0b274, type: 2}
+  - {fileID: 11400000, guid: 022db839acb66f74999c0da7391b2b93, type: 2}
+  - {fileID: 11400000, guid: 1947134d7d70e3443ac9b20a43ad3d4f, type: 2}
+  - {fileID: 11400000, guid: 5c4b7fb1525afcf408f7d8b56129890e, type: 2}
+  - {fileID: 11400000, guid: 07baf5003be2d7d4e9f28bb6348be0e8, type: 2}
+  - {fileID: 11400000, guid: a74bb9e697d31c944bcfc7d07f517ae7, type: 2}
   player: {fileID: 470769258}
   playerDmg: {fileID: 470769260}
   gameController: {fileID: 891872185}
+  gun: {fileID: 1818197643}
   curWeap: {fileID: 470769259}
   lastWeapID: 0
+  weaponProgress: 000000000000000000000000
   noWeaponLoss: 0
   noBonusLoss: 0
+  killBoostActive: 0
+  damageBoostActive: 0
+  damageBoostUsed: 0
   rareUpgrades: 0800000007000000090000000a000000
+  usedRareUpgrades: 
 --- !u!1 &1005373327
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,6 +2564,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6227470501188616236, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
   m_PrefabInstance: {fileID: 6032092968712640004}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1818197643 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3755263233045266313, guid: 8a36978b46da506428a0803b3fac8bd0, type: 3}
+  m_PrefabInstance: {fileID: 6032092968712640004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693276721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934ba63736f580c4493380cdfc4828d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::gun
 --- !u!1 &1927565050
 GameObject:
   m_ObjectHideFlags: 0

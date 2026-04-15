@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c18069a7c1987b4b9a236f6e78a8de3, type: 3}
-  m_Name: NoWeaponLoss
+  m_Name: long_revolver_Icon
   m_EditorClassIdentifier: Assembly-CSharp::Icons
-  type: 7
-  displayName: No Weapon Loss
-  icon: {fileID: 21300000, guid: cae91aed8a92e7e4fb953348187a980f, type: 3}
+  type: 5
+  displayName: Long Iron
+  icon: {fileID: 21300000, guid: 5a63a189d8a493e4481c797aaec1bb72, type: 3}
   themeColor: {r: 1, g: 1, b: 1, a: 1}
+  WeaponId: 1

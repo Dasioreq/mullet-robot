@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c18069a7c1987b4b9a236f6e78a8de3, type: 3}
-  m_Name: NoWeaponLoss
+  m_Name: belt_revolver_Icon
   m_EditorClassIdentifier: Assembly-CSharp::Icons
-  type: 7
-  displayName: No Weapon Loss
-  icon: {fileID: 21300000, guid: cae91aed8a92e7e4fb953348187a980f, type: 3}
+  type: 5
+  displayName: Big Iron
+  icon: {fileID: 21300000, guid: 2117b8136a3dce141a3c2d6117e7a62e, type: 3}
   themeColor: {r: 1, g: 1, b: 1, a: 1}
+  WeaponId: 2

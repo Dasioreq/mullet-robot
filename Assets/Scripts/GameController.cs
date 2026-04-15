@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public GameObject playerCamera;
     public GeneratorBehaviour levelGenerator;
+    public RandCards RandCards;
     public bool intermission;
 
     public void StartGame()
@@ -79,5 +80,6 @@ public class GameController : MonoBehaviour
     public void OnPlayerKillEnemy(float lifetimeRestore)
     {
         player.GetComponent<PlayerDamage>().Heal(lifetimeRestore);
+        RandCards.KillBoost();
     }
 }
