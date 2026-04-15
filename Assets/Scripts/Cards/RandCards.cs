@@ -190,8 +190,8 @@ public class RandCards : MonoBehaviour
                 break;
             case UpgradeType.newWeapon:
                 int family = upgr.weaponID / 3;
+                weaponProgress = new int[] {0, 0, 0};
                 weaponProgress[family] = upgr.weaponID % 3;
-                weaponProgress[curWeap.currentWeapon % 3] = 0;
                 curWeap.Equip(upgr.weaponID);
                 break;
             case UpgradeType.noWeaponLoss:
@@ -236,7 +236,7 @@ public class RandCards : MonoBehaviour
         int drawnBaseId = weaponBases[randomListIndex];
         int playerFamilyIndex = curWeap.currentWeapon / 3;
 
-        bool isUpgrade = (drawnBaseId / 3 == playerFamilyIndex);
+        bool isUpgrade = (drawnBaseId / 3) == playerFamilyIndex;
 
         if (isUpgrade)
         {
