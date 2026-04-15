@@ -229,6 +229,16 @@ MonoBehaviour:
   iconImage: {fileID: 8127302869669713456}
   titleText: {fileID: 497600514125097030}
   valueText: {fileID: 3387685607760687824}
+  weaponIcons:
+  - {fileID: 11400000, guid: 189f84325eb67064d9ce7ae2ed46b89a, type: 2}
+  - {fileID: 11400000, guid: 77f7a74ef01729f489f805190e91b447, type: 2}
+  - {fileID: 11400000, guid: f09d0874374de1542a850c627f80c717, type: 2}
+  - {fileID: 11400000, guid: 4fa6d9fe12dfdb44186b9110ecc0b274, type: 2}
+  - {fileID: 11400000, guid: 022db839acb66f74999c0da7391b2b93, type: 2}
+  - {fileID: 11400000, guid: 1947134d7d70e3443ac9b20a43ad3d4f, type: 2}
+  - {fileID: 11400000, guid: 5c4b7fb1525afcf408f7d8b56129890e, type: 2}
+  - {fileID: 11400000, guid: 07baf5003be2d7d4e9f28bb6348be0e8, type: 2}
+  - {fileID: 11400000, guid: a74bb9e697d31c944bcfc7d07f517ae7, type: 2}
 --- !u!1 &4049376714374271881
 GameObject:
   m_ObjectHideFlags: 0

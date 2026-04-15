@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -191,6 +191,7 @@ public class RandCards : MonoBehaviour
             case UpgradeType.newWeapon:
                 int family = upgr.weaponID / 3;
                 weaponProgress[family] = upgr.weaponID % 3;
+                weaponProgress[curWeap.currentWeapon % 3] = 0;
                 curWeap.Equip(upgr.weaponID);
                 break;
             case UpgradeType.noWeaponLoss:
@@ -198,7 +199,6 @@ public class RandCards : MonoBehaviour
                 break;
             case UpgradeType.noBonusLoss:
                 noBonusLoss = true;
-                Debug.Log("test");
                 break;
             case UpgradeType.damageBoost:
                 damageBoostActive = true;
