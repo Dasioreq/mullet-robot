@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     public GeneratorBehaviour levelGenerator;
     public RandCards RandCards;
     public bool intermission;
-
+    public int record = 0;
     public void StartGame()
     {
         level = 0;

@@ -24,6 +24,10 @@ public class IntermisionActions : MonoBehaviour
             {
                 gameController.intermission = true;
                 StartCoroutine(jukebox.Switch(false));
+                if (gameController.record < gameController.level)
+                { 
+                    gameController.record = gameController.level; 
+                }
                 if (gameController.level > 0 && !cardsTriggered) 
                 {
                     Cards cards = Object.FindAnyObjectByType<Cards>();
