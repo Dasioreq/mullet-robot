@@ -14,8 +14,11 @@ jobs:
         with:
             submodules: recursive
 
-      - name: Install Doxygen
-        run: sudo apt-get install -y doxygen graphviz
+      - name: Install Latest Doxygen
+        run: |
+          wget https://doxygen.nl
+          tar -xzf doxygen-1.13.2.linux.bin.tar.gz
+          echo "$(pwd)/doxygen-1.13.2/bin" >> $GITHUB_PATH
 
       - name: Generate Documentation
         run: doxygen Doxyfile
